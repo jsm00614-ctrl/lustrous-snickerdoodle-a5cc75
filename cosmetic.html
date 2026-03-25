@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP GLOBAL PKG — Cosmetic Product Catalog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { interpolate-size: allow-keywords; }
+
+    html.theme-light {
+      --bg: #FAFAF9; --surface: #FFFFFF; --surface-hover: #F5F5F4;
+      --border: rgba(0,0,0,0.06);
+      --text: #1a1a2e; --text-secondary: #5a5a7a;
+      --accent: #6B4C8A; --accent-secondary: #9B6CB8;
+      --positive: #059669; --negative: #e11d48; --warning: #d97706;
+      --hero-bg: linear-gradient(135deg, #1a1a2e 0%, #3d2b5a 40%, #2a1e40 100%);
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --table-header: #6B4C8A;
+      --table-header-text: #ffffff;
+      --table-stripe: #f5f0fa;
+      --badge-bg: #f0e8f5;
+      --badge-text: #6B4C8A;
+      --nav-bg: rgba(255,255,255,0.92);
+      --category-1: #6B4C8A;
+      --category-2: #2a6e8a;
+      --category-3: #8a6b4c;
+      --category-4: #4c8a6b;
+      --category-5: #8a4c6b;
+      --category-6: #4c6b8a;
+      --category-7: #6b8a4c;
+      --category-8: #5a4a6e;
+    }
+    html.theme-dark {
+      --bg: #0a0a10; --surface: #14141e; --surface-hover: #1c1c2c;
+      --border: rgba(255,255,255,0.06);
+      --text: #e8e8f0; --text-secondary: #8a8aaa;
+      --accent: #9B6CB8; --accent-secondary: #bb8cd8;
+      --positive: #10b981; --negative: #f43f5e; --warning: #f59e0b;
+      --hero-bg: linear-gradient(135deg, #0a0a14 0%, #1a1a3a 40%, #0f0f20 100%);
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+      --table-header: #2a1e40;
+      --table-header-text: #c8b8d8;
+      --table-stripe: rgba(255,255,255,0.02);
+      --badge-bg: rgba(155,108,184,0.15);
+      --badge-text: #bb8cd8;
+      --nav-bg: rgba(10,10,16,0.92);
+      --category-1: #9B6CB8;
+      --category-2: #4a9cbe;
+      --category-3: #bea87a;
+      --category-4: #6bbe8a;
+      --category-5: #be6a8a;
+      --category-6: #6a8abe;
+      --category-7: #8abe6a;
+      --category-8: #8a7aae;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+      letter-spacing: -0.01em;
+      transition: background 0.3s, color 0.3s;
+      scrollbar-gutter: stable;
+      overflow-x: hidden;
+    }
+    h1,h2,h3,h4,h5,h6 { color: var(--text); letter-spacing: -0.03em; line-height: 1.15; text-wrap: balance; }
+    h1 { font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); }
+    h2 { font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); }
+    h3 { font-weight: 600; font-size: clamp(1.5rem, 3vw, 2rem); }
+    p, li, td, th, span, label { color: var(--text); font-weight: 400; }
+    .text-secondary { color: var(--text-secondary); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    @media (max-width: 768px) { .container { padding: 0 16px; } }
+
+    /* ===== NAVIGATION ===== */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--nav-bg); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .site-nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; color: var(--text); }
+    .nav-logo-img { height: 28px; width: auto; display: block; }
+    .theme-dark .nav-logo-img { filter: invert(1); }
+    .nav-links { display: flex; gap: 4px; align-items: center; }
+    .nav-links a {
+      padding: 8px 14px; border-radius: 8px; text-decoration: none;
+      color: var(--text-secondary); font-size: 13px; font-weight: 500;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface-hover); }
+    .nav-divider { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
+    .nav-links a.nav-switch {
+      color: #2C5F2D; font-weight: 600; border: 1px solid rgba(44,95,45,0.2);
+      background: rgba(44,95,45,0.06);
+    }
+    .nav-links a.nav-switch:hover { background: rgba(44,95,45,0.12); }
+    .theme-dark .nav-links a.nav-switch {
+      color: #6bba6c; border-color: rgba(107,186,108,0.2);
+      background: rgba(107,186,108,0.06);
+    }
+    .theme-dark .nav-links a.nav-switch:hover { background: rgba(107,186,108,0.12); }
+    .nav-mobile-toggle {
+      display: none; width: 40px; height: 40px; border: none; background: transparent;
+      color: var(--text); cursor: pointer; border-radius: 8px;
+    }
+    .nav-mobile-toggle:hover { background: var(--surface-hover); }
+    @media (max-width: 768px) {
+      .site-nav { overflow: visible; }
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 999; background: var(--nav-bg); backdrop-filter: blur(16px); flex-direction: column; padding: 8px 16px 16px; border-bottom: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+      .nav-links.open { display: flex; }
+      .nav-mobile-toggle { display: flex; align-items: center; justify-content: center; position: relative; z-index: 101; }
+      .nav-divider { width: 100%; height: 1px; margin: 4px 0; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: var(--hero-bg); position: relative; overflow: hidden;
+      padding: 120px 24px 80px;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(155,108,184,0.15) 0%, transparent 60%);
+    }
+    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 20px; border-radius: 100px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 500;
+      margin-bottom: 32px; backdrop-filter: blur(8px);
+    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #9B6CB8; }
+    .hero h1 { color: #ffffff; font-size: clamp(3rem, 7vw, 5.5rem); margin-bottom: 16px; line-height: 1.05; }
+    .hero h1 .accent { color: #bb8cd8; }
+    .hero .subtitle { color: rgba(255,255,255,0.7); font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 400; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .hero-stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+    .hero-stat { text-align: center; }
+    .hero-stat .value { color: #ffffff; font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; }
+    .hero-stat .label { color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+    .scroll-hint {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.3); font-size: 12px; display: flex; flex-direction: column;
+      align-items: center; gap: 8px; animation: float 2s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+    /* ===== SECTIONS ===== */
+    .section { padding: 96px 0; }
+    @media (max-width: 768px) { .section { padding: 64px 0; } }
+    .section-header { margin-bottom: 56px; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px;
+    }
+    .section-label .bar { width: 24px; height: 2px; background: var(--accent); border-radius: 1px; }
+
+    /* ===== ABOUT ===== */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+    .about-visual {
+      background: var(--surface); border-radius: 16px; padding: 40px;
+      border: 1px solid var(--border); position: relative; overflow: hidden;
+    }
+    .about-visual::before {
+      content: ''; position: absolute; top: -50%; right: -50%;
+      width: 100%; height: 100%; border-radius: 50%;
+      background: radial-gradient(circle, rgba(155,108,184,0.08) 0%, transparent 70%);
+    }
+    .ingredient-chips { display: flex; flex-wrap: wrap; gap: 10px; position: relative; z-index: 1; }
+    .ingredient-chip {
+      padding: 10px 18px; border-radius: 100px; font-size: 13px; font-weight: 500;
+      background: var(--badge-bg); color: var(--badge-text);
+      border: 1px solid rgba(107,76,138,0.1);
+    }
+    .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .benefit-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.6; }
+    .benefit-list .icon-wrap {
+      width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+      background: var(--badge-bg); display: flex; align-items: center; justify-content: center;
+    }
+    .benefit-list .icon-wrap svg { width: 14px; height: 14px; color: var(--accent); }
+
+    /* ===== CATEGORY CARDS ===== */
+    .category-nav {
+      display: flex; gap: 8px; margin-bottom: 48px; flex-wrap: wrap;
+      position: sticky; top: 64px; z-index: 50;
+      background: var(--bg); padding: 16px 0; border-bottom: 1px solid var(--border);
+    }
+    .cat-btn {
+      padding: 10px 20px; border-radius: 100px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text-secondary); font-size: 13px;
+      font-weight: 500; cursor: pointer; transition: all 0.2s; font-family: inherit;
+      white-space: nowrap;
+    }
+    .cat-btn:hover { background: var(--surface-hover); color: var(--text); }
+    .cat-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* ===== PRODUCT SECTION ===== */
+    .product-category { margin-bottom: 80px; scroll-margin-top: 140px; }
+    .category-header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 24px; border-radius: 12px; margin-bottom: 32px;
+    }
+    .category-header .cat-number {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 18px; color: #fff; flex-shrink: 0;
+    }
+    .category-header h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0; }
+    .category-header .cat-desc { color: var(--text-secondary); font-size: 14px; margin-top: 2px; }
+
+    .product-group { margin-bottom: 48px; }
+    .product-group-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+    }
+    .product-group-header h3 { display: flex; align-items: center; gap: 10px; }
+    .product-group-header .section-tag {
+      font-size: 11px; font-weight: 600; padding: 4px 10px;
+      border-radius: 6px; background: var(--badge-bg); color: var(--badge-text);
+    }
+    .product-desc {
+      color: var(--text-secondary); font-size: 14px; line-height: 1.7;
+      max-width: 720px; margin-bottom: 20px;
+    }
+
+    /* ===== MATERIAL BADGE ===== */
+    .material-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .material-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
+      background: var(--badge-bg); color: var(--badge-text);
+    }
+    .material-badge svg { width: 12px; height: 12px; }
+    .material-badge.pcr { background: rgba(76,138,107,0.1); color: #4c8a6b; }
+    .theme-dark .material-badge.pcr { background: rgba(106,190,138,0.1); color: #6bbe8a; }
+    .material-badge.metal-free { background: rgba(42,110,138,0.1); color: #2a6e8a; }
+    .theme-dark .material-badge.metal-free { background: rgba(74,156,190,0.1); color: #4a9cbe; }
+
+    /* ===== TABLE ===== */
+    .table-wrap {
+      background: var(--surface); border-radius: 12px;
+      border: 1px solid var(--border); overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+    .table-wrap table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .table-wrap thead th {
+      background: var(--table-header); color: var(--table-header-text);
+      padding: 14px 16px; font-weight: 600; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; text-align: left;
+    }
+    .table-wrap tbody td {
+      padding: 14px 16px; border-bottom: 1px solid var(--border);
+      font-variant-numeric: tabular-nums;
+    }
+    .table-wrap tbody tr:nth-child(even) { background: var(--table-stripe); }
+    .table-wrap tbody tr:last-child td { border-bottom: none; }
+    .table-wrap tbody tr:hover { background: var(--surface-hover); }
+    .table-wrap .product-name { font-weight: 600; color: var(--text); }
+
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    @media (max-width: 600px) {
+      .table-wrap table { font-size: 13px; }
+      .table-wrap thead th, .table-wrap tbody td { padding: 10px 12px; }
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-section {
+      background: var(--hero-bg); padding: 96px 24px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .contact-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 70%, rgba(155,108,184,0.12) 0%, transparent 60%);
+    }
+    .contact-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+    .contact-content h2 { color: #fff; margin-bottom: 16px; }
+    .contact-content .contact-desc { color: rgba(255,255,255,0.65); font-size: 15px; margin-bottom: 40px; line-height: 1.7; }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 40px; }
+    .contact-card {
+      padding: 24px 20px; border-radius: 12px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px); text-align: center;
+      transition: background 0.2s;
+    }
+    .contact-card:hover { background: rgba(255,255,255,0.1); }
+    .contact-card svg { color: rgba(255,255,255,0.5); margin-bottom: 12px; }
+    .contact-card .card-label { color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .contact-card .card-value { color: #ffffff; font-size: 14px; font-weight: 500; }
+    .contact-card .card-value a { color: #ffffff; text-decoration: none; }
+    .contact-card .card-value a:hover { text-decoration: underline; }
+    .social-links { display: flex; justify-content: center; gap: 12px; }
+    .social-link {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.6); text-decoration: none; transition: all 0.2s;
+    }
+    .social-link:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+    .quote-block {
+      margin-top: 48px; padding: 28px 32px; border-radius: 12px;
+      background: rgba(255,255,255,0.04); border-left: 3px solid rgba(187,140,216,0.5);
+      text-align: left;
+    }
+    .quote-block p { color: rgba(255,255,255,0.75); font-size: 15px; font-style: italic; line-height: 1.7; }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      padding: 32px 24px; text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary); font-size: 13px;
+    }
+
+    /* ===== CARD ===== */
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px;
+      transition: box-shadow 0.2s ease;
+    }
+    .card:hover { box-shadow: 0 0 0 1px var(--border), 0 8px 20px rgba(0,0,0,0.06); }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+    .animate { animation: fadeInUp 0.6s ease-out both; }
+    .animate.delay-1 { animation-delay: 0.1s; }
+    .animate.delay-2 { animation-delay: 0.2s; }
+    .animate.delay-3 { animation-delay: 0.3s; }
+    .animate.delay-4 { animation-delay: 0.4s; }
+    .animate.delay-5 { animation-delay: 0.5s; }
+    .animate.delay-6 { animation-delay: 0.6s; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      body { background: white !important; color: black !important; }
+      .viz-menu, .site-nav, .reveal { display: revert; opacity: 1 !important; transform: none !important; }
+      .hero { min-height: auto; padding: 48px 24px; }
+      .card { break-inside: avoid; border: 1px solid #ddd; box-shadow: none; }
+      * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+    @page { margin: 0.75in; }
+
+    /* ===== MENU ===== */
+    .viz-menu { position: fixed; bottom: 16px; right: 16px; z-index: 9999; }
+    .viz-menu-toggle {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(12px); transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .viz-menu-toggle:hover { background: var(--surface-hover); }
+    .viz-menu-dropdown {
+      position: absolute; bottom: 52px; right: 0; min-width: 200px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 8px;
+      opacity: 0; visibility: hidden; transform: translateY(8px);
+      transition: all 0.2s; backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+    .viz-menu-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+    .viz-menu-dropdown button {
+      width: 100%; padding: 10px 14px; border: none; border-radius: 8px;
+      background: transparent; color: var(--text); font-size: 14px;
+      font-family: inherit; cursor: pointer; text-align: left;
+      display: flex; align-items: center; gap: 10px; transition: background 0.15s;
+    }
+    .viz-menu-dropdown button:hover { background: var(--surface-hover); }
+
+    /* ===== BACK TO TOP ===== */
+    .back-to-top {
+      position: fixed; bottom: 68px; right: 16px; z-index: 9998;
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(12px); transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      opacity: 0; pointer-events: none;
+    }
+    .back-to-top.show { opacity: 1; pointer-events: auto; }
+
+    /* ===== SEARCH ===== */
+    .search-bar {
+      position: relative; max-width: 400px; margin-bottom: 24px;
+    }
+    .search-bar input {
+      width: 100%; padding: 12px 16px 12px 44px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--text); font-size: 14px; font-family: inherit;
+      outline: none; transition: border-color 0.2s;
+    }
+    .search-bar input:focus { border-color: var(--accent); }
+    .search-bar input::placeholder { color: var(--text-secondary); }
+    .search-bar svg {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: var(--text-secondary); width: 18px; height: 18px;
+    }
+
+    @media (max-width: 375px) {
+      body { overflow-x: hidden; }
+      .hero-stats { gap: 24px; }
+      .hero-stat .value { font-size: 2rem; }
+    }
+
+    /* ===== PRODUCT IMAGES ===== */
+    .product-images {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px; margin-bottom: 20px;
+    }
+    .product-images.single { grid-template-columns: 1fr; max-width: 600px; }
+    .product-images.dual { grid-template-columns: 1fr 1fr; max-width: 700px; }
+    .product-img-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; transition: box-shadow 0.2s; cursor: pointer;
+    }
+    .product-img-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .product-img-card img {
+      width: 100%; height: auto; display: block;
+      object-fit: contain;
+      background: #f5f5f5;
+    }
+    .product-img-card .img-caption {
+      padding: 10px 14px; font-size: 12px; font-weight: 500;
+      color: var(--text-secondary); text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 768px) {
+      .product-images { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+      .product-images.dual { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 999999;
+      background: rgba(0,0,0,0.92);
+      align-items: center; justify-content: center;
+      cursor: zoom-out;
+    }
+    #lightboxImg {
+      max-width: 88vw; max-height: 82vh;
+      border-radius: 8px; object-fit: contain;
+      display: block; cursor: zoom-out;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+      position: fixed; top: 18px; right: 18px;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: white; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; z-index: 1000000;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.3); }
+    .lightbox-caption {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.55); color: rgba(255,255,255,0.75);
+      font-size: 13px; padding: 6px 18px; border-radius: 20px;
+      pointer-events: none; white-space: nowrap;
+    }
+
+    .skip-to-content {
+      position: absolute; top: -40px; left: 6px; background: var(--accent);
+      color: white; padding: 8px 12px; text-decoration: none;
+      border-radius: 4px; opacity: 0; pointer-events: none;
+      transition: all 0.2s; z-index: 10000;
+    }
+    .skip-to-content:focus { top: 6px; opacity: 1; pointer-events: auto; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <!-- NAVIGATION -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" onclick="event.preventDefault(); window.scrollTo({top:0,behavior:'smooth'})">
+        <img src="images/logo.png" alt="SP GLOBAL PKG" class="nav-logo-img">
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about" onclick="closeMobileNav()">About</a>
+        <a href="#cat-grastic" onclick="closeMobileNav()">Grastic</a>
+        <a href="#cat-glass" onclick="closeMobileNav()">Glass</a>
+        <a href="#cat-mono" onclick="closeMobileNav()">Mono Material</a>
+        <a href="#cat-refillable" onclick="closeMobileNav()">Refillable</a>
+        <a href="#cat-sustainable" onclick="closeMobileNav()">Sustainable</a>
+        <a href="#cat-secondary" onclick="closeMobileNav()">Secondary</a>
+        <a href="#cat-unique" onclick="closeMobileNav()">Unique Design</a>
+        <a href="#contact" onclick="closeMobileNav()">Contact</a>
+        <div class="nav-divider"></div>
+        <a href="index.html" class="nav-switch" onclick="closeMobileNav()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 2px;"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          F&B Catalog
+        </a>
+      </div>
+      <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- UTILITY MENU -->
+  <div class="viz-menu">
+    <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="Utility menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
+      </svg>
+    </button>
+    <div class="viz-menu-dropdown" id="vizMenuDropdown">
+      <button onclick="cycleTheme()"><span id="themeIcon">☀️</span><span id="themeLabel">Light</span></button>
+      <button onclick="downloadImage()"><span>📥</span><span>Download PNG</span></button>
+      <button onclick="window.print()"><span>🖨️</span><span>Print / PDF</span></button>
+    </div>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <main id="main-content" role="main">
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero section">
+      <div class="hero-content">
+        <div class="hero-badge animate delay-1"><span class="dot"></span> Beauty Packaging Reimagined</div>
+        <h1 class="animate delay-2">
+          <span class="accent">Cosmetic</span><br>Packaging
+        </h1>
+        <p class="subtitle animate delay-3">
+          Premium primary &amp; secondary packaging solutions for skincare, makeup, and perfume — crafted with sustainability and innovation at the core.
+        </p>
+        <div class="hero-stats animate delay-5">
+          <div class="hero-stat"><div class="value" data-count="2000" data-suffix="+">2,000+</div><div class="label">Products</div></div>
+          <div class="hero-stat"><div class="value" data-count="30" data-suffix="+">30+</div><div class="label">Categories</div></div>
+          <div class="hero-stat"><div class="value" data-count="100" data-suffix="%">100%</div><div class="label">Customizable</div></div>
+        </div>
+      </div>
+      <div class="scroll-hint">
+        <span>Explore catalog</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+    </section>
+
+    <!-- ABOUT GRASTIC (for cosmetics context) -->
+    <section class="section" id="about" aria-label="About GRASTIC">
+      <div class="container">
+        <div class="section-header animate">
+          <div class="section-label"><span class="bar"></span> Material Innovation</div>
+          <h2>GRASTIC for Cosmetics</h2>
+          <p class="text-secondary" style="max-width:640px; margin-top:12px;">
+            A nature-derived, plastic alternative that fully biodegrades at room temperature — with zero toxin, zero waste, zero harm. Purpose-built for the beauty industry.
+          </p>
+        </div>
+        <div class="about-grid">
+          <div class="about-visual animate delay-2">
+            <div class="ingredient-chips">
+              <span class="ingredient-chip">Cornstarch</span>
+              <span class="ingredient-chip">TPS</span>
+              <span class="ingredient-chip">PLA</span>
+              <span class="ingredient-chip">PHA</span>
+              <span class="ingredient-chip">PBAT</span>
+              <span class="ingredient-chip">PBS</span>
+            </div>
+            <ul class="benefit-list" style="margin-top:28px;">
+              <li>
+                <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                <span>100% biodegradable — fully decomposes in nature</span>
+              </li>
+              <li>
+                <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                <span>No microplastics, no toxins, no residue</span>
+              </li>
+              <li>
+                <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                <span>Durable for up to 2 years, then biodegrades naturally</span>
+              </li>
+              <li>
+                <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                <span>Custom molds, colors, and degradation speed</span>
+              </li>
+            </ul>
+          </div>
+          <div class="animate delay-3">
+            <h3 style="margin-bottom:20px;">Certified &amp; Trusted</h3>
+            <p class="text-secondary" style="font-size:15px; line-height:1.7; margin-bottom:24px;">
+      Our F&amp;B product line has obtained the following certifications:
+    </p>
+    <ul class="certification-list">
+      <li>DIN Geprüft</li>
+      <li>OK compost</li>
+      <li>TÜV AUSTRIA Industrial</li>
+    </ul>
+
+    <p class="section-text">
+      For cosmetic-grade raw materials, relevant certifications are currently in progress.
+    </p>
+
+    <p class="section-text">
+      In addition, documentation and certifications required for export to the United States and Europe are currently under preparation to ensure compliance with international standards.
+    </p>
+            </p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <span class="material-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> DIN Geprüft</span>
+              <span class="material-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> OK compost</span>
+              <span class="material-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> TÜV AUSTRIA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT CATALOG -->
+    <section class="section" id="products" aria-label="Product catalog">
+      <div class="container">
+        <div class="section-header animate">
+          <div class="section-label"><span class="bar"></span> Product Lineup</div>
+          <h2>Cosmetic Packaging Catalog</h2>
+        </div>
+
+        <!-- CATEGORY NAV -->
+        <div class="category-nav" role="navigation" aria-label="Category navigation">
+          <button class="cat-btn active" onclick="filterCategory('all')">All</button>
+          <button class="cat-btn" onclick="filterCategory('grastic')">01 Grastic</button>
+          <button class="cat-btn" onclick="filterCategory('glass')">02 Glass</button>
+          <button class="cat-btn" onclick="filterCategory('mono')">03 Mono Material</button>
+          <button class="cat-btn" onclick="filterCategory('refillable')">04 Refillable</button>
+          <button class="cat-btn" onclick="filterCategory('sustainable')">05 Sustainable</button>
+          <button class="cat-btn" onclick="filterCategory('secondary')">06 Secondary</button>
+          <button class="cat-btn" onclick="filterCategory('unique')">07 Unique Design</button>
+          <button class="cat-btn" onclick="filterCategory('without')">08 Without Limits</button>
+        </div>
+
+        <!-- SEARCH -->
+        <div class="search-bar animate delay-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="searchInput" placeholder="Search products by code, material, or capacity..." oninput="searchProducts(this.value)">
+        </div>
+
+        <!-- 01 GRASTIC -->
+        <div class="product-category" id="cat-grastic" data-category="grastic" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(107,76,138,0.08), rgba(107,76,138,0.02));">
+            <div class="cat-number" style="background: var(--category-1);">01</div>
+            <div><h2>Grastic</h2><div class="cat-desc">Cosmetics — Nature-derived biodegradable packaging</div></div>
+          </div>
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>GRASTIC Cosmetics <span class="section-tag">Eco Material</span></h3>
+            </div>
+            <p class="product-desc">Biodegradable cosmetic packaging made from GRASTIC — jars, bottles, compacts, and more for eco-conscious beauty brands.</p>
+            <div class="material-badges">
+              <span class="material-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg> GRASTIC</span>
+            </div>
+            <div class="product-images"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/grastic-cosmetics.png" alt="GRASTIC Cosmetics lineup" loading="lazy"><div class="img-caption">GRASTIC Cosmetics — Jar, Bottle, Compact, Lip & More</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>01</td><td class="product-name">SP-GR-CO-JARD001</td><td>5 mL</td><td>GRASTIC</td></tr>
+                    <tr><td>02</td><td class="product-name">SP-GR-CO-BORD001</td><td>200 mL</td><td>GRASTIC</td></tr>
+                    <tr><td>03</td><td class="product-name">SP-GR-CO-STRD001</td><td>21.5 mL</td><td>GRASTIC</td></tr>
+                    <tr><td>04</td><td class="product-name">SP-GR-CO-CURD001</td><td>25 mL</td><td>GRASTIC</td></tr>
+                    <tr><td>05</td><td class="product-name">SP-GR-CO-PASQ001</td><td>2 colors</td><td>GRASTIC</td></tr>
+                    <tr><td>06</td><td class="product-name">SP-GR-CO-LISQ001</td><td>7 mL</td><td>GRASTIC</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 GLASS -->
+        <div class="product-category" id="cat-glass" data-category="glass" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(42,110,138,0.08), rgba(42,110,138,0.02));">
+            <div class="cat-number" style="background: var(--category-2);">02</div>
+            <div><h2>Glass</h2><div class="cat-desc">Pump, Dropper &amp; Perfume — Premium glass bottles</div></div>
+          </div>
+
+          <!-- Pump -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Pump <span class="section-tag">Glass Series</span></h3>
+            </div>
+            <p class="product-desc">Elegant glass pump bottles designed for serums, lotions, and foundations — featuring metal-free and PCR options.</p>
+            <div class="material-badges">
+              <span class="material-badge metal-free"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 5.64a9 9 0 11-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg> Metal Free</span>
+              <span class="material-badge pcr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4-3-9s1.34-9 3-9"/></svg> PCR</span>
+            </div>
+            <div class="product-images dual"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/glass-pump-01.png" alt="Glass Pump bottles 01-02" loading="lazy"><div class="img-caption">Pump 01–02 (30 mL)</div></div><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/glass-pump-02.png" alt="Glass Pump bottles 03-05" loading="lazy"><div class="img-caption">Pump 03–05 (30–50 mL)</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>01</td><td class="product-name">OP-133</td><td>30 mL</td><td>CAP PP / BOTTLE Glass<br><small>PUMP PP + PE + TPE (Spring)</small></td></tr>
+                    <tr><td>02</td><td class="product-name">DR-PUMP-01</td><td>30 mL</td><td>CAP PP / BOTTLE Glass<br><small>PUMP PP + PE + TPE (Spring, Packing)</small></td></tr>
+                    <tr><td>03</td><td class="product-name">CU-CI-045-P</td><td>50 mL</td><td rowspan="3">CAP PP / PUMP Other / BOTTLE Glass</td></tr>
+                    <tr><td>04</td><td class="product-name">CU-CI-038-P</td><td>50 mL</td></tr>
+                    <tr><td>05</td><td class="product-name">CU-CI-044-P</td><td>30 mL</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dropper -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Dropper <span class="section-tag">Glass Series</span></h3>
+            </div>
+            <p class="product-desc">Precision dropper bottles for serums and essential oils — glass pipettes with silicone and TPE teat options.</p>
+            <div class="material-badges">
+              <span class="material-badge pcr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4-3-9s1.34-9 3-9"/></svg> PCR</span>
+            </div>
+            <div class="product-images single"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/glass-dropper.png" alt="Glass Dropper bottles" loading="lazy"><div class="img-caption">Dropper 06–09 (5–50 mL)</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>06</td><td class="product-name">CU-CI-045-D</td><td>50 mL</td><td rowspan="2">CAP PP / TEAT TPE or NBR or Silicone<br>PIPET Glass / WIPER PE / BOTTLE Glass</td></tr>
+                    <tr><td>07</td><td class="product-name">CU-CI-043</td><td>30 mL</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Perfume -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Perfume <span class="section-tag">Glass Series</span></h3>
+            </div>
+            <p class="product-desc">Luxurious perfume bottles in round, square, and specialty shapes — from 5 mL travel sprays to 45 mL full-size fragrances.</p>
+            <div class="material-badges">
+              <span class="material-badge pcr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4-3-9s1.34-9 3-9"/></svg> PCR</span>
+            </div>
+            <div class="product-images single"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/glass-perfume.png" alt="Glass Perfume bottles" loading="lazy"><div class="img-caption">Perfume 10–12 (30–45 mL)</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>08</td><td class="product-name">DR-PF-11</td><td>5 mL</td><td>CAP PP / PUMP Other / BOTTLE Glass</td></tr>
+                    <tr><td>09</td><td class="product-name">CU-PF-042</td><td>10 mL</td><td>CAP PP / BALL SUS / BOTTLE Glass</td></tr>
+                    <tr><td>10</td><td class="product-name">DR-PF-08</td><td>30 mL</td><td rowspan="3">CAP ABS / PUMP AL / BOTTLE Glass</td></tr>
+                    <tr><td>11</td><td class="product-name">DR-PF-09</td><td>30 mL</td></tr>
+                    <tr><td>12</td><td class="product-name">DR-PF-10</td><td>45 mL</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 MONO MATERIAL -->
+        <div class="product-category" id="cat-mono" data-category="mono" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(138,107,76,0.08), rgba(138,107,76,0.02));">
+            <div class="cat-number" style="background: var(--category-3);">03</div>
+            <div><h2>Mono Material</h2><div class="cat-desc">Airless, Dropper &amp; Stick — Single-material recyclable solutions</div></div>
+          </div>
+
+          <!-- Airless -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Airless <span class="section-tag">Mono PP</span></h3>
+            </div>
+            <p class="product-desc">All-PP airless containers for serums and creams — metal-free, PCR-compatible, and fully recyclable mono-material design.</p>
+            <div class="material-badges">
+              <span class="material-badge metal-free"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 5.64a9 9 0 11-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg> Metal Free</span>
+              <span class="material-badge pcr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4-3-9s1.34-9 3-9"/></svg> PCR</span>
+            </div>
+            <div class="product-images"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/mono-airless-01.png" alt="Mono Airless 01-03" loading="lazy"><div class="img-caption">Airless TAP-029A (30–120 mL)</div></div><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/mono-airless-02.png" alt="Mono Airless 04-06" loading="lazy"><div class="img-caption">Airless TAP-029 (30–120 mL)</div></div><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/mono-airless-03.png" alt="Mono Airless 07-09" loading="lazy"><div class="img-caption">Airless KRSJ (15–50 mL)</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>01</td><td class="product-name">TAP-029A-120</td><td>100 / 120 mL</td><td rowspan="3">CAP PP / PUMP PP / BOTTLE PP</td></tr>
+                    <tr><td>02</td><td class="product-name">TAP-029A-70</td><td>50 / 70 mL</td></tr>
+                    <tr><td>03</td><td class="product-name">TAP-029A-50</td><td>30 / 50 mL</td></tr>
+                    <tr><td>04</td><td class="product-name">TAP-029-120</td><td>100 / 120 mL</td><td rowspan="3">CAP PP / PUMP PP / BOTTLE PP</td></tr>
+                    <tr><td>05</td><td class="product-name">TAP-029-70</td><td>50 / 70 mL</td></tr>
+                    <tr><td>06</td><td class="product-name">TAP-029-50</td><td>30 / 50 mL</td></tr>
+                    <tr><td>07</td><td class="product-name">KRSJ-15a/b</td><td>15 mL</td><td rowspan="3">CAP PP / PUMP PP / BOTTLE PP</td></tr>
+                    <tr><td>08</td><td class="product-name">KRSJ-30a/b</td><td>30 mL</td></tr>
+                    <tr><td>09</td><td class="product-name">KRSJ-50a/b</td><td>50 mL</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dropper & Stick -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Dropper &amp; Stick <span class="section-tag">Mono PP</span></h3>
+            </div>
+            <p class="product-desc">Mono-material dropper bottles and stick containers — balm sticks, pipette bottles, and compact applicators in all-PP construction.</p>
+            <div class="material-badges">
+              <span class="material-badge pcr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4-3-9s1.34-9 3-9"/></svg> PCR</span>
+            </div>
+            <div class="product-images single"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/mono-dropper-stick.png" alt="Mono Dropper & Stick" loading="lazy"><div class="img-caption">Dropper & Stick (10g–50 mL)</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>10</td><td class="product-name">KR504-11</td><td>10 g</td><td>CAP PP / BOTTLE PP</td></tr>
+                    <tr><td>11</td><td class="product-name">TSPD-39</td><td>30 / 50 mL</td><td>CAP PP / PIPET PP / BOTTLE PP</td></tr>
+                    <tr><td>12</td><td class="product-name">TAE01</td><td>20 g</td><td>CAP PP / BOTTLE PP</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 REFILLABLE -->
+        <div class="product-category" id="cat-refillable" data-category="refillable" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(76,138,107,0.08), rgba(76,138,107,0.02));">
+            <div class="cat-number" style="background: var(--category-4);">04</div>
+            <div><h2>Refillable</h2><div class="cat-desc">Airless, Jar &amp; Pouch — Sustainable refill systems</div></div>
+          </div>
+
+          <!-- Airless Refillable -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Airless <span class="section-tag">Refillable</span></h3>
+            </div>
+            <p class="product-desc">Premium refillable airless dispensers with glass outer bottles — designed for luxury skincare brands committed to sustainability.</p>
+            <div class="product-images single"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/refillable-airless.png" alt="Refillable Airless" loading="lazy"><div class="img-caption">Refillable Airless (30–50 mL)</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>01</td><td class="product-name">OP-162</td><td>30 mL</td><td rowspan="2">CAP PETG / PUMP Other<br>INNER BOTTLE PP / OUTER BOTTLE Glass</td></tr>
+                    <tr><td>02</td><td class="product-name">OP-163</td><td>50 mL</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Jar Refillable -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Jar <span class="section-tag">Refillable</span></h3>
+            </div>
+            <p class="product-desc">Refillable cream jars and pad containers with inner refill systems — spatulas and tweezers included for hygienic use.</p>
+            <div class="material-badges">
+              <span class="material-badge pcr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4-3-9s1.34-9 3-9"/></svg> PCR</span>
+            </div>
+            <div class="product-images dual"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/refillable-jar-01.png" alt="Refillable Jar YFDJ" loading="lazy"><div class="img-caption">Jar YFDJ (50–100 mL)</div></div><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/refillable-jar-02.png" alt="Refillable Jar & Pad" loading="lazy"><div class="img-caption">Jar RPP & Pad Container</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>03</td><td class="product-name">YFDJ001</td><td>50 mL</td><td rowspan="2">OUTER CAP PP / INNER CAP PP<br>OUTER BOTTLE PP / INNER BOTTLE PP / SPATULA AS</td></tr>
+                    <tr><td>04</td><td class="product-name">YFDJ002</td><td>100 mL</td></tr>
+                    <tr><td>05</td><td class="product-name">RPP-80A</td><td>80 mL</td><td>CAP PP / INNER BOTTLE PP<br>OUTER BOTTLE PP / SPATULA PP</td></tr>
+                    <tr><td>06</td><td class="product-name">PP-RPAD70A</td><td>70 Pads</td><td rowspan="2">CAP PP / INNER BOTTLE PP<br>OUTER BOTTLE PP / SPATULA PP / TWEEZERS ABS</td></tr>
+                    <tr><td>07</td><td class="product-name">PP-RPAD70FA</td><td>70 Pads</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pouch Refillable -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Pouch <span class="section-tag">Refillable</span></h3>
+            </div>
+            <p class="product-desc">Spout pouches for refill solutions — aluminum and PET composite materials in multiple sizes for eco-friendly refill packaging.</p>
+            <div class="product-images single"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/refillable-pouch.png" alt="Refillable Pouch" loading="lazy"><div class="img-caption">Refill Pouch (500–1,500 mL)</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>08</td><td class="product-name">JAP-500</td><td>500 mL</td><td rowspan="4">CAP PP / SPOUT PP<br>POUCH AL + Other or PET + Other</td></tr>
+                    <tr><td>09</td><td class="product-name">JAP-900</td><td>900 mL</td></tr>
+                    <tr><td>10</td><td class="product-name">JAP-1000</td><td>1,000 mL</td></tr>
+                    <tr><td>11</td><td class="product-name">JAP-1500</td><td>1,500 mL</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 SUSTAINABLE -->
+        <div class="product-category" id="cat-sustainable" data-category="sustainable" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(138,76,107,0.08), rgba(138,76,107,0.02));">
+            <div class="cat-number" style="background: var(--category-5);">05</div>
+            <div><h2>Sustainable</h2><div class="cat-desc">Stick, Jar &amp; Aluminum — Eco-conscious materials</div></div>
+          </div>
+
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Stick &amp; Jar <span class="section-tag">Sustainable</span></h3>
+            </div>
+            <p class="product-desc">Sustainable stick and jar packaging — PCR PET lip balm containers, aluminum cups, and recyclable cream jars.</p>
+            <div class="material-badges">
+              <span class="material-badge pcr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4-3-9s1.34-9 3-9"/></svg> PCR</span>
+            </div>
+            <div class="product-images"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/sustainable-stickjar-01.png" alt="Sustainable Stick Containers" loading="lazy"><div class="img-caption">Lip Balm Sticks (01–02)</div></div><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/sustainable-stickjar-02.png" alt="Sustainable Aluminum Cups" loading="lazy"><div class="img-caption">Aluminum Cups (03)</div></div><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/sustainable-stickjar-03.png" alt="Sustainable Cream Jars" loading="lazy"><div class="img-caption">Cream Jars (04)</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>01</td><td class="product-name">LC-PS32</td><td>3.7 g</td><td rowspan="2">CAP PET / BOTTLE PET</td></tr>
+                    <tr><td>02</td><td class="product-name">LC-PS31</td><td>3.7 g</td></tr>
+                    <tr><td>03</td><td class="product-name">DJ-NW8</td><td>7 g</td><td>CAP AL / BOTTLE AL</td></tr>
+                    <tr><td>04</td><td class="product-name">CSRM30-C / CSRM55-C</td><td>30 / 55 mL</td><td>CAP PET / LID PP / BOTTLE PET</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Aluminum <span class="section-tag">Sustainable</span></h3>
+            </div>
+            <p class="product-desc">Aluminum bottles — infinitely recyclable, lightweight, and premium-feeling containers available from 100 mL to 500 mL.</p>
+            <div class="product-images single"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/sustainable-aluminum.png" alt="Sustainable Aluminum bottles" loading="lazy"><div class="img-caption">Aluminum Bottles (100–500 mL)</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>05</td><td class="product-name">YUN-AL-1</td><td>100 mL</td><td rowspan="5">BOTTLE AL</td></tr>
+                    <tr><td>06</td><td class="product-name">YUN-AL-1</td><td>150 mL</td></tr>
+                    <tr><td>07</td><td class="product-name">YUN-AL-1</td><td>200 mL</td></tr>
+                    <tr><td>08</td><td class="product-name">YUN-AL-1</td><td>350 mL</td></tr>
+                    <tr><td>09</td><td class="product-name">YUN-AL-1</td><td>500 mL</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 06 SECONDARY -->
+        <div class="product-category" id="cat-secondary" data-category="secondary" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(76,107,138,0.08), rgba(76,107,138,0.02));">
+            <div class="cat-number" style="background: var(--category-6);">06</div>
+            <div><h2>Secondary</h2><div class="cat-desc">Paper Packaging &amp; Label — Outer packaging solutions</div></div>
+          </div>
+
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Paper Packaging <span class="section-tag">Secondary</span></h3>
+            </div>
+            <p class="product-desc">Unit cartons, paper molds, and paper press inserts — sustainable secondary packaging for complete product presentation.</p>
+            <div class="product-images"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/secondary-carton.png" alt="Unit Cartons" loading="lazy"><div class="img-caption">Unit Carton Types</div></div><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/secondary-mold.png" alt="Paper Mold" loading="lazy"><div class="img-caption">Paper Mold</div></div><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/secondary-press.png" alt="Paper Press" loading="lazy"><div class="img-caption">Paper Press Insert</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Type</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>01</td><td class="product-name">UC-01</td><td>UNIT CARTON / Three-Side Sealed</td><td rowspan="3">PAPER</td></tr>
+                    <tr><td>02</td><td class="product-name">UC-02</td><td>UNIT CARTON / Straight Tuck</td></tr>
+                    <tr><td>03</td><td class="product-name">UC-03</td><td>UNIT CARTON / Lock Bottom</td></tr>
+                    <tr><td>04</td><td class="product-name">SD-6</td><td>PAPER MOLD</td><td rowspan="2">PAPER</td></tr>
+                    <tr><td>05</td><td class="product-name">SD-6</td><td>PAPER MOLD</td></tr>
+                    <tr><td>06</td><td class="product-name">SD-12</td><td>PAPER PRESS</td><td rowspan="2">PAPER</td></tr>
+                    <tr><td>07</td><td class="product-name">SD-12</td><td>PAPER PRESS</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Label <span class="section-tag">Secondary</span></h3>
+            </div>
+            <p class="product-desc">High-quality labels in PP/PE material — custom-printed with brand designs for cosmetic and body care products.</p>
+            <div class="product-images single"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/secondary-label.png" alt="Labels" loading="lazy"><div class="img-caption">Custom Labels (PP / PE)</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Type</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>08</td><td class="product-name">LB-01</td><td>LABEL</td><td>PP / PE</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 07 UNIQUE DESIGN -->
+        <div class="product-category" id="cat-unique" data-category="unique" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(107,138,76,0.08), rgba(107,138,76,0.02));">
+            <div class="cat-number" style="background: var(--category-7);">07</div>
+            <div><h2>Unique Design</h2><div class="cat-desc">Skin Care, Stick, Tube &amp; Make Up — Distinctive custom packaging</div></div>
+          </div>
+
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Skin Care <span class="section-tag">Unique Design</span></h3>
+            </div>
+            <p class="product-desc">Standout skincare packaging — from airless dispensers and sphere bottles to luxury droppers and cream jars, each designed to differentiate your brand.</p>
+            <div class="material-badges">
+              <span class="material-badge pcr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4-3-9s1.34-9 3-9"/></svg> PCR</span>
+            </div>
+            <div class="product-images"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/unique-skincare-01.png" alt="Unique Skin Care 01" loading="lazy"><div class="img-caption">Airless Dispenser (01)</div></div><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/unique-skincare-item02.png" alt="Unique Skin Care 02" loading="lazy"><div class="img-caption">Sphere Bottle (02)</div></div><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/unique-skincare-03.png" alt="Unique Skin Care 08-11" loading="lazy"><div class="img-caption">Luxury Bottles &amp; Droppers (08–11)</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>01</td><td class="product-name">HB-K016</td><td>50 mL</td><td>CAP PP / PUMP Other / BOTTLE PETG</td></tr>
+                    <tr><td>02</td><td class="product-name">GLP-SPU-50</td><td>50 mL</td><td>OUTER CAP PP / INNER CAP PP / REDUCER LDPE / BOTTLE EVOH</td></tr>
+                    <tr><td>08</td><td class="product-name">SW-001</td><td>120/130/150 mL</td><td>OUTER CAP ABS / INNER CAP PP / PUMP Other / BOTTLE PETG</td></tr>
+                    <tr><td>09</td><td class="product-name">SW-001</td><td>30 mL</td><td>CAP ABS / BOTTLE PETG</td></tr>
+                    <tr><td>10</td><td class="product-name">JC40-004</td><td>30–100 mL</td><td>CAP PP / TUBE PE</td></tr>
+                    <tr><td>11</td><td class="product-name">TS-001</td><td>50 mL</td><td>OUTER CAP AS / INNER CAP ABS / LID PE / OUT BOTTLE SAN / INNER BOTTLE PP</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Stick <span class="section-tag">Unique Design</span></h3>
+            </div>
+            <p class="product-desc">Graduated airless stick containers — multi-size deodorant and skincare sticks from 6 g to 75 g with double-wall construction.</p>
+            <div class="product-images single"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/unique-skincare-02.png" alt="Unique Stick 03-07" loading="lazy"><div class="img-caption">Graduated Sticks (03–07)</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>03</td><td class="product-name">YFOP001</td><td>6 g</td><td rowspan="5">CAP ABS / BOTTLE CAP ABS / SCREW PP / INSERT PP / INNER BOTTLE PETG / OUTER BOTTLE AS</td></tr>
+                    <tr><td>04</td><td class="product-name">YFOP002</td><td>15 g</td></tr>
+                    <tr><td>05</td><td class="product-name">YFOP003</td><td>30 g</td></tr>
+                    <tr><td>06</td><td class="product-name">YFOP004</td><td>50 g</td></tr>
+                    <tr><td>07</td><td class="product-name">YFOP005</td><td>75 g</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Tube <span class="section-tag">Unique Design</span></h3>
+            </div>
+            <p class="product-desc">Premium tubes with distinctive cap designs — including bakelite caps, ball applicators, and two-tone color finishes for skincare lines.</p>
+            <div class="material-badges">
+              <span class="material-badge pcr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4-3-9s1.34-9 3-9"/></svg> PCR</span>
+            </div>
+            <div class="product-images single"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/unique-tube.png" alt="Unique Tubes" loading="lazy"><div class="img-caption">Tubes with Bakelite & Ball Caps</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Dimension</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>12</td><td class="product-name">YUN-T-01</td><td>ø 40</td><td>50–150 mL</td><td>CAP PP / BALL PP / COLLAR PP / TUBE PE</td></tr>
+                    <tr><td>13</td><td class="product-name">A-35181</td><td>ø 35</td><td>30–100 mL</td><td rowspan="2">CAP BAKELITE* / TUBE PE</td></tr>
+                    <tr><td>14</td><td class="product-name">A-25A131</td><td>ø 25</td><td>15–50 mL</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Make Up <span class="section-tag">Unique Design</span></h3>
+            </div>
+            <p class="product-desc">Bespoke makeup packaging — roll-on applicators, click pens, mascara wands, cushion compacts, and lip gloss containers with innovative mechanisms.</p>
+            <div class="product-images"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/unique-makeup-01.png" alt="Makeup Pens" loading="lazy"><div class="img-caption">Click Pens (8/12 mL)</div></div><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/unique-makeup-02.png" alt="Makeup Pouch & Mascara" loading="lazy"><div class="img-caption">Pouch & Mascara Applicator</div></div><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/unique-makeup-03.png" alt="Makeup Applicators" loading="lazy"><div class="img-caption">Roll-on & Tip Applicators</div></div><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/unique-makeup-04.png" alt="Compact & Lip" loading="lazy"><div class="img-caption">Cushion Compact & Lip Gloss</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No.</th><th>Item Code</th><th>Capacity</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td>15</td><td class="product-name">YFOP007</td><td>8 / 12 mL</td><td>CAP ABS / BALL SUS / PUMP Other / BOTTLE PP</td></tr>
+                    <tr><td>16</td><td class="product-name">YFOP008</td><td>8 / 12 mL</td><td>CAP ABS / PUMP Other / BOTTLE PP</td></tr>
+                    <tr><td>17</td><td class="product-name">ST-013</td><td>3 g</td><td>CAP PP / POUCH AL + Other</td></tr>
+                    <tr><td>18</td><td class="product-name">YFOP006</td><td>5 mL</td><td>OUTER CAP ABS / INNER CAP PP / SPATULA Silicone / BOTTLE PP</td></tr>
+                    <tr><td>19</td><td class="product-name">RS-001</td><td>7–25 mL</td><td>CAP PP / APPLICATOR Other / BOTTLE PC / DIAL POM</td></tr>
+                    <tr><td>20</td><td class="product-name">RS-002</td><td>7–25 mL</td><td>CAP PP / TIP Silicon / HEAD PP / TUBE PE</td></tr>
+                    <tr><td>21</td><td class="product-name">RS-003</td><td>7–25 mL</td><td>CAP PP / APPLICATOR Other / TUBE PE</td></tr>
+                    <tr><td>22</td><td class="product-name">RS-004</td><td>15 mL</td><td>CAP PP / BOTTLE AL + Other</td></tr>
+                    <tr><td>23</td><td class="product-name">TY-006</td><td>6 mL</td><td>CAP PETG / BOTTLE BELLPET / HOLDER PCTA / BUTTON TPE</td></tr>
+                    <tr><td>24</td><td class="product-name">CK-002</td><td>5 mL</td><td>CAP PETG / WAND PETG / BOTTLE PETG / WIPER PE / TIP Elastomer+PA</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 08 WITHOUT LIMITS -->
+        <div class="product-category" id="cat-without" data-category="without" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(90,74,110,0.08), rgba(90,74,110,0.02));">
+            <div class="cat-number" style="background: var(--category-8);">08</div>
+            <div><h2>Without Limits</h2><div class="cat-desc">Design Solution — Fully custom packaging development</div></div>
+          </div>
+
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3>Design Solution <span class="section-tag">Bespoke</span></h3>
+            </div>
+            <p class="product-desc">End-to-end custom packaging development — from concept and 3D design to engineering, mold creation, and mass production. No limits on shape, material, or innovation.</p>
+            <div class="product-images single"><div class="product-img-card" onclick="openLightbox(this)"><img src="images/cosmetic/design-solution.png" alt="Design Solution showcase" loading="lazy"><div class="img-caption">Design Solution — "Formed by insight, finished by design."</div></div></div>
+            <div class="table-scroll">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Service</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr><td class="product-name">Branding</td><td>Brand identity and packaging strategy consultation</td></tr>
+                    <tr><td class="product-name">Concept Design</td><td>Creative direction and visual concept development</td></tr>
+                    <tr><td class="product-name">3D Design</td><td>Photorealistic 3D rendering and virtual prototyping</td></tr>
+                    <tr><td class="product-name">Engineering</td><td>Structural engineering and material optimization</td></tr>
+                    <tr><td class="product-name">Custom Mold</td><td>Precision mold manufacturing for unique shapes</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact" aria-label="Contact information">
+      <div class="contact-content animate">
+        <h2>Let's Create Together</h2>
+        <p class="contact-desc">
+          Ready to bring your cosmetic packaging vision to life? Our team provides comprehensive support from concept to production.
+        </p>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+            <div class="card-label">Email</div>
+            <div class="card-value"><a href="mailto:info@spglobalpkg.com">info@spglobalpkg.com</a></div>
+          </div>
+          <div class="contact-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+            <div class="card-label">Instagram</div>
+            <div class="card-value"><a href="https://instagram.com/spbeautypkg_official" target="_blank">@spbeautypkg_official</a></div>
+          </div>
+          <div class="contact-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <div class="card-label">LinkedIn</div>
+            <div class="card-value"><a href="https://linkedin.com/company/sp-global-pkg" target="_blank">SP GLOBAL PKG</a></div>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://youtube.com/@spglobalpkg" target="_blank" class="social-link" aria-label="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </a>
+        </div>
+        <div class="quote-block">
+          <p>"Packaging that shapes beauty, enriches life, and sustains the future."</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <img id="lightboxImg" src="" alt="Product zoom">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 SP GLOBAL PKG. All about services — Primary &amp; Secondary PKG.</p>
+  </footer>
+
+  <script>
+    // === Menu ===
+    function toggleMenu() {
+      var dropdown = document.getElementById('vizMenuDropdown');
+      if (dropdown) dropdown.classList.toggle('open');
+    }
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.viz-menu')) {
+        var dropdown = document.getElementById('vizMenuDropdown');
+        if (dropdown) dropdown.classList.remove('open');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        var dropdown = document.getElementById('vizMenuDropdown');
+        if (dropdown) dropdown.classList.remove('open');
+      }
+    });
+
+    // === Theme ===
+    var savedTheme = localStorage.getItem('viz-theme');
+    var currentTheme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    function applyTheme(t) {
+      document.documentElement.className = 'theme-' + t;
+      document.getElementById('themeIcon').textContent = t === 'dark' ? '🌙' : '☀️';
+      document.getElementById('themeLabel').textContent = t === 'dark' ? 'Dark' : 'Light';
+      localStorage.setItem('viz-theme', t);
+      currentTheme = t;
+      if (typeof onThemeChange === 'function') onThemeChange();
+    }
+    function cycleTheme() { applyTheme(currentTheme === 'dark' ? 'light' : 'dark'); }
+    applyTheme(currentTheme);
+
+    // === Scroll Reveal ===
+    document.querySelectorAll('[data-reveal]').forEach(function(el) { el.classList.add('reveal'); });
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+    // === Number Counter ===
+    function animateCounters() {
+      document.querySelectorAll('[data-count]').forEach(function(el) {
+        if (el.dataset.counted) return;
+        el.dataset.counted = '1';
+        var target = parseFloat(el.dataset.count), prefix = el.dataset.prefix || '', suffix = el.dataset.suffix || '';
+        var start = performance.now(), duration = 1200;
+        (function tick(now) {
+          var p = Math.min((now - start) / duration, 1), eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = prefix + Math.round(target * eased).toLocaleString() + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        })(start);
+      });
+    }
+    var counterEl = document.querySelector('[data-count]');
+    if (counterEl) {
+      var cObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting) { animateCounters(); cObs.disconnect(); } });
+      }, { threshold: 0.3 });
+      cObs.observe(counterEl);
+    }
+
+    // === Download PNG ===
+    async function downloadImage() {
+      var menu = document.querySelector('.viz-menu');
+      menu.style.display = 'none';
+      try {
+        var url = await htmlToImage.toPng(document.body, { quality: 1, pixelRatio: 2, filter: function(n) { return !n.classList || !n.classList.contains('viz-menu'); } });
+        var a = document.createElement('a'); a.href = url;
+        a.download = 'spg-cosmetic-catalog.png'; a.click();
+      } catch(e) { console.error('Download failed:', e); }
+      menu.style.display = '';
+    }
+
+    // === Mobile Nav ===
+    function toggleMobileNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+    function closeMobileNav() {
+      document.getElementById('navLinks').classList.remove('open');
+    }
+
+    // === Nav Scroll Effect ===
+    var siteNav = document.querySelector('.site-nav');
+    var backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) { siteNav.classList.add('scrolled'); } else { siteNav.classList.remove('scrolled'); }
+      if (window.scrollY > 500) { backToTop.classList.add('show'); } else { backToTop.classList.remove('show'); }
+
+      // Active nav link
+      var sections = document.querySelectorAll('.product-category, #about, #contact');
+      var scrollPos = window.scrollY + 200;
+      sections.forEach(function(sec) {
+        var navId = sec.id;
+        var link = document.querySelector('.nav-links a[href="#' + navId + '"]');
+        if (link) {
+          if (sec.offsetTop <= scrollPos && sec.offsetTop + sec.offsetHeight > scrollPos) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        }
+      });
+    });
+
+    // === Category Filter ===
+    function filterCategory(cat) {
+      var btns = document.querySelectorAll('.cat-btn');
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      event.target.classList.add('active');
+
+      var categories = document.querySelectorAll('.product-category');
+      categories.forEach(function(c) {
+        if (cat === 'all' || c.dataset.category === cat) {
+          c.style.display = '';
+        } else {
+          c.style.display = 'none';
+        }
+      });
+    }
+
+    // === Search ===
+    function searchProducts(query) {
+      var q = query.toLowerCase().trim();
+      var groups = document.querySelectorAll('[data-product]');
+      var categories = document.querySelectorAll('.product-category');
+
+      if (!q) {
+        groups.forEach(function(g) { g.style.display = ''; });
+        categories.forEach(function(c) { c.style.display = ''; });
+        return;
+      }
+
+      categories.forEach(function(cat) {
+        var hasVisible = false;
+        var catGroups = cat.querySelectorAll('[data-product]');
+        catGroups.forEach(function(g) {
+          var text = g.textContent.toLowerCase();
+          if (text.indexOf(q) !== -1) {
+            g.style.display = '';
+            hasVisible = true;
+          } else {
+            g.style.display = 'none';
+          }
+        });
+        cat.style.display = hasVisible ? '' : 'none';
+      });
+    }
+
+    // === Lightbox ===
+    function openLightbox(card) {
+      var img = card.querySelector('img');
+      var caption = card.querySelector('.img-caption');
+      if (!img) return;
+      var lb = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lightboxImg');
+      var lbCap = document.getElementById('lightboxCaption');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      if (caption) { lbCap.textContent = caption.textContent; lbCap.style.display = 'block'; }
+      else { lbCap.style.display = 'none'; }
+      lb.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // === Theme Change Hook ===
+    function onThemeChange() {}
+  </script>
+</body>
+</html>

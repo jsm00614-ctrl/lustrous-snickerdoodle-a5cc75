@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP GLOBAL PKG — GRASTIC F&B Product Catalog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { interpolate-size: allow-keywords; }
+
+    html.theme-light {
+      --bg: #FAFAF9; --surface: #FFFFFF; --surface-hover: #F5F5F4;
+      --border: rgba(0,0,0,0.06);
+      --text: #1a2e1a; --text-secondary: #5a7a5a;
+      --accent: #2C5F2D; --accent-secondary: #4a8c4b;
+      --positive: #059669; --negative: #e11d48; --warning: #d97706;
+      --hero-bg: linear-gradient(135deg, #1a2e1a 0%, #2C5F2D 40%, #1e4620 100%);
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --table-header: #2C5F2D;
+      --table-header-text: #ffffff;
+      --table-stripe: #f0f7f0;
+      --badge-bg: #e8f5e9;
+      --badge-text: #2C5F2D;
+      --nav-bg: rgba(255,255,255,0.92);
+      --category-1: #2C5F2D;
+      --category-2: #1a4a6e;
+      --category-3: #5a4a3a;
+      --category-4: #6e3a1a;
+    }
+    html.theme-dark {
+      --bg: #0a0f0a; --surface: #141e14; --surface-hover: #1c2c1c;
+      --border: rgba(255,255,255,0.06);
+      --text: #e8f0e8; --text-secondary: #8aaa8a;
+      --accent: #4a8c4b; --accent-secondary: #6bba6c;
+      --positive: #10b981; --negative: #f43f5e; --warning: #f59e0b;
+      --hero-bg: linear-gradient(135deg, #0a140a 0%, #1a3a1a 40%, #0f200f 100%);
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+      --table-header: #1a3a1a;
+      --table-header-text: #c8e8c8;
+      --table-stripe: rgba(255,255,255,0.02);
+      --badge-bg: rgba(74,140,75,0.15);
+      --badge-text: #6bba6c;
+      --nav-bg: rgba(10,15,10,0.92);
+      --category-1: #4a8c4b;
+      --category-2: #4a8cae;
+      --category-3: #aa9a7a;
+      --category-4: #c88a5a;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+      letter-spacing: -0.01em;
+      transition: background 0.3s, color 0.3s;
+      scrollbar-gutter: stable;
+      overflow-x: hidden;
+    }
+    h1,h2,h3,h4,h5,h6 { color: var(--text); letter-spacing: -0.03em; line-height: 1.15; text-wrap: balance; }
+    h1 { font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); }
+    h2 { font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); }
+    h3 { font-weight: 600; font-size: clamp(1.5rem, 3vw, 2rem); }
+    p, li, td, th, span, label { color: var(--text); font-weight: 400; }
+    .text-secondary { color: var(--text-secondary); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    @media (max-width: 768px) { .container { padding: 0 16px; } }
+
+    /* ===== NAVIGATION ===== */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--nav-bg); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .site-nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; color: var(--text); }
+    .nav-logo-img { height: 28px; width: auto; display: block; }
+    .theme-dark .nav-logo-img { filter: invert(1); }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links a {
+      padding: 8px 14px; border-radius: 8px; text-decoration: none;
+      color: var(--text-secondary); font-size: 13px; font-weight: 500;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface-hover); }
+    .nav-mobile-toggle {
+      display: none; width: 40px; height: 40px; border: none; background: transparent;
+      color: var(--text); cursor: pointer; border-radius: 8px;
+    }
+    .nav-mobile-toggle:hover { background: var(--surface-hover); }
+    @media (max-width: 768px) {
+      .site-nav { overflow: visible; }
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 999; background: var(--nav-bg); backdrop-filter: blur(16px); flex-direction: column; padding: 8px 16px 16px; border-bottom: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+      .nav-links.open { display: flex; }
+      .nav-mobile-toggle { display: flex; align-items: center; justify-content: center; position: relative; z-index: 101; }
+      .nav-divider-desktop { width: 100% !important; height: 1px !important; margin: 4px 0 !important; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: var(--hero-bg); position: relative; overflow: hidden;
+      padding: 120px 24px 80px;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(74,140,75,0.15) 0%, transparent 60%);
+    }
+    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 20px; border-radius: 100px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 500;
+      margin-bottom: 32px; backdrop-filter: blur(8px);
+    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #4a8c4b; }
+    .hero h1 { color: #ffffff; font-size: clamp(3rem, 7vw, 5.5rem); margin-bottom: 16px; line-height: 1.05; }
+    .hero h1 .accent { color: #6bba6c; }
+    .hero .subtitle { color: rgba(255,255,255,0.7); font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 400; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .hero-stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+    .hero-stat { text-align: center; }
+    .hero-stat .value { color: #ffffff; font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; }
+    .hero-stat .label { color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+    .scroll-hint {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.3); font-size: 12px; display: flex; flex-direction: column;
+      align-items: center; gap: 8px; animation: float 2s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+    /* ===== SECTIONS ===== */
+    .section { padding: 96px 0; }
+    @media (max-width: 768px) { .section { padding: 64px 0; } }
+    .section-header { margin-bottom: 56px; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px;
+    }
+    .section-label .bar { width: 24px; height: 2px; background: var(--accent); border-radius: 1px; }
+
+    /* ===== ABOUT ===== */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+    .about-visual {
+      background: var(--surface); border-radius: 16px; padding: 40px;
+      border: 1px solid var(--border); position: relative; overflow: hidden;
+    }
+    .about-visual::before {
+      content: ''; position: absolute; top: -50%; right: -50%;
+      width: 100%; height: 100%; border-radius: 50%;
+      background: radial-gradient(circle, rgba(74,140,75,0.08) 0%, transparent 70%);
+    }
+    .ingredient-chips { display: flex; flex-wrap: wrap; gap: 10px; position: relative; z-index: 1; }
+    .ingredient-chip {
+      padding: 10px 18px; border-radius: 100px; font-size: 13px; font-weight: 500;
+      background: var(--badge-bg); color: var(--badge-text);
+      border: 1px solid rgba(44,95,45,0.1);
+    }
+    .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .benefit-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.6; }
+    .benefit-list .icon-wrap {
+      width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+      background: var(--badge-bg); display: flex; align-items: center; justify-content: center;
+    }
+    .benefit-list .icon-wrap svg { width: 14px; height: 14px; color: var(--accent); }
+
+    /* ===== CATEGORY CARDS ===== */
+    .category-nav {
+      display: flex; gap: 8px; margin-bottom: 48px; flex-wrap: wrap;
+      position: sticky; top: 64px; z-index: 50;
+      background: var(--bg); padding: 16px 0; border-bottom: 1px solid var(--border);
+    }
+    .cat-btn {
+      padding: 10px 20px; border-radius: 100px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text-secondary); font-size: 13px;
+      font-weight: 500; cursor: pointer; transition: all 0.2s; font-family: inherit;
+      white-space: nowrap;
+    }
+    .cat-btn:hover { background: var(--surface-hover); color: var(--text); }
+    .cat-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* ===== PRODUCT SECTION ===== */
+    .product-category { margin-bottom: 80px; scroll-margin-top: 140px; }
+    .category-header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 24px; border-radius: 12px; margin-bottom: 32px;
+    }
+    .category-header .cat-number {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 18px; color: #fff; flex-shrink: 0;
+    }
+    .category-header h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0; }
+    .category-header .cat-desc { color: var(--text-secondary); font-size: 14px; margin-top: 2px; }
+
+    .product-group { margin-bottom: 48px; }
+    .product-group-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+    }
+    .product-group-header h3 { display: flex; align-items: center; gap: 10px; }
+    .product-group-header .section-tag {
+      font-size: 11px; font-weight: 600; padding: 4px 10px;
+      border-radius: 6px; background: var(--badge-bg); color: var(--badge-text);
+    }
+    .product-desc {
+      color: var(--text-secondary); font-size: 14px; line-height: 1.7;
+      max-width: 720px; margin-bottom: 20px;
+    }
+
+    /* ===== MATERIAL BADGE ===== */
+    .material-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .material-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
+      background: var(--badge-bg); color: var(--badge-text);
+    }
+    .material-badge svg { width: 12px; height: 12px; }
+
+    /* ===== TABLE ===== */
+    .table-wrap {
+      background: var(--surface); border-radius: 12px;
+      border: 1px solid var(--border); overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+    .table-wrap table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .table-wrap thead th {
+      background: var(--table-header); color: var(--table-header-text);
+      padding: 14px 16px; font-weight: 600; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; text-align: left;
+    }
+    .table-wrap tbody td {
+      padding: 14px 16px; border-bottom: 1px solid var(--border);
+      font-variant-numeric: tabular-nums;
+    }
+    .table-wrap tbody tr:nth-child(even) { background: var(--table-stripe); }
+    .table-wrap tbody tr:last-child td { border-bottom: none; }
+    .table-wrap tbody tr:hover { background: var(--surface-hover); }
+    .table-wrap .product-name { font-weight: 600; color: var(--text); }
+
+    /* ===== RESPONSIVE TABLE ===== */
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    @media (max-width: 600px) {
+      .table-wrap table { font-size: 13px; }
+      .table-wrap thead th, .table-wrap tbody td { padding: 10px 12px; }
+    }
+
+    /* ===== SHIPPING SECTION ===== */
+    .shipping-card {
+      background: var(--surface); border-radius: 16px;
+      border: 1px solid var(--border); overflow: hidden;
+    }
+    .shipping-header {
+      padding: 24px 28px; background: var(--accent);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .shipping-header h3 { color: #fff; margin: 0; }
+    .shipping-header svg { color: #fff; }
+    .shipping-body { padding: 24px 28px; }
+    .shipping-terms { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 16px; margin-bottom: 32px; }
+    .shipping-term {
+      padding: 16px 20px; border-radius: 10px; background: var(--badge-bg);
+      flex: 1; min-width: 180px; text-align: center;
+    }
+    .shipping-term .term-value { font-size: 1.25rem; font-weight: 700; color: var(--accent); }
+    .shipping-term .term-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+    .shipping-table-title {
+      font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .shipping-table-title svg { width: 16px; height: 16px; color: var(--accent); }
+    .logistics-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .logistics-table thead th {
+      background: var(--table-header); color: var(--table-header-text);
+      padding: 10px 12px; font-weight: 600; font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.04em; text-align: center;
+      white-space: nowrap;
+    }
+    .logistics-table thead th:nth-child(2) { text-align: left; }
+    .logistics-table tbody td {
+      padding: 9px 12px; border-bottom: 1px solid var(--border);
+      text-align: center; font-variant-numeric: tabular-nums;
+    }
+    .logistics-table tbody td:nth-child(2) { text-align: left; font-weight: 500; }
+    .logistics-table tbody tr:nth-child(even) { background: var(--table-stripe); }
+    .logistics-table tbody tr:hover { background: var(--surface-hover); }
+    .logistics-cat-row td {
+      background: rgba(44,95,45,0.06) !important; font-weight: 600 !important;
+      color: var(--accent) !important; font-size: 12px; text-transform: uppercase;
+      letter-spacing: 0.04em; padding: 8px 12px !important;
+    }
+    .theme-dark .logistics-cat-row td { background: rgba(74,140,75,0.08) !important; }
+    .logistics-features {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px; margin-top: 24px;
+    }
+    .logistics-feature {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 16px; border-radius: 10px;
+      background: var(--badge-bg); font-size: 13px; font-weight: 500;
+      color: var(--text);
+    }
+    .logistics-feature svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; }
+
+    /* ===== CONTACT ===== */
+    .contact-section {
+      background: var(--hero-bg); padding: 96px 24px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .contact-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 70%, rgba(74,140,75,0.12) 0%, transparent 60%);
+    }
+    .contact-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+    .contact-content h2 { color: #fff; margin-bottom: 16px; }
+    .contact-content .contact-desc { color: rgba(255,255,255,0.65); font-size: 15px; margin-bottom: 40px; line-height: 1.7; }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 40px; }
+    .contact-card {
+      padding: 24px 20px; border-radius: 12px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px); text-align: center;
+      transition: background 0.2s;
+    }
+    .contact-card:hover { background: rgba(255,255,255,0.1); }
+    .contact-card svg { color: rgba(255,255,255,0.5); margin-bottom: 12px; }
+    .contact-card .card-label { color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .contact-card .card-value { color: #ffffff; font-size: 14px; font-weight: 500; }
+    .contact-card .card-value a { color: #ffffff; text-decoration: none; }
+    .contact-card .card-value a:hover { text-decoration: underline; }
+    .social-links { display: flex; justify-content: center; gap: 12px; }
+    .social-link {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.6); text-decoration: none; transition: all 0.2s;
+    }
+    .social-link:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+    .quote-block {
+      margin-top: 48px; padding: 28px 32px; border-radius: 12px;
+      background: rgba(255,255,255,0.04); border-left: 3px solid rgba(107,186,108,0.5);
+      text-align: left;
+    }
+    .quote-block p { color: rgba(255,255,255,0.75); font-size: 15px; font-style: italic; line-height: 1.7; }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      padding: 32px 24px; text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary); font-size: 13px;
+    }
+
+    /* ===== CARD ===== */
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px;
+      transition: box-shadow 0.2s ease;
+    }
+    .card:hover { box-shadow: 0 0 0 1px var(--border), 0 8px 20px rgba(0,0,0,0.06); }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+    .animate { animation: fadeInUp 0.6s ease-out both; }
+    .animate.delay-1 { animation-delay: 0.1s; }
+    .animate.delay-2 { animation-delay: 0.2s; }
+    .animate.delay-3 { animation-delay: 0.3s; }
+    .animate.delay-4 { animation-delay: 0.4s; }
+    .animate.delay-5 { animation-delay: 0.5s; }
+    .animate.delay-6 { animation-delay: 0.6s; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      body { background: white !important; color: black !important; }
+      .viz-menu, .site-nav, .reveal { display: revert; opacity: 1 !important; transform: none !important; }
+      .hero { min-height: auto; padding: 48px 24px; }
+      .card { break-inside: avoid; border: 1px solid #ddd; box-shadow: none; }
+      * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+    @page { margin: 0.75in; }
+
+    /* ===== MENU ===== */
+    .viz-menu { position: fixed; bottom: 16px; right: 16px; z-index: 9999; }
+    .viz-menu-toggle {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(12px); transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .viz-menu-toggle:hover { background: var(--surface-hover); }
+    .viz-menu-dropdown {
+      position: absolute; bottom: 52px; right: 0; min-width: 200px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 8px;
+      opacity: 0; visibility: hidden; transform: translateY(8px);
+      transition: all 0.2s; backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+    .viz-menu-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+    .viz-menu-dropdown button {
+      width: 100%; padding: 10px 14px; border: none; border-radius: 8px;
+      background: transparent; color: var(--text); font-size: 14px;
+      font-family: inherit; cursor: pointer; text-align: left;
+      display: flex; align-items: center; gap: 10px; transition: background 0.15s;
+    }
+    .viz-menu-dropdown button:hover { background: var(--surface-hover); }
+
+    /* ===== BACK TO TOP ===== */
+    .back-to-top {
+      position: fixed; bottom: 68px; right: 16px; z-index: 9998;
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(12px); transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      opacity: 0; pointer-events: none;
+    }
+    .back-to-top.show { opacity: 1; pointer-events: auto; }
+
+    /* ===== SEARCH ===== */
+    .search-bar {
+      position: relative; max-width: 400px; margin-bottom: 24px;
+    }
+    .search-bar input {
+      width: 100%; padding: 12px 16px 12px 44px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--text); font-size: 14px; font-family: inherit;
+      outline: none; transition: border-color 0.2s;
+    }
+    .search-bar input:focus { border-color: var(--accent); }
+    .search-bar input::placeholder { color: var(--text-secondary); }
+    .search-bar svg {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: var(--text-secondary); width: 18px; height: 18px;
+    }
+
+    @media (max-width: 375px) {
+      body { overflow-x: hidden; }
+      .hero-stats { gap: 24px; }
+      .hero-stat .value { font-size: 2rem; }
+    }
+
+    /* ===== PRODUCT IMAGES ===== */
+    .product-images {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px; margin-bottom: 20px;
+    }
+    .product-images.single { grid-template-columns: 1fr; max-width: 400px; }
+    .product-images.dual { grid-template-columns: 1fr 1fr; max-width: 600px; }
+    .product-img-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; transition: box-shadow 0.2s;
+    }
+    .product-img-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .product-img-card img {
+      width: 100%; height: auto; display: block;
+      object-fit: cover; aspect-ratio: 4/3;
+      background: #f5f5f5;
+    }
+    .product-img-card .img-caption {
+      padding: 10px 14px; font-size: 12px; font-weight: 500;
+      color: var(--text-secondary); text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 768px) {
+      .product-images { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+      .product-images.dual { grid-template-columns: 1fr 1fr; }
+    }
+    .about-hero-img {
+      width: 100%; border-radius: 12px; margin-bottom: 24px;
+      border: 1px solid var(--border);
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 999999;
+      background: rgba(0,0,0,0.92);
+      align-items: center; justify-content: center;
+      cursor: zoom-out;
+    }
+    #lightboxImg {
+      max-width: 88vw; max-height: 82vh;
+      border-radius: 8px; object-fit: contain;
+      display: block; cursor: zoom-out;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+      position: fixed; top: 18px; right: 18px;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: white; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; z-index: 1000000;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.3); }
+    .lightbox-caption {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.55); color: rgba(255,255,255,0.75);
+      font-size: 13px; padding: 6px 18px; border-radius: 20px;
+      pointer-events: none; white-space: nowrap; display: none;
+    }
+
+    /* ===== DETAILS/ACCORDION ===== */
+    details { overflow: hidden; }
+    details summary { cursor: pointer; list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+
+    .skip-to-content {
+      position: absolute; top: -40px; left: 6px; background: var(--accent);
+      color: white; padding: 8px 12px; text-decoration: none;
+      border-radius: 4px; opacity: 0; pointer-events: none;
+      transition: all 0.2s; z-index: 10000;
+    }
+    .skip-to-content:focus { top: 6px; opacity: 1; pointer-events: auto; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <!-- NAVIGATION -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" onclick="event.preventDefault(); window.scrollTo({top:0,behavior:'smooth'})">
+        <img src="images/logo.png" alt="SP GLOBAL PKG" class="nav-logo-img">
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about" onclick="closeMobileNav()">About</a>
+        <a href="#cat-film" onclick="closeMobileNav()">Film</a>
+        <a href="#cat-cups" onclick="closeMobileNav()">Cups</a>
+        <a href="#cat-plates" onclick="closeMobileNav()">Plates</a>
+        <a href="#cat-lunchbox" onclick="closeMobileNav()">Lunch Box</a>
+        <a href="#cat-cutlery" onclick="closeMobileNav()">Cutlery</a>
+        <a href="#cat-straws" onclick="closeMobileNav()">Straws</a>
+        <a href="#cat-starch" onclick="closeMobileNav()">G-Starch</a>
+        <a href="#shipping" onclick="closeMobileNav()">Shipping</a>
+        <a href="#contact" onclick="closeMobileNav()">Contact</a>
+        <div style="width:1px;height:20px;background:var(--border);margin:0 4px;" class="nav-divider-desktop"></div>
+        <a href="cosmetic.html" style="color:#6B4C8A;font-weight:600;border:1px solid rgba(107,76,138,0.2);background:rgba(107,76,138,0.06);" onmouseover="this.style.background='rgba(107,76,138,0.12)'" onmouseout="this.style.background='rgba(107,76,138,0.06)'" onclick="closeMobileNav()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px;"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          Cosmetic Catalog
+        </a>
+      </div>
+      <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- UTILITY MENU -->
+  <div class="viz-menu">
+    <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="Utility menu">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="10" cy="4" r="1.5"/><circle cx="10" cy="10" r="1.5"/><circle cx="10" cy="16" r="1.5"/>
+      </svg>
+    </button>
+    <div class="viz-menu-dropdown" id="vizMenuDropdown">
+      <button onclick="cycleTheme()"><span id="themeIcon">☀️</span><span id="themeLabel">Light</span></button>
+      <button onclick="downloadImage()"><span>📥</span><span>Download PNG</span></button>
+      <button onclick="window.print()"><span>🖨️</span><span>Print / PDF</span></button>
+    </div>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <main id="main-content" role="main">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content animate">
+        <div class="hero-badge animate delay-1"><span class="dot"></span> Earth's Favorite</div>
+        <h1 class="animate delay-2">GRASTIC<span class="accent"></span></h1>
+        <p style="color:rgba(255,255,255,0.5); font-size:clamp(1.1rem,2.5vw,1.5rem); font-weight:300; margin-bottom:8px;" class="animate delay-3">Food & Beverage</p>
+        <p style="color:#ffffff; font-size:clamp(1.5rem,3vw,2.2rem); font-weight:700; margin-bottom:16px; letter-spacing:-0.02em;" class="animate delay-3">Product Catalog</p>
+        <p class="subtitle animate delay-4">The Future Beyond Plastic — 100% naturally biodegradable packaging solutions for the food and beverage industry.</p>
+        <div class="hero-stats animate delay-5">
+          <div class="hero-stat"><div class="value" data-count="38" data-suffix="+">38+</div><div class="label">Products</div></div>
+          <div class="hero-stat"><div class="value" data-count="7">7</div><div class="label">Categories</div></div>
+          <div class="hero-stat"><div class="value" data-count="100" data-suffix="%">100%</div><div class="label">Biodegradable</div></div>
+        </div>
+      </div>
+    
+      <div class="scroll-hint">
+        <span>Scroll to explore</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div data-reveal>
+            <div class="section-label"><span class="bar"></span> About GRASTIC</div>
+            <h2 style="margin-bottom:20px;">Core Material<br>Technology</h2>
+            <p style="color:var(--text-secondary); font-size:15px; line-height:1.8; margin-bottom:24px;">
+              SP GLOBAL PKG is a leading eco-friendly company specializing in 100% naturally biodegradable materials. GRASTIC decomposes completely without requiring special conditions — in soil, water, or at room temperature — leaving no harmful residues or microplastics.
+            </p>
+            <ul class="benefit-list">
+              <li>
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><strong>Zero harmful chemicals</strong> — completely non-toxic composition</span>
+              </li>
+              <li>
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><strong>Zero environmental impact</strong> — fully biodegradable in any environment</span>
+              </li>
+              <li>
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><strong>Mass production ready</strong> — scalable manufacturing for global distribution</span>
+              </li>
+              <li>
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><strong>Versatile application</strong> — suitable for various industries and product types</span>
+              </li>
+            </ul>
+          </div>
+          <div class="about-visual" data-reveal>
+            <img src="images/image10.png" alt="GRASTIC heat-resistant bowl in microwave" class="about-hero-img" onclick="openLightbox(this)" style="cursor:zoom-in;">
+            <div class="section-label"><span class="bar"></span> Nature-Based Ingredients</div>
+            <div class="ingredient-chips" style="margin-top:16px;">
+              <span class="ingredient-chip">🌽 Cornstarch</span>
+              <span class="ingredient-chip">🔬 TPS</span>
+              <span class="ingredient-chip">🌿 PLA</span>
+              <span class="ingredient-chip">🧬 PHA</span>
+              <span class="ingredient-chip">♻️ PBAT</span>
+              <span class="ingredient-chip">🧪 PBS</span>
+            </div>
+            <div style="margin-top:32px; padding:24px; border-radius:12px; background:var(--badge-bg);">
+              <div style="font-size:13px; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px;">Material Promise</div>
+              <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">All ingredients are renewable, plant-based resources that return safely to nature after use. Our biopolymer blends are optimized for each product application.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="section" id="products" style="padding-top:48px;">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <div class="section-label"><span class="bar"></span> Product Lineup</div>
+          <h2>Complete F&B<br>Packaging Solutions</h2>
+        </div>
+
+        <!-- Search -->
+        <div class="search-bar" data-reveal>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="productSearch" placeholder="Search products..." oninput="filterProducts(this.value)">
+        </div>
+
+        <!-- CATEGORY 1: FILM -->
+        <div class="product-category" id="cat-film" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(44,95,45,0.08), rgba(44,95,45,0.02));">
+            <div class="cat-number" style="background:var(--category-1);">1</div>
+            <div>
+              <h2 style="font-size:1.5rem;">Grastic Film Products</h2>
+              <p class="cat-desc">PBAT-based biodegradable film solutions</p>
+            </div>
+          </div>
+
+          <!-- 1-1 Hygiene Gloves -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3><span class="section-tag">1-1</span> Hygiene Gloves</h3>
+            </div>
+            <p class="product-desc">Premium biodegradable hygiene gloves made from PBAT material, offering superior protection while being completely eco-friendly and sustainable.</p>
+            <div class="product-images single">
+              <div class="product-img-card"><img src="images/image17.png" alt="GRASTIC Hygiene Bags with Produce" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Biodegradable Hygiene Film</div></div>
+            </div>
+            <div class="material-badges">
+              <span class="material-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 100% Biodegradable PBAT</span>
+            </div>
+            <div class="table-wrap">
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>Product Name</th><th>Spec (MM)</th><th>Pack PCS</th><th>Box PCS</th></tr></thead>
+                  <tbody>
+                    <tr><td class="product-name">Sanitary Gloves</td><td>0.025 × 240 × 270</td><td>50</td><td>2,000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1-2 Food Waste Bags -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3><span class="section-tag">1-2</span> Food Waste Bags</h3>
+            </div>
+            <p class="product-desc">Eco-friendly food waste bags designed to safely contain food waste while completely biodegrading after disposal, available in multiple sizes.</p>
+            <div class="product-images">
+              <div class="product-img-card"><img src="images/image11.png" alt="Food Waste Bag Small" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Small</div></div>
+              <div class="product-img-card"><img src="images/image12.png" alt="Food Waste Bag Medium" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Medium</div></div>
+              <div class="product-img-card"><img src="images/image13.png" alt="Food Waste Bag Large" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Large</div></div>
+            </div>
+            <div class="material-badges">
+              <span class="material-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 100% Biodegradable PBAT</span>
+            </div>
+            <div class="table-wrap">
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>Product Name</th><th>Spec (MM)</th><th>Pack PCS</th><th>Box PCS</th></tr></thead>
+                  <tbody>
+                    <tr><td class="product-name">Food Waste Bag 5L</td><td>0.05 × 280(m80) × 430</td><td>100</td><td>1,000</td></tr>
+                    <tr><td class="product-name">Food Waste Bag 3.5L</td><td>0.04 × 250(m60) × 380</td><td>100</td><td>1,000</td></tr>
+                    <tr><td class="product-name">Food Waste Bag 1L</td><td>0.03 × 210(m50) × 270</td><td>100</td><td>2,000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1-3 Sanitary Bags -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3><span class="section-tag">1-3</span> Sanitary Bags</h3>
+            </div>
+            <p class="product-desc">Versatile hygiene bags suitable for various sanitary applications, featuring PBAT material that ensures complete biodegradability while maintaining optimal strength.</p>
+            <div class="product-images">
+              <div class="product-img-card"><img src="images/image11.png" alt="Sanitary Bag Small" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Small</div></div>
+              <div class="product-img-card"><img src="images/image12.png" alt="Sanitary Bag Medium" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Medium</div></div>
+              <div class="product-img-card"><img src="images/image13.png" alt="Sanitary Bag Large" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Large</div></div>
+            </div>
+            <div class="table-wrap">
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>Product Name</th><th>Spec (MM)</th><th>Pack PCS</th><th>Box PCS</th></tr></thead>
+                  <tbody>
+                    <tr><td class="product-name">Sanitary Bag Large</td><td>0.025 × 250(m30) × 450</td><td>100</td><td>5,000</td></tr>
+                    <tr><td class="product-name">Sanitary Bag Medium</td><td>0.025 × 210(m25) × 350</td><td>100</td><td>5,000</td></tr>
+                    <tr><td class="product-name">Sanitary Bag Small</td><td>0.025 × 140(m20) × 250</td><td>100</td><td>7,000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1-4 Hygiene Roll Bags -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3><span class="section-tag">1-4</span> Hygiene Roll Bags</h3>
+            </div>
+            <p class="product-desc">Convenient roll-format hygiene bags perfect for commercial and retail settings, designed for easy dispensing while maintaining 100% biodegradability.</p>
+            <div class="product-images">
+              <div class="product-img-card"><img src="images/image16.png" alt="Roll Bag Small" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Small</div></div>
+              <div class="product-img-card"><img src="images/image15.png" alt="Roll Bag Medium" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Medium</div></div>
+              <div class="product-img-card"><img src="images/image14.png" alt="Roll Bag Large" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Large</div></div>
+            </div>
+            <div class="table-wrap">
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>Product Name</th><th>Spec (MM)</th><th>Pack PCS</th><th>Box PCS</th></tr></thead>
+                  <tbody>
+                    <tr><td class="product-name">Sanitary Roll Bag Large</td><td>0.025 × 300 × 400</td><td>200</td><td>3,000</td></tr>
+                    <tr><td class="product-name">Sanitary Roll Bag Medium</td><td>0.025 × 250 × 350</td><td>200</td><td>3,000</td></tr>
+                    <tr><td class="product-name">Sanitary Roll Bag Small</td><td>0.025 × 170 × 250</td><td>200</td><td>5,000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CATEGORY 2: CUPS -->
+        <div class="product-category" id="cat-cups" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(26,74,110,0.08), rgba(26,74,110,0.02));">
+            <div class="cat-number" style="background:var(--category-2);">2</div>
+            <div>
+              <h2 style="font-size:1.5rem;">Grastic Cup Products</h2>
+              <p class="cat-desc">PLA-based clear cups and eco-friendly lids</p>
+            </div>
+          </div>
+
+          <!-- 2-1 Cups -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3><span class="section-tag">2-1</span> Cups</h3>
+            </div>
+            <p class="product-desc">Our Grastic cups are made from plant-based polylactic acid, offering an eco-friendly alternative to conventional plastic cups. Perfect for cold beverages, salads, and desserts.</p>
+            <div class="product-images">
+              <div class="product-img-card"><img src="images/image21.png" alt="Ice Cup with Juice" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Ice Cup</div></div>
+              <div class="product-img-card"><img src="images/image22.png" alt="Salad Cups" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Salad Cup</div></div>
+              <div class="product-img-card"><img src="images/image26.png" alt="Clear Cups" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Cup Lineup</div></div>
+            </div>
+            <div class="table-wrap">
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>Product Name</th><th>Spec (MM)</th><th>Pack</th><th>Box PCS</th></tr></thead>
+                  <tbody>
+                    <tr><td class="product-name">Ice Cup 14oz</td><td>0.3 × 92Ø × 107</td><td>75</td><td>1,500</td></tr>
+                    <tr><td class="product-name">Ice Cup 16oz</td><td>0.3 × 92Ø × 125</td><td>50</td><td>1,000</td></tr>
+                    <tr><td class="product-name">Salad Cup Large</td><td>0.3 × 115Ø × 70</td><td>100</td><td>1,500</td></tr>
+                    <tr><td class="product-name">Salad Cup Medium</td><td>0.3 × 115Ø × 60</td><td>70</td><td>1,330</td></tr>
+                    <tr><td class="product-name">Salad Cup Small</td><td>0.3 × 115Ø × 40</td><td>80</td><td>1,520</td></tr>
+                    <tr><td class="product-name">Ice Cream Cup 9oz</td><td>92φ × 69</td><td>50</td><td>1,400</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2-2 Lids -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3><span class="section-tag">2-2</span> Cup Lids</h3>
+            </div>
+            <p class="product-desc">Biodegradable lids designed to provide secure sealing. Available in flat and dome styles to suit various beverage and food container needs.</p>
+            <div class="product-images single">
+              <div class="product-img-card"><img src="images/image25.png" alt="Cup Lids Lineup" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Flat &amp; Dome Lids</div></div>
+            </div>
+            <div class="table-wrap">
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>Product Name</th><th>Spec (MM)</th><th>Pack</th><th>Box PCS</th></tr></thead>
+                  <tbody>
+                    <tr><td class="product-name">Flat Lid 14oz</td><td>0.3 × 92Ø × 13</td><td>60</td><td>1,500</td></tr>
+                    <tr><td class="product-name">Dome Lid 14oz</td><td>0.3 × 92Ø × 37</td><td>60</td><td>1,500</td></tr>
+                    <tr><td class="product-name">Flat Lid 16oz</td><td>0.3 × 92Ø × 8</td><td>60</td><td>1,500</td></tr>
+                    <tr><td class="product-name">Dome Lid 16oz</td><td>0.3 × 92Ø × 40</td><td>60</td><td>1,500</td></tr>
+                    <tr><td class="product-name">Salad Cup Cover</td><td>0.3 × 120Ø × 18</td><td>100</td><td>1,600</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CATEGORY 3: TABLEWARE -->
+        <!-- CATEGORY 3: PLATES -->
+        <div class="product-category" id="cat-plates" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(90,74,58,0.08), rgba(90,74,58,0.02));">
+            <div class="cat-number" style="background:var(--category-3);">3</div>
+            <div>
+              <h2 style="font-size:1.5rem;">Plates</h2>
+              <p class="cat-desc">Biodegradable GRASTIC plates — three sizes for every meal occasion</p>
+            </div>
+          </div>
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3><span class="section-tag">3-1</span> Plates</h3>
+            </div>
+            <p class="product-desc">Biodegradable GRASTIC plates available in three sizes, designed with sturdy construction while remaining fully compostable.</p>
+            <div class="product-images single">
+              <div class="product-img-card"><img src="images/image28.png" alt="GRASTIC Plates - 3 sizes" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Large / Medium / Small</div></div>
+            </div>
+            <div class="table-wrap">
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>Product Name</th><th>Spec (MM)</th><th>Pack</th><th>Box PCS</th></tr></thead>
+                  <tbody>
+                    <tr><td class="product-name">Plate Large</td><td>0.3 × 180Ø × 38</td><td>100</td><td>1,000</td></tr>
+                    <tr><td class="product-name">Plate Medium</td><td>0.3 × 140Ø × 38</td><td>100</td><td>1,300</td></tr>
+                    <tr><td class="product-name">Plate Small</td><td>0.3 × 100Ø × 38</td><td>100</td><td>1,500</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CATEGORY 4: LUNCH BOX -->
+        <div class="product-category" id="cat-lunchbox" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(74,110,58,0.08), rgba(74,110,58,0.02));">
+            <div class="cat-number" style="background:#4a6e3a;">4</div>
+            <div>
+              <h2 style="font-size:1.5rem;">Lunch Box</h2>
+              <p class="cat-desc">Eco-friendly takeout containers with secure-fitting covers</p>
+            </div>
+          </div>
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3><span class="section-tag">4-1</span> Lunch Box</h3>
+            </div>
+            <p class="product-desc">Eco-friendly lunch box containers for takeout meals and food storage, featuring secure-fitting covers and sturdy construction.</p>
+            <div class="product-images single">
+              <div class="product-img-card"><img src="images/image29.png" alt="GRASTIC Lunch Box" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Lunch Box with Compartments</div></div>
+            </div>
+            <div class="table-wrap">
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>Product Name</th><th>Spec (MM)</th><th>Pack</th><th>Box PCS</th></tr></thead>
+                  <tbody>
+                    <tr><td class="product-name">Lunch Box Body</td><td>0.3 × 290 × 203</td><td>75</td><td>300</td></tr>
+                    <tr><td class="product-name">Lunch Box Cover</td><td>0.3 × 290 × 206</td><td>75</td><td>300</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CATEGORY 5: CUTLERY -->
+        <div class="product-category" id="cat-cutlery" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(58,74,110,0.08), rgba(58,74,110,0.02));">
+            <div class="cat-number" style="background:#3a4a6e;">5</div>
+            <div>
+              <h2 style="font-size:1.5rem;">Cutlery</h2>
+              <p class="cat-desc">Durable, fully biodegradable spoon, knife, and fork sets</p>
+            </div>
+          </div>
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3><span class="section-tag">5-1</span> Cutlery Set</h3>
+            </div>
+            <p class="product-desc">Grastic cutlery offers durability and functionality while being completely biodegradable. Each piece is designed for comfortable handling.</p>
+            <div class="product-images dual">
+              <div class="product-img-card"><img src="images/image30.png" alt="Black Cutlery Set" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Black Series</div></div>
+              <div class="product-img-card"><img src="images/image31.png" alt="White Cutlery Set" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">White Series</div></div>
+            </div>
+            <div class="table-wrap">
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>Product Name</th><th>Length</th><th>Pack</th><th>Box PCS</th></tr></thead>
+                  <tbody>
+                    <tr><td class="product-name">Spoon</td><td>173mm</td><td>100</td><td>1,000</td></tr>
+                    <tr><td class="product-name">Knife</td><td>166mm</td><td>100</td><td>1,000</td></tr>
+                    <tr><td class="product-name">Fork</td><td>165mm</td><td>100</td><td>1,000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CATEGORY 6: STRAWS -->
+        <div class="product-category" id="cat-straws" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(110,58,90,0.08), rgba(110,58,90,0.02));">
+            <div class="cat-number" style="background:#6e3a5a;">6</div>
+            <div>
+              <h2 style="font-size:1.5rem;">Straws</h2>
+              <p class="cat-desc">Straight &amp; bendy styles — paper-wrapped or bulk</p>
+            </div>
+          </div>
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3><span class="section-tag">6-1</span> Straws</h3>
+            </div>
+            <p class="product-desc">Biodegradable Grastic straws available in straight and bendy designs, with paper-wrapped or bulk packaging options for all service environments.</p>
+            <div class="product-images dual">
+              <div class="product-img-card"><img src="images/image33.png" alt="Straight Straws" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Straight</div></div>
+              <div class="product-img-card"><img src="images/image32.png" alt="Bendy Straws" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Bendy</div></div>
+            </div>
+            <div class="table-wrap">
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>Product Name</th><th>Spec (MM)</th><th>Pack</th><th>Box PCS</th></tr></thead>
+                  <tbody>
+                    <tr><td class="product-name">Straw Straight (Paper Wrapped)</td><td>0.19 × 7Ø × 240</td><td>100</td><td>2,000</td></tr>
+                    <tr><td class="product-name">Straw Bendy (Paper Wrapped)</td><td>0.19 × 7Ø × 240(220)</td><td>100</td><td>2,000</td></tr>
+                    <tr><td class="product-name">Straw Straight (Bulk)</td><td>0.19 × 7Ø × 240</td><td>100</td><td>2,000</td></tr>
+                    <tr><td class="product-name">Straw Bendy (Bulk)</td><td>0.19 × 7Ø × 240(220)</td><td>100</td><td>2,000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CATEGORY 7: G-STARCH -->
+        <div class="product-category" id="cat-starch" data-reveal>
+          <div class="category-header" style="background: linear-gradient(135deg, rgba(110,58,26,0.08), rgba(110,58,26,0.02));">
+            <div class="cat-number" style="background:var(--category-4);">7</div>
+            <div>
+              <h2 style="font-size:1.5rem;">G-Starch Cups</h2>
+              <p class="cat-desc">Heat resistant corn starch cups for hot beverages</p>
+            </div>
+          </div>
+
+          <!-- 7-1 Corn Starch Cups -->
+          <div class="product-group" data-product>
+            <div class="product-group-header">
+              <h3><span class="section-tag">7-1</span> Corn Starch Cup / Lids</h3>
+            </div>
+            <p class="product-desc">Corn starch cup designed for hot beverages and liquid foods, with dedicated covers for spill protection and heat retention. Perfect for takeout coffee, tea, and other hot drinks (90°C+).</p>
+            <div class="product-images single">
+              <div class="product-img-card"><img src="images/image36.png" alt="G-Starch Cups Various Sizes" onclick="openLightbox(this)" style="cursor:zoom-in;" loading="lazy"><div class="img-caption">Cup Size Lineup</div></div>
+            </div>
+            <div class="material-badges">
+              <span class="material-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Heat Resistant Cornstarch</span>
+              <span class="material-badge">♨️ Suitable for 90°C+</span>
+            </div>
+            <div class="table-wrap">
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>Product Name</th><th>Spec (MM)</th><th>Pack</th><th>Box PCS</th></tr></thead>
+                  <tbody>
+                    <tr><td class="product-name">Starch Cup 7oz (Body)</td><td>2.3 × 94ø</td><td>25</td><td>950</td></tr>
+                    <tr><td class="product-name">Starch Cup 14oz (Body)</td><td>2.3 × 94ø × 115</td><td>20</td><td>480</td></tr>
+                    <tr><td class="product-name">Starch Cup 14oz (Cover)</td><td>95ø × 27</td><td>60</td><td>1,500</td></tr>
+                    <tr><td class="product-name">Starch Cup 16oz (Body)</td><td>2.3 × 94ø × 130</td><td>20</td><td>480</td></tr>
+                    <tr><td class="product-name">Starch Cup 16oz (Cover)</td><td>95ø × 27</td><td>60</td><td>1,500</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SHIPPING -->
+    <section class="section" id="shipping" style="padding-top:0;">
+      <div class="container">
+        <div class="shipping-card" data-reveal>
+          <div class="shipping-header">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <h3 style="font-size:1.25rem;">Logistics &amp; Shipping Information</h3>
+          </div>
+          <div class="shipping-body">
+            <p style="color:var(--text-secondary); font-size:14px; margin-bottom:20px;">Global distribution with standardized packaging systems and optimized 20ft container utilization. All MOQ is based on a single 20ft container load.</p>
+
+            <div class="shipping-terms">
+              <div class="shipping-term">
+                <div class="term-value">FOB / CIF / EXW</div>
+                <div class="term-label">Shipping Terms</div>
+              </div>
+              <div class="shipping-term">
+                <div class="term-value">30–45 Days</div>
+                <div class="term-label">Lead Time</div>
+              </div>
+              <div class="shipping-term">
+                <div class="term-value">20ft Container</div>
+                <div class="term-label">Standard Shipment</div>
+              </div>
+            </div>
+
+            <!-- Logistics Table -->
+            <div class="shipping-table-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+              Container Loading Details (20ft)
+            </div>
+            <div class="table-scroll">
+              <table class="logistics-table">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Product Name</th>
+                    <th>Pack<br>PCS</th>
+                    <th>Box<br>Packs</th>
+                    <th>Box<br>PCS</th>
+                    <th>Pallet<br>Boxes</th>
+                    <th>Pallet<br>PCS</th>
+                    <th>C.Weight</th>
+                    <th>Weight<br>(kg)</th>
+                    <th>20ft PCS<br>(MOQ)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="logistics-cat-row"><td colspan="10">Category 1 — Film Products</td></tr>
+                  <tr><td>1</td><td>Sanitary Gloves</td><td>50</td><td>40</td><td>2,000</td><td>90</td><td>180,000</td><td>432</td><td>4,320</td><td>1,800,000</td></tr>
+                  <tr><td>2</td><td>Food Waste Bag 5L</td><td>100</td><td>10</td><td>1,000</td><td>54</td><td>54,000</td><td>233</td><td>2,322</td><td>540,000</td></tr>
+                  <tr><td>3</td><td>Food Waste Bag 3.5L</td><td>100</td><td>10</td><td>1,000</td><td>54</td><td>54,000</td><td>432</td><td>4,320</td><td>540,000</td></tr>
+                  <tr><td>4</td><td>Food Waste Bag 1L</td><td>100</td><td>20</td><td>2,000</td><td>36</td><td>72,000</td><td>871</td><td>8,712</td><td>720,000</td></tr>
+                  <tr><td>5</td><td>Sanitary Bag L</td><td>100</td><td>50</td><td>5,000</td><td>36</td><td>180,000</td><td>1,301</td><td>13,014</td><td>1,800,000</td></tr>
+                  <tr><td>6</td><td>Sanitary Bag M</td><td>100</td><td>50</td><td>5,000</td><td>48</td><td>240,000</td><td>1,183</td><td>11,832</td><td>2,400,000</td></tr>
+                  <tr><td>7</td><td>Sanitary Bag S</td><td>100</td><td>70</td><td>7,000</td><td>54</td><td>378,000</td><td>1,005</td><td>10,055</td><td>3,780,000</td></tr>
+                  <tr><td>8</td><td>Sanitary Roll Bag L</td><td>200</td><td>15</td><td>3,000</td><td>20</td><td>60,000</td><td>388</td><td>3,876</td><td>600,000</td></tr>
+                  <tr><td>9</td><td>Sanitary Roll Bag M</td><td>200</td><td>15</td><td>3,000</td><td>20</td><td>60,000</td><td>293</td><td>2,916</td><td>600,000</td></tr>
+                  <tr><td>10</td><td>Sanitary Roll Bag S</td><td>200</td><td>25</td><td>5,000</td><td>20</td><td>100,000</td><td>293</td><td>2,916</td><td>1,000,000</td></tr>
+                  <tr class="logistics-cat-row"><td colspan="10">Category 2 — Cup Products</td></tr>
+                  <tr><td>11</td><td>Grastic Cup Base (14oz)</td><td>75</td><td>20</td><td>1,500</td><td>12</td><td>18,000</td><td>185</td><td>1,854</td><td>180,000</td></tr>
+                  <tr><td>12</td><td>Grastic Cup Flat Lids (14oz)</td><td>60</td><td>25</td><td>1,500</td><td>20</td><td>30,000</td><td>87</td><td>870</td><td>300,000</td></tr>
+                  <tr><td>13</td><td>Grastic Cup Dome Lids (14oz)</td><td>60</td><td>25</td><td>1,500</td><td>20</td><td>30,000</td><td>84</td><td>840</td><td>300,000</td></tr>
+                  <tr><td>14</td><td>Grastic Cup Base (16oz)</td><td>50</td><td>20</td><td>1,000</td><td>12</td><td>12,000</td><td>160</td><td>1,596</td><td>120,000</td></tr>
+                  <tr><td>15</td><td>Grastic Cup Flat Lids (16oz)</td><td>60</td><td>25</td><td>1,500</td><td>20</td><td>30,000</td><td>87</td><td>870</td><td>300,000</td></tr>
+                  <tr><td>16</td><td>Grastic Cup Dome Lids (16oz)</td><td>60</td><td>25</td><td>1,500</td><td>20</td><td>30,000</td><td>84</td><td>840</td><td>300,000</td></tr>
+                  <tr><td>17</td><td>Salad Cup L</td><td>100</td><td>15</td><td>1,500</td><td>12</td><td>18,000</td><td>160</td><td>1,602</td><td>180,000</td></tr>
+                  <tr><td>18</td><td>Salad Cup M</td><td>70</td><td>19</td><td>1,330</td><td>20</td><td>26,600</td><td>194</td><td>1,942</td><td>266,000</td></tr>
+                  <tr><td>19</td><td>Salad Cup S</td><td>80</td><td>19</td><td>1,520</td><td>20</td><td>30,400</td><td>152</td><td>1,520</td><td>304,000</td></tr>
+                  <tr><td>20</td><td>Salad Cup Cover</td><td>100</td><td>16</td><td>1,600</td><td>20</td><td>32,000</td><td>93</td><td>928</td><td>320,000</td></tr>
+                  <tr><td>21</td><td>Ice Cream Cup 9oz</td><td>50</td><td>28</td><td>1,400</td><td>20</td><td>28,000</td><td>185</td><td>1,848</td><td>280,000</td></tr>
+                  <tr class="logistics-cat-row"><td colspan="10">Category 3 — Plates</td></tr>
+                  <tr><td>22</td><td>Plate L</td><td>100</td><td>10</td><td>1,000</td><td>40</td><td>40,000</td><td>492</td><td>4,920</td><td>400,000</td></tr>
+                  <tr><td>23</td><td>Plate M</td><td>100</td><td>13</td><td>1,300</td><td>40</td><td>52,000</td><td>380</td><td>3,796</td><td>520,000</td></tr>
+                  <tr><td>24</td><td>Plate S</td><td>100</td><td>15</td><td>1,500</td><td>40</td><td>60,000</td><td>162</td><td>1,620</td><td>600,000</td></tr>
+                  <tr class="logistics-cat-row"><td colspan="10">Category 4 — Lunch Box</td></tr>
+                  <tr><td>25</td><td>Lunch Box Body</td><td>75</td><td>4</td><td>300</td><td>40</td><td>12,000</td><td>508</td><td>5,076</td><td>120,000</td></tr>
+                  <tr><td>26</td><td>Lunch Box Cover</td><td>75</td><td>4</td><td>300</td><td>40</td><td>12,000</td><td>234</td><td>2,340</td><td>120,000</td></tr>
+                  <tr class="logistics-cat-row"><td colspan="10">Category 5 — Cutlery</td></tr>
+                  <tr><td>27</td><td>Spoon</td><td>100</td><td>10</td><td>1,000</td><td>40</td><td>40,000</td><td>208</td><td>2,080</td><td>400,000</td></tr>
+                  <tr><td>28</td><td>Knife</td><td>100</td><td>10</td><td>1,000</td><td>40</td><td>40,000</td><td>172</td><td>1,720</td><td>400,000</td></tr>
+                  <tr><td>29</td><td>Fork</td><td>100</td><td>10</td><td>1,000</td><td>40</td><td>40,000</td><td>164</td><td>1,640</td><td>400,000</td></tr>
+                  <tr class="logistics-cat-row"><td colspan="10">Category 6 — Straws</td></tr>
+                  <tr><td>30</td><td>Straw Straight (Paper Wrapped)</td><td>100</td><td>20</td><td>2,000</td><td>40</td><td>80,000</td><td>96</td><td>960</td><td>800,000</td></tr>
+                  <tr><td>31</td><td>Straw Bendy (Paper Wrapped)</td><td>100</td><td>20</td><td>2,000</td><td>40</td><td>80,000</td><td>104</td><td>1,040</td><td>800,000</td></tr>
+                  <tr><td>32</td><td>Straw Straight (Bulk)</td><td>100</td><td>20</td><td>2,000</td><td>40</td><td>80,000</td><td>88</td><td>880</td><td>800,000</td></tr>
+                  <tr><td>33</td><td>Straw Bendy (Bulk)</td><td>100</td><td>20</td><td>2,000</td><td>40</td><td>80,000</td><td>96</td><td>960</td><td>800,000</td></tr>
+                  <tr class="logistics-cat-row"><td colspan="10">Category 7 — G-Starch Cups (Heat Resistant)</td></tr>
+                  <tr><td>34</td><td>Starch Cup 7oz (Body)</td><td>25</td><td>38</td><td>950</td><td>20</td><td>19,000</td><td>215</td><td>2,147</td><td>190,000</td></tr>
+                  <tr><td>35</td><td>Starch Cup 14oz (Body)</td><td>20</td><td>24</td><td>480</td><td>20</td><td>9,600</td><td>110</td><td>1,102</td><td>96,000</td></tr>
+                  <tr><td>36</td><td>Starch Cup 14oz (Cover)</td><td>60</td><td>25</td><td>1,500</td><td>40</td><td>60,000</td><td>174</td><td>1,740</td><td>600,000</td></tr>
+                  <tr><td>37</td><td>Starch Cup 16oz (Body)</td><td>20</td><td>24</td><td>480</td><td>20</td><td>9,600</td><td>132</td><td>1,323</td><td>96,000</td></tr>
+                  <tr><td>38</td><td>Starch Cup 16oz (Cover)</td><td>60</td><td>25</td><td>1,500</td><td>40</td><td>60,000</td><td>174</td><td>1,740</td><td>600,000</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="logistics-features">
+              <div class="logistics-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                Global Distribution Network
+              </div>
+              <div class="logistics-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
+                Standardized Packaging System
+              </div>
+              <div class="logistics-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                Efficient Container Utilization
+              </div>
+              <div class="logistics-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM3 9h18M9 3v18"/></svg>
+                Optimized Warehousing
+              </div>
+              <div class="logistics-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                International Shipping Available
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact">
+      <div class="contact-content">
+        <div class="section-label" style="justify-content:center; color:rgba(255,255,255,0.5);"><span class="bar" style="background:rgba(255,255,255,0.3);"></span> Get in Touch</div>
+        <h2 style="font-size:clamp(2rem,4vw,3rem);">Contact Us</h2>
+        <p class="contact-desc">Please feel free to contact us anytime for inquiries or orders regarding our GRASTIC biodegradable product solutions.</p>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
+            <div class="card-label">Email</div>
+            <div class="card-value"><a href="mailto:info@spglobalpkg.com">info@spglobalpkg.com</a></div>
+          </div>
+          <div class="contact-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            <div class="card-label">Website</div>
+            <div class="card-value"><a href="https://www.spbeautypkg.com" target="_blank">www.spbeautypkg.com</a></div>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="https://www.youtube.com/@Spglobalpkg" target="_blank" class="social-link" aria-label="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31.3 31.3 0 000 12a31.3 31.3 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.4-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/spbeautypkg_official/" target="_blank" class="social-link" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/spbeautypkg/" target="_blank" class="social-link" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1a3.8 3.8 0 013.4-1.9c3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 110-4.2 2.1 2.1 0 010 4.2zM7.1 20.4H3.5V9h3.6v11.4zM22.2 0H1.8A1.8 1.8 0 000 1.8v20.4A1.8 1.8 0 001.8 24h20.4A1.8 1.8 0 0024 22.2V1.8A1.8 1.8 0 0022.2 0z"/></svg>
+          </a>
+        </div>
+
+        <div class="quote-block">
+          <p>"We are committed to delivering safe, eco-friendly packaging and product solutions — safe for people and safe for the planet."</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox">
+    <button id="lightboxClose" class="lightbox-close" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <img id="lightboxImg" src="" alt="">
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 SP GLOBAL PKG. All rights reserved. GRASTIC is a registered trademark.</p>
+  </footer>
+
+  <script>
+    /* ── Lightbox ── */
+    function openLightbox(img) {
+      var lb  = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lightboxImg');
+      var lbCap = document.getElementById('lightboxCaption');
+      if (!lb || !lbImg) return;
+      lbImg.src = img.src;
+      if (lbCap) {
+        var card = img.parentElement;
+        var capEl = card ? card.querySelector('.img-caption') : null;
+        lbCap.textContent = capEl ? capEl.textContent : '';
+        lbCap.style.display = lbCap.textContent ? 'block' : 'none';
+      }
+      lb.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      var lb = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lightboxImg');
+      if (!lb) return;
+      lb.style.display = 'none';
+      if (lbImg) lbImg.src = '';
+      document.body.style.overflow = '';
+    }
+    window.addEventListener('DOMContentLoaded', function() {
+      /* 배경, 이미지, 캡션 클릭 — 모두 닫기 */
+      document.getElementById('lightbox').addEventListener('click', function(e) {
+        var t = e.target;
+        if (t.id === 'lightbox' || t.id === 'lightboxImg' || t.id === 'lightboxCaption') closeLightbox();
+      });
+      /* 닫기 버튼 */
+      document.getElementById('lightboxClose').addEventListener('click', function(e) {
+        e.stopPropagation();
+        closeLightbox();
+      });
+      /* ESC 키 */
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+      });
+    });
+  </script>
+  <script>
+    // === Menu ===
+    function toggleMenu() {
+      var dropdown = document.getElementById('vizMenuDropdown');
+      if (dropdown) dropdown.classList.toggle('open');
+    }
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.viz-menu')) {
+        var dropdown = document.getElementById('vizMenuDropdown');
+        if (dropdown) dropdown.classList.remove('open');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        var dropdown = document.getElementById('vizMenuDropdown');
+        if (dropdown) dropdown.classList.remove('open');
+        var navLinks = document.getElementById('navLinks');
+        if (navLinks) navLinks.classList.remove('open');
+      }
+    });
+
+    // === Mobile Nav ===
+    function toggleMobileNav() {
+      var nav = document.getElementById('navLinks');
+      if (nav) nav.classList.toggle('open');
+    }
+    function closeMobileNav() {
+      var nav = document.getElementById('navLinks');
+      if (nav) nav.classList.remove('open');
+    }
+
+    // === Theme ===
+    var savedTheme = localStorage.getItem('viz-theme');
+    var currentTheme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    function applyTheme(t) {
+      document.documentElement.className = 'theme-' + t;
+      document.getElementById('themeIcon').textContent = t === 'dark' ? '🌙' : '☀️';
+      document.getElementById('themeLabel').textContent = t === 'dark' ? 'Dark' : 'Light';
+      localStorage.setItem('viz-theme', t);
+      currentTheme = t;
+      if (typeof onThemeChange === 'function') onThemeChange();
+    }
+    function cycleTheme() { applyTheme(currentTheme === 'dark' ? 'light' : 'dark'); }
+    applyTheme(currentTheme);
+    function onThemeChange() {}
+
+    // === Scroll Reveal ===
+    document.querySelectorAll('[data-reveal]').forEach(function(el) { el.classList.add('reveal'); });
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+    // === Number Counter ===
+    function animateCounters() {
+      document.querySelectorAll('[data-count]').forEach(function(el) {
+        if (el.dataset.counted) return;
+        el.dataset.counted = '1';
+        var target = parseFloat(el.dataset.count);
+        var prefix = el.dataset.prefix || '';
+        var suffix = el.dataset.suffix || '';
+        var start = performance.now();
+        var duration = 1200;
+        (function tick(now) {
+          var p = Math.min((now - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = prefix + Math.round(target * eased).toLocaleString() + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        })(start);
+      });
+    }
+    var counterEl = document.querySelector('[data-count]');
+    if (counterEl) {
+      var cObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting) { animateCounters(); cObs.disconnect(); } });
+      }, { threshold: 0 });
+      cObs.observe(counterEl);
+    }
+    // 페이지 로드 시 히어로가 이미 보이면 즉시 실행
+    setTimeout(function() { animateCounters(); }, 300);
+
+    // === Nav scroll effect ===
+    var siteNav = document.querySelector('.site-nav');
+    var backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        siteNav.classList.add('scrolled');
+        backToTop.classList.add('show');
+      } else {
+        siteNav.classList.remove('scrolled');
+        backToTop.classList.remove('show');
+      }
+    });
+
+    // === Active nav link highlight ===
+    var sections = document.querySelectorAll('.product-category, #about, #shipping, #contact');
+    var navAnchors = document.querySelectorAll('.nav-links a');
+    var navObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id;
+          navAnchors.forEach(function(a) {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '-80px 0px -50% 0px' });
+    sections.forEach(function(s) { navObserver.observe(s); });
+
+    // === Product Search ===
+    function filterProducts(query) {
+      var q = query.toLowerCase().trim();
+      var groups = document.querySelectorAll('[data-product]');
+      groups.forEach(function(g) {
+        var text = g.textContent.toLowerCase();
+        g.style.display = (!q || text.indexOf(q) !== -1) ? '' : 'none';
+      });
+    }
+
+    // === Download PNG ===
+    async function downloadImage() {
+      var menu = document.querySelector('.viz-menu');
+      menu.style.display = 'none';
+      try {
+        var url = await htmlToImage.toPng(document.body, {
+          quality: 1, pixelRatio: 2,
+          filter: function(n) { return !n.classList || !n.classList.contains('viz-menu'); }
+        });
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'sp-global-fb-catalog.png';
+        a.click();
+      } catch(e) { console.error('Download failed:', e); }
+      menu.style.display = '';
+    }
+
+    // Lightbox: 별도 <script> 블록으로 이동
+
+    // === Smooth scroll for anchor links ===
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var href = a.getAttribute('href');
+        if (href && href.length > 1) {
+          var target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
