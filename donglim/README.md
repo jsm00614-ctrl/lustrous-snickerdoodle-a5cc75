@@ -67,6 +67,10 @@ export default function createModel(THREE, options) {
 }
 ```
 
+**img2threejs 결과물을 쓸 때**: img2threejs는 `THREE.Group`을 만드는 TypeScript 함수를 줍니다. 브라우저는 TypeScript를 바로 읽지 못하므로 `.js`로 바꿔서 올리세요 (Claude에게 "이 img2threejs 결과를 동림 3D 모델용 .js로 바꿔 줘"라고 하면 됩니다).
+- `import * as THREE from 'three'`는 그대로 둬도 됩니다 (사이트가 같은 Three.js를 연결해 둠).
+- 함수 이름이 `createModel`이 아니어도, 모듈에서 처음 내보낸 함수를 자동으로 사용합니다.
+
 모델 크기·위치는 화면에 맞게 자동으로 맞춥니다. 예제: `models/example-round-bottle.js` (DL-SR030에 연결되어 있음).
 Three.js 버전은 `index.html`의 import map에서 바꿀 수 있습니다 (현재 0.160.0).
 
@@ -77,7 +81,7 @@ Three.js 버전은 `index.html`의 import map에서 바꿀 수 있습니다 (현
 문의 폼은 **Netlify Forms** 로 접수됩니다 (Netlify → Forms → `inquiry`).
 - 견적함에 담은 제품 목록이 `items` 필드에 자동으로 들어갑니다.
 - 첨부파일(로고·스케치)도 함께 받습니다.
-- 알림 메일: Netlify → Forms → Form notifications 에서 받을 이메일을 추가하세요.
+- 알림 메일: Netlify → Forms → Form notifications 에서 받을 이메일(예: 대표 메일)을 추가하세요.
 
 ---
 
@@ -100,6 +104,8 @@ donglim/
 │  └─ faq.json
 ├─ admin/                  관리자 페이지 (Decap CMS 설정·미리보기·엑셀 양식)
 ├─ models/                 3D 모델
+├─ brand/logo/             확정 로고 (SVG·PNG·로고 보드)
+├─ favicon.svg             브라우저 탭 아이콘
 ├─ images/uploads/         관리자에서 올린 사진
 └─ scripts/build-products.mjs   배포 때 products.json 생성
 ```

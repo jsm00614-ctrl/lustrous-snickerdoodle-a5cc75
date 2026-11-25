@@ -97,11 +97,9 @@ dl, dd { margin: 0; }
 .hd { position: sticky; top: 0; z-index: 40; background: rgba(246, 250, 251, .72); backdrop-filter: saturate(1.6) blur(18px); -webkit-backdrop-filter: saturate(1.6) blur(18px); border-bottom: 1px solid transparent; transition: border-color .2s, box-shadow .2s; }
 .hd.is-scrolled { border-color: var(--line); box-shadow: 0 6px 20px -16px rgba(0, 0, 0, .3); }
 .hd__in { height: var(--hd-h); display: flex; align-items: center; gap: 28px; }
-.logo { display: flex; align-items: baseline; gap: 10px; text-decoration: none; flex-shrink: 0; }
-.logo__mark { width: 14px; height: 22px; align-self: center; border: 1.6px solid var(--ink); border-top-width: 5px; border-radius: 1px 1px 4px 4px; position: relative; }
-.logo__mark::after { content: ''; position: absolute; left: 2px; right: 2px; bottom: 2px; height: 5px; background: var(--amber); }
-.logo__en { font-family: var(--serif); font-weight: 600; font-size: 20px; letter-spacing: .2em; }
-.logo__ko { font-size: 13px; color: var(--muted); }
+/* 로고: brand/logo/svg (글자를 윤곽선으로 바꾼 벡터). 비율을 바꾸지 말고 높이만 정하세요. */
+.logo { display: flex; align-items: center; min-height: 44px; text-decoration: none; flex-shrink: 0; }
+.logo__img { display: block; height: 26px; width: auto; }
 .gnb { display: flex; gap: 2px; margin-right: auto; }
 .gnb a { padding: 8px 11px; text-decoration: none; font-size: 14.5px; font-weight: 500; color: var(--ink-2); border-radius: var(--r); white-space: nowrap; }
 .gnb a:hover { color: var(--ink); background: var(--paper-2); }
@@ -430,7 +428,7 @@ section { position: relative; }
 /* ---------- 푸터 ---------- */
 .ft { background: #081218; color: #8a9ba3; padding: 56px 0 40px; font-size: 13px; }
 .ft__in { display: grid; grid-template-columns: 220px 1fr; gap: 32px 64px; }
-.ft__brand .logo__en { color: #fff; }
+.ft__logo { display: block; height: 60px; width: auto; }
 .ft__brand p { margin-top: 8px; }
 .ft__info { display: flex; flex-wrap: wrap; gap: 6px 24px; }
 .ft__info > div { display: flex; gap: 8px; }
@@ -611,9 +609,9 @@ body.has-tray .toast { bottom: 96px; }
   body { font-size: 14.5px; }
   .utilbar__notice { display: none; }
   .utilbar__in { justify-content: flex-end; }
-  .hd__cta, .logo__ko { display: none; }
+  .hd__cta { display: none; }
   .hd__in { gap: 12px; }
-  .logo__en { font-size: 19px; }
+  .logo__img { height: 22px; }
   .btn-cart { padding: 0 10px; }
   .hero__in { padding-top: 36px; padding-bottom: 48px; }
   .hero__sub { font-size: 15px; }
