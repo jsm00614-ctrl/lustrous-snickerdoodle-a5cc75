@@ -1,50 +1,63 @@
 {
  "A-mold": [
   "a-mold-horizontal-color.svg",
+  "a-mold-horizontal-aqua.svg",
   "a-mold-horizontal-black.svg",
   "a-mold-horizontal-white.svg",
   "a-mold-stacked-color.svg",
+  "a-mold-stacked-aqua.svg",
   "a-mold-stacked-black.svg",
   "a-mold-stacked-white.svg",
   "a-mold-symbol-color.svg",
+  "a-mold-symbol-aqua.svg",
   "a-mold-symbol-black.svg",
   "a-mold-symbol-white.svg"
  ],
  "B-d-bottle": [
   "b-d-bottle-horizontal-color.svg",
+  "b-d-bottle-horizontal-aqua.svg",
   "b-d-bottle-horizontal-black.svg",
   "b-d-bottle-horizontal-white.svg",
   "b-d-bottle-stacked-color.svg",
+  "b-d-bottle-stacked-aqua.svg",
   "b-d-bottle-stacked-black.svg",
   "b-d-bottle-stacked-white.svg",
   "b-d-bottle-symbol-color.svg",
+  "b-d-bottle-symbol-aqua.svg",
   "b-d-bottle-symbol-black.svg",
   "b-d-bottle-symbol-white.svg"
  ],
  "C-neck-ring": [
   "c-neck-ring-horizontal-color.svg",
+  "c-neck-ring-horizontal-aqua.svg",
   "c-neck-ring-horizontal-black.svg",
   "c-neck-ring-horizontal-white.svg",
   "c-neck-ring-stacked-color.svg",
+  "c-neck-ring-stacked-aqua.svg",
   "c-neck-ring-stacked-black.svg",
   "c-neck-ring-stacked-white.svg",
   "c-neck-ring-symbol-color.svg",
+  "c-neck-ring-symbol-aqua.svg",
   "c-neck-ring-symbol-black.svg",
   "c-neck-ring-symbol-white.svg"
  ],
  "D-amber": [
   "d-amber-horizontal-color.svg",
+  "d-amber-horizontal-aqua.svg",
   "d-amber-horizontal-black.svg",
   "d-amber-horizontal-white.svg",
   "d-amber-stacked-color.svg",
+  "d-amber-stacked-aqua.svg",
   "d-amber-stacked-black.svg",
   "d-amber-stacked-white.svg",
   "d-amber-symbol-color.svg",
+  "d-amber-symbol-aqua.svg",
   "d-amber-symbol-black.svg",
   "d-amber-symbol-white.svg"
  ],
  "E-emblem": [
   "e-emblem-badge-color.svg",
+  "e-emblem-badge-aqua.svg",
   "e-emblem-badge-black.svg",
   "e-emblem-badge-white.svg"
  ]

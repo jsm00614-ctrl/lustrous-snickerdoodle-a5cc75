@@ -45,14 +45,14 @@
     {
       "key": "flint",
       "label": "투명 (플린트)",
-      "hex": "#d9e6e8",
-      "opacity": 0.55
+      "hex": "#e2f0f2",
+      "opacity": 0.42
     },
     {
       "key": "frost",
       "label": "프로스트 (반투명)",
-      "hex": "#e8eded",
-      "opacity": 0.92
+      "hex": "#edf3f4",
+      "opacity": 0.88
     },
     {
       "key": "amber",

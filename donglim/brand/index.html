@@ -36,9 +36,24 @@ img { display:block; max-width:100%; }
 .tile--hero img { max-height:300px; padding:40px 56px; }
 .tile--dark { background:var(--ink); border-color:var(--ink); }
 .tile--amber { background:var(--amber); border-color:var(--amber); }
+.tile--aqua { background:#1d7a8c; border-color:#1d7a8c; }
+.tile--navy { background:linear-gradient(160deg,#12303a,#0b1a22); border-color:#0b1a22; }
+.tile--mist { background:radial-gradient(120% 90% at 70% 0%,#e2f2f5,transparent 60%),#f4f8f9; border-color:#d3e1e5; }
+.aqua { margin-top:14px; padding:14px; border:1px solid #d3e1e5; background:#f8fbfc; }
+.aqua-hd { margin:0 0 10px; font-size:13px; color:var(--ink2); }
+.aqua-hd b { color:#1d7a8c; margin-right:6px; }
+.aqua-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+.aqua-grid .tile { grid-column:span 1; min-height:150px; }
+.aqua-grid .tile img { max-height:120px; padding:16px; }
+.pick-color { width:max-content; white-space:nowrap; }
+.pick { display:grid; gap:6px; justify-items:end; border:0; padding:0; font-weight:400; }
+.pick > label { display:flex; gap:8px; align-items:center; border:1px solid var(--ink); padding:8px 14px; font-weight:600; cursor:pointer; }
+.pick-color input { width:15px; height:15px; }
+.pick-color { display:flex; gap:10px; align-items:center; font-size:13px; color:var(--muted); }
+.pick-color label { display:flex; gap:4px; align-items:center; color:var(--ink); }
 .tile--sq { grid-column:span 2; }
 .tile figcaption { font-size:12px; color:var(--muted); padding:8px 12px; border-top:1px solid var(--line); background:var(--sheet); }
-.tile--dark figcaption, .tile--amber figcaption { border-color:transparent; }
+.tile--dark figcaption, .tile--amber figcaption, .tile--aqua figcaption, .tile--navy figcaption { border-color:transparent; }
 .sizes { display:flex; align-items:flex-end; justify-content:center; gap:22px; padding:20px; }
 .sizes span { display:grid; justify-items:center; gap:6px; font:11px 'IBM Plex Mono',monospace; color:var(--muted); }
 .sizes i { display:block; background:center/contain no-repeat; }
@@ -60,7 +75,7 @@ img { display:block; max-width:100%; }
 .web-bar { display:flex; align-items:center; gap:12px; padding:10px 12px; border-bottom:1px solid var(--line); background:var(--paper); min-width:0; }
 .web-bar img { height:26px; width:auto; max-width:50%; object-fit:contain; object-position:left; }
 .web-bar nav { margin-left:auto; display:flex; gap:8px; font-size:9.5px; color:var(--ink2); white-space:nowrap; overflow:hidden; }
-.web-body { flex:1; min-height:120px; background:linear-gradient(#e4e1da 1px,transparent 1px) 0 0/100% 16px,linear-gradient(90deg,#e4e1da 1px,transparent 1px) 0 0/16px 100%; }
+.web-body { flex:1; min-height:120px; background:radial-gradient(120% 90% at 70% 0%,#e2f2f5,transparent 60%),linear-gradient(180deg,#f7fafb,#e9f1f3); }
 .box { width:170px; height:170px; background:#c9a77c; flex-direction:column; gap:8px; padding:16px; }
 .box img { max-height:72px; max-width:100%; width:auto; opacity:.85; mix-blend-mode:multiply; }
 .box span { font:500 8.5px 'IBM Plex Mono',monospace; letter-spacing:.2em; color:#3b2a18; }
@@ -89,6 +104,7 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
   .c-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .tile, .tile--hero, .tile--sq { grid-column:span 1; grid-row:auto; }
   .tile--hero { grid-column:1 / -1; }
+  .aqua-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .apply, .c-ft, .g-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
   .ap--card, .ap--web { grid-column:1 / -1; }
   .box { width:100%; height:auto; aspect-ratio:1; }
@@ -108,7 +124,7 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
   .ap > :first-child { min-height:150px; }
   .web-body { height:70px; }
   .c-ft { margin-top:10px; }
-  .tile--dark, .tile--amber, .c-letter, .card-back, thead th, .box { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .tile--dark, .tile--amber, .tile--aqua, .tile--navy, .tile--mist, .aqua, .web-body, .c-letter, .card-back, thead th, .box { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 }
 </style>
 </head>
@@ -117,7 +133,7 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
   <section class="cover">
     <p class="eyebrow">DONGLIM · LOGO PROPOSAL</p>
     <h1>동림 로고 시안</h1>
-    <p>화장품 유리용기 · 금형 개발 · 후가공 전 공정. 동림의 강점을 담은 다섯 가지 방향입니다. 마음에 드는 안의 <b>‘이 안 선택’</b>에 표시하고, 아래 칸에 의견을 적어주세요. 선택한 안을 바탕으로 세부 다듬기와 최종 파일 정리를 진행합니다.</p>
+    <p>화장품 유리용기 · 금형 개발 · 후가공 전 공정. 동림의 강점을 담은 다섯 가지 방향입니다. 각 안은 <b>앰버</b>(따뜻한 갈색 유리)와 새 홈페이지 색에 맞춘 <b>아쿠아</b>(맑은 유리) 두 가지 색으로 볼 수 있습니다. 마음에 드는 안의 <b>‘이 안 선택’</b>에 표시하고, 아래 칸에 의견을 적어주세요. 선택한 안을 바탕으로 세부 다듬기와 최종 파일 정리를 진행합니다.</p>
     <nav class="toc"><a href="#A-mold"><img src="logos/A-mold/a-mold-symbol-color.svg" alt=""><b>A. 몰드</b></a><a href="#B-d-bottle"><img src="logos/B-d-bottle/b-d-bottle-symbol-color.svg" alt=""><b>B. D 보틀</b></a><a href="#C-neck-ring"><img src="logos/C-neck-ring/c-neck-ring-symbol-color.svg" alt=""><b>C. 넥 링</b></a><a href="#D-amber"><img src="logos/D-amber/d-amber-symbol-color.svg" alt=""><b>D. 앰버 보틀</b></a><a href="#E-emblem"><img src="logos/E-emblem/e-emblem-badge-color.svg" alt=""><b>E. 엠블럼</b></a></nav>
   </section>
   
@@ -125,7 +141,8 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
     <header class="c-hd">
       <span class="c-letter">A</span>
       <div><h2>몰드 <small>MOLD</small></h2><p>열린 금형의 두 쪽 사이, 비어 있는 공간이 그대로 유리병이 됩니다. 자동병·수동병 금형을 직접 개발하는 회사라는 점을 가장 직접적으로 보여주는 안입니다.</p></div>
-      <label class="pick"><input type="checkbox"> 이 안 선택</label>
+      <div class="pick"><label><input type="checkbox"> 이 안 선택</label>
+        <span class="pick-color">색 <label><input type="radio" name="c-A-mold"> 앰버</label><label><input type="radio" name="c-A-mold"> 아쿠아</label></span></div>
     </header>
     <div class="c-grid">
       <figure class="tile tile--hero"><img class="hero-logo" src="logos/A-mold/a-mold-horizontal-color.svg" alt="몰드 기본형"><figcaption>기본형 (컬러)</figcaption></figure>
@@ -142,6 +159,15 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
         <figcaption>작은 크기 테스트 (파비콘·앱 아이콘)</figcaption>
       </figure>
     </div>
+    <div class="aqua">
+      <p class="aqua-hd"><b>아쿠아 버전</b> 새 홈페이지(클리어 글래스) 색과 맞춘 버전입니다. 모양은 같고 색만 다릅니다.</p>
+      <div class="aqua-grid">
+        <figure class="tile tile--mist"><img class="" src="logos/A-mold/a-mold-horizontal-aqua.svg" alt="몰드 아쿠아 기본형"><figcaption>기본형 · 아쿠아</figcaption></figure>
+        <figure class="tile tile--mist"><img class="" src="logos/A-mold/a-mold-stacked-aqua.svg" alt="몰드 아쿠아 세로형"><figcaption>세로형 · 아쿠아</figcaption></figure>
+        <figure class="tile tile--aqua"><img class="" src="logos/A-mold/a-mold-symbol-white.svg" alt="몰드 심볼 아쿠아 바탕"><figcaption>심볼 · 아쿠아 바탕</figcaption></figure>
+        <figure class="tile tile--navy"><img class="" src="logos/A-mold/a-mold-horizontal-white.svg" alt="몰드 네이비 바탕"><figcaption>네이비 바탕 (홈페이지 회사소개·하단)</figcaption></figure>
+      </div>
+    </div>
     <div class="apply">
       <figure class="ap ap--shirt"><svg viewBox="0 0 240 200" class="mock-shirt" aria-hidden="true">
       <path d="M78 12 L100 6 Q120 20 140 6 L162 12 L214 40 L198 84 L176 74 L176 194 L64 194 L64 74 L42 84 L26 40 Z" fill="#1d2b3a"/>
@@ -155,15 +181,15 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
         <figcaption>명함 앞 · 뒤</figcaption>
       </figure>
       <figure class="ap ap--web">
-        <div class="web"><div class="web-bar"><img class="" src="logos/A-mold/a-mold-horizontal-color.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
-        <figcaption>홈페이지 헤더</figcaption>
+        <div class="web"><div class="web-bar"><img class="" src="logos/A-mold/a-mold-horizontal-aqua.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
+        <figcaption>홈페이지 헤더 (아쿠아 버전)</figcaption>
       </figure>
       <figure class="ap ap--box"><div class="box"><img class="" src="logos/A-mold/a-mold-horizontal-black.svg" alt=""><span>FRAGILE · GLASS</span></div><figcaption>박스 스탬프 (1도)</figcaption></figure>
     </div>
     <div class="c-ft">
       <div><h3>좋은 점</h3><ul><li>금형 개발 역량이 한눈에 보임</li><li>네모 블록이라 자수·도장·작은 크기에 강함</li><li>흑백 한 색으로도 의미가 유지됨</li></ul></div>
       <div><h3>고려할 점</h3><ul><li>병 모양이 ‘빈 공간’이라 처음엔 블록이 먼저 보일 수 있음</li></ul></div>
-      <details class="files"><summary>벡터 파일 9개 (SVG)</summary><ul><li><a href="logos/A-mold/a-mold-horizontal-color.svg" download>a-mold-horizontal-color.svg</a></li><li><a href="logos/A-mold/a-mold-horizontal-black.svg" download>a-mold-horizontal-black.svg</a></li><li><a href="logos/A-mold/a-mold-horizontal-white.svg" download>a-mold-horizontal-white.svg</a></li><li><a href="logos/A-mold/a-mold-stacked-color.svg" download>a-mold-stacked-color.svg</a></li><li><a href="logos/A-mold/a-mold-stacked-black.svg" download>a-mold-stacked-black.svg</a></li><li><a href="logos/A-mold/a-mold-stacked-white.svg" download>a-mold-stacked-white.svg</a></li><li><a href="logos/A-mold/a-mold-symbol-color.svg" download>a-mold-symbol-color.svg</a></li><li><a href="logos/A-mold/a-mold-symbol-black.svg" download>a-mold-symbol-black.svg</a></li><li><a href="logos/A-mold/a-mold-symbol-white.svg" download>a-mold-symbol-white.svg</a></li></ul></details>
+      <details class="files"><summary>벡터 파일 12개 (SVG)</summary><ul><li><a href="logos/A-mold/a-mold-horizontal-color.svg" download>a-mold-horizontal-color.svg</a></li><li><a href="logos/A-mold/a-mold-horizontal-aqua.svg" download>a-mold-horizontal-aqua.svg</a></li><li><a href="logos/A-mold/a-mold-horizontal-black.svg" download>a-mold-horizontal-black.svg</a></li><li><a href="logos/A-mold/a-mold-horizontal-white.svg" download>a-mold-horizontal-white.svg</a></li><li><a href="logos/A-mold/a-mold-stacked-color.svg" download>a-mold-stacked-color.svg</a></li><li><a href="logos/A-mold/a-mold-stacked-aqua.svg" download>a-mold-stacked-aqua.svg</a></li><li><a href="logos/A-mold/a-mold-stacked-black.svg" download>a-mold-stacked-black.svg</a></li><li><a href="logos/A-mold/a-mold-stacked-white.svg" download>a-mold-stacked-white.svg</a></li><li><a href="logos/A-mold/a-mold-symbol-color.svg" download>a-mold-symbol-color.svg</a></li><li><a href="logos/A-mold/a-mold-symbol-aqua.svg" download>a-mold-symbol-aqua.svg</a></li><li><a href="logos/A-mold/a-mold-symbol-black.svg" download>a-mold-symbol-black.svg</a></li><li><a href="logos/A-mold/a-mold-symbol-white.svg" download>a-mold-symbol-white.svg</a></li></ul></details>
       <div class="memo"><h3>사장님 의견</h3><div class="memo-box"></div></div>
     </div>
   </section>
@@ -171,7 +197,8 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
     <header class="c-hd">
       <span class="c-letter">B</span>
       <div><h2>D 보틀 <small>MONOGRAM</small></h2><p>이니셜 D의 안쪽 공간을 유리병 모양으로 비웠습니다. 동림(DONGLIM)과 유리용기를 한 글자에 담은 모노그램입니다.</p></div>
-      <label class="pick"><input type="checkbox"> 이 안 선택</label>
+      <div class="pick"><label><input type="checkbox"> 이 안 선택</label>
+        <span class="pick-color">색 <label><input type="radio" name="c-B-d-bottle"> 앰버</label><label><input type="radio" name="c-B-d-bottle"> 아쿠아</label></span></div>
     </header>
     <div class="c-grid">
       <figure class="tile tile--hero"><img class="hero-logo" src="logos/B-d-bottle/b-d-bottle-horizontal-color.svg" alt="D 보틀 기본형"><figcaption>기본형 (컬러)</figcaption></figure>
@@ -188,6 +215,15 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
         <figcaption>작은 크기 테스트 (파비콘·앱 아이콘)</figcaption>
       </figure>
     </div>
+    <div class="aqua">
+      <p class="aqua-hd"><b>아쿠아 버전</b> 새 홈페이지(클리어 글래스) 색과 맞춘 버전입니다. 모양은 같고 색만 다릅니다.</p>
+      <div class="aqua-grid">
+        <figure class="tile tile--mist"><img class="" src="logos/B-d-bottle/b-d-bottle-horizontal-aqua.svg" alt="D 보틀 아쿠아 기본형"><figcaption>기본형 · 아쿠아</figcaption></figure>
+        <figure class="tile tile--mist"><img class="" src="logos/B-d-bottle/b-d-bottle-stacked-aqua.svg" alt="D 보틀 아쿠아 세로형"><figcaption>세로형 · 아쿠아</figcaption></figure>
+        <figure class="tile tile--aqua"><img class="" src="logos/B-d-bottle/b-d-bottle-symbol-white.svg" alt="D 보틀 심볼 아쿠아 바탕"><figcaption>심볼 · 아쿠아 바탕</figcaption></figure>
+        <figure class="tile tile--navy"><img class="" src="logos/B-d-bottle/b-d-bottle-horizontal-white.svg" alt="D 보틀 네이비 바탕"><figcaption>네이비 바탕 (홈페이지 회사소개·하단)</figcaption></figure>
+      </div>
+    </div>
     <div class="apply">
       <figure class="ap ap--shirt"><svg viewBox="0 0 240 200" class="mock-shirt" aria-hidden="true">
       <path d="M78 12 L100 6 Q120 20 140 6 L162 12 L214 40 L198 84 L176 74 L176 194 L64 194 L64 74 L42 84 L26 40 Z" fill="#1d2b3a"/>
@@ -201,15 +237,15 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
         <figcaption>명함 앞 · 뒤</figcaption>
       </figure>
       <figure class="ap ap--web">
-        <div class="web"><div class="web-bar"><img class="" src="logos/B-d-bottle/b-d-bottle-horizontal-color.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
-        <figcaption>홈페이지 헤더</figcaption>
+        <div class="web"><div class="web-bar"><img class="" src="logos/B-d-bottle/b-d-bottle-horizontal-aqua.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
+        <figcaption>홈페이지 헤더 (아쿠아 버전)</figcaption>
       </figure>
       <figure class="ap ap--box"><div class="box"><img class="" src="logos/B-d-bottle/b-d-bottle-horizontal-black.svg" alt=""><span>FRAGILE · GLASS</span></div><figcaption>박스 스탬프 (1도)</figcaption></figure>
     </div>
     <div class="c-ft">
       <div><h3>좋은 점</h3><ul><li>이니셜이라 기억하기 쉬움</li><li>앱 아이콘·파비콘·명함 뒷면에 잘 어울림</li><li>굵은 워드마크로 멀리서도 잘 읽힘</li></ul></div>
       <div><h3>고려할 점</h3><ul><li>D 이니셜을 쓰는 다른 브랜드와 겹칠 수 있음</li></ul></div>
-      <details class="files"><summary>벡터 파일 9개 (SVG)</summary><ul><li><a href="logos/B-d-bottle/b-d-bottle-horizontal-color.svg" download>b-d-bottle-horizontal-color.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-horizontal-black.svg" download>b-d-bottle-horizontal-black.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-horizontal-white.svg" download>b-d-bottle-horizontal-white.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-stacked-color.svg" download>b-d-bottle-stacked-color.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-stacked-black.svg" download>b-d-bottle-stacked-black.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-stacked-white.svg" download>b-d-bottle-stacked-white.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-symbol-color.svg" download>b-d-bottle-symbol-color.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-symbol-black.svg" download>b-d-bottle-symbol-black.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-symbol-white.svg" download>b-d-bottle-symbol-white.svg</a></li></ul></details>
+      <details class="files"><summary>벡터 파일 12개 (SVG)</summary><ul><li><a href="logos/B-d-bottle/b-d-bottle-horizontal-color.svg" download>b-d-bottle-horizontal-color.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-horizontal-aqua.svg" download>b-d-bottle-horizontal-aqua.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-horizontal-black.svg" download>b-d-bottle-horizontal-black.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-horizontal-white.svg" download>b-d-bottle-horizontal-white.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-stacked-color.svg" download>b-d-bottle-stacked-color.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-stacked-aqua.svg" download>b-d-bottle-stacked-aqua.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-stacked-black.svg" download>b-d-bottle-stacked-black.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-stacked-white.svg" download>b-d-bottle-stacked-white.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-symbol-color.svg" download>b-d-bottle-symbol-color.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-symbol-aqua.svg" download>b-d-bottle-symbol-aqua.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-symbol-black.svg" download>b-d-bottle-symbol-black.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-symbol-white.svg" download>b-d-bottle-symbol-white.svg</a></li></ul></details>
       <div class="memo"><h3>사장님 의견</h3><div class="memo-box"></div></div>
     </div>
   </section>
@@ -217,7 +253,8 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
     <header class="c-hd">
       <span class="c-letter">C</span>
       <div><h2>넥 링 <small>HANGUL WORDMARK</small></h2><p>한글 ‘동림’을 직접 설계했습니다. ‘동’의 ㅇ은 병 입구를 위에서 내려다본 모습(넥 링)입니다. 국내 거래처에 한글 이름을 강하게 남기는 안입니다.</p></div>
-      <label class="pick"><input type="checkbox"> 이 안 선택</label>
+      <div class="pick"><label><input type="checkbox"> 이 안 선택</label>
+        <span class="pick-color">색 <label><input type="radio" name="c-C-neck-ring"> 앰버</label><label><input type="radio" name="c-C-neck-ring"> 아쿠아</label></span></div>
     </header>
     <div class="c-grid">
       <figure class="tile tile--hero"><img class="hero-logo" src="logos/C-neck-ring/c-neck-ring-horizontal-color.svg" alt="넥 링 기본형"><figcaption>기본형 (컬러)</figcaption></figure>
@@ -234,6 +271,15 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
         <figcaption>작은 크기 테스트 (파비콘·앱 아이콘)</figcaption>
       </figure>
     </div>
+    <div class="aqua">
+      <p class="aqua-hd"><b>아쿠아 버전</b> 새 홈페이지(클리어 글래스) 색과 맞춘 버전입니다. 모양은 같고 색만 다릅니다.</p>
+      <div class="aqua-grid">
+        <figure class="tile tile--mist"><img class="" src="logos/C-neck-ring/c-neck-ring-horizontal-aqua.svg" alt="넥 링 아쿠아 기본형"><figcaption>기본형 · 아쿠아</figcaption></figure>
+        <figure class="tile tile--mist"><img class="" src="logos/C-neck-ring/c-neck-ring-stacked-aqua.svg" alt="넥 링 아쿠아 세로형"><figcaption>세로형 · 아쿠아</figcaption></figure>
+        <figure class="tile tile--aqua"><img class="" src="logos/C-neck-ring/c-neck-ring-symbol-white.svg" alt="넥 링 심볼 아쿠아 바탕"><figcaption>심볼 · 아쿠아 바탕</figcaption></figure>
+        <figure class="tile tile--navy"><img class="" src="logos/C-neck-ring/c-neck-ring-horizontal-white.svg" alt="넥 링 네이비 바탕"><figcaption>네이비 바탕 (홈페이지 회사소개·하단)</figcaption></figure>
+      </div>
+    </div>
     <div class="apply">
       <figure class="ap ap--shirt"><svg viewBox="0 0 240 200" class="mock-shirt" aria-hidden="true">
       <path d="M78 12 L100 6 Q120 20 140 6 L162 12 L214 40 L198 84 L176 74 L176 194 L64 194 L64 74 L42 84 L26 40 Z" fill="#1d2b3a"/>
@@ -247,15 +293,15 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
         <figcaption>명함 앞 · 뒤</figcaption>
       </figure>
       <figure class="ap ap--web">
-        <div class="web"><div class="web-bar"><img class="" src="logos/C-neck-ring/c-neck-ring-horizontal-color.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
-        <figcaption>홈페이지 헤더</figcaption>
+        <div class="web"><div class="web-bar"><img class="" src="logos/C-neck-ring/c-neck-ring-horizontal-aqua.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
+        <figcaption>홈페이지 헤더 (아쿠아 버전)</figcaption>
       </figure>
       <figure class="ap ap--box"><div class="box"><img class="" src="logos/C-neck-ring/c-neck-ring-horizontal-black.svg" alt=""><span>FRAGILE · GLASS</span></div><figcaption>박스 스탬프 (1도)</figcaption></figure>
     </div>
     <div class="c-ft">
       <div><h3>좋은 점</h3><ul><li>한글 이름이 주인공이라 국내에서 바로 읽힘</li><li>굵은 획이라 유니폼 자수·간판에 유리</li><li>‘동’ 한 글자만 심볼로 쓸 수 있음</li></ul></div>
       <div><h3>고려할 점</h3><ul><li>해외 거래처에는 영문 표기를 함께 써야 함</li></ul></div>
-      <details class="files"><summary>벡터 파일 9개 (SVG)</summary><ul><li><a href="logos/C-neck-ring/c-neck-ring-horizontal-color.svg" download>c-neck-ring-horizontal-color.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-horizontal-black.svg" download>c-neck-ring-horizontal-black.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-horizontal-white.svg" download>c-neck-ring-horizontal-white.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-stacked-color.svg" download>c-neck-ring-stacked-color.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-stacked-black.svg" download>c-neck-ring-stacked-black.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-stacked-white.svg" download>c-neck-ring-stacked-white.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-symbol-color.svg" download>c-neck-ring-symbol-color.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-symbol-black.svg" download>c-neck-ring-symbol-black.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-symbol-white.svg" download>c-neck-ring-symbol-white.svg</a></li></ul></details>
+      <details class="files"><summary>벡터 파일 12개 (SVG)</summary><ul><li><a href="logos/C-neck-ring/c-neck-ring-horizontal-color.svg" download>c-neck-ring-horizontal-color.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-horizontal-aqua.svg" download>c-neck-ring-horizontal-aqua.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-horizontal-black.svg" download>c-neck-ring-horizontal-black.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-horizontal-white.svg" download>c-neck-ring-horizontal-white.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-stacked-color.svg" download>c-neck-ring-stacked-color.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-stacked-aqua.svg" download>c-neck-ring-stacked-aqua.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-stacked-black.svg" download>c-neck-ring-stacked-black.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-stacked-white.svg" download>c-neck-ring-stacked-white.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-symbol-color.svg" download>c-neck-ring-symbol-color.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-symbol-aqua.svg" download>c-neck-ring-symbol-aqua.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-symbol-black.svg" download>c-neck-ring-symbol-black.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-symbol-white.svg" download>c-neck-ring-symbol-white.svg</a></li></ul></details>
       <div class="memo"><h3>사장님 의견</h3><div class="memo-box"></div></div>
     </div>
   </section>
@@ -263,7 +309,8 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
     <header class="c-hd">
       <span class="c-letter">D</span>
       <div><h2>앰버 보틀 <small>SERIF</small></h2><p>고급 화장품 브랜드의 세리프 글꼴에, O 자리를 앰버 유리병으로 바꿨습니다. 프리미엄 화장품 브랜드를 상대하는 B2B 이미지를 노린 안입니다.</p></div>
-      <label class="pick"><input type="checkbox"> 이 안 선택</label>
+      <div class="pick"><label><input type="checkbox"> 이 안 선택</label>
+        <span class="pick-color">색 <label><input type="radio" name="c-D-amber"> 앰버</label><label><input type="radio" name="c-D-amber"> 아쿠아</label></span></div>
     </header>
     <div class="c-grid">
       <figure class="tile tile--hero"><img class="hero-logo" src="logos/D-amber/d-amber-horizontal-color.svg" alt="앰버 보틀 기본형"><figcaption>기본형 (컬러)</figcaption></figure>
@@ -280,6 +327,15 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
         <figcaption>작은 크기 테스트 (파비콘·앱 아이콘)</figcaption>
       </figure>
     </div>
+    <div class="aqua">
+      <p class="aqua-hd"><b>아쿠아 버전</b> 새 홈페이지(클리어 글래스) 색과 맞춘 버전입니다. 모양은 같고 색만 다릅니다.</p>
+      <div class="aqua-grid">
+        <figure class="tile tile--mist"><img class="" src="logos/D-amber/d-amber-horizontal-aqua.svg" alt="앰버 보틀 아쿠아 기본형"><figcaption>기본형 · 아쿠아</figcaption></figure>
+        <figure class="tile tile--mist"><img class="" src="logos/D-amber/d-amber-stacked-aqua.svg" alt="앰버 보틀 아쿠아 세로형"><figcaption>세로형 · 아쿠아</figcaption></figure>
+        <figure class="tile tile--aqua"><img class="" src="logos/D-amber/d-amber-symbol-white.svg" alt="앰버 보틀 심볼 아쿠아 바탕"><figcaption>심볼 · 아쿠아 바탕</figcaption></figure>
+        <figure class="tile tile--navy"><img class="" src="logos/D-amber/d-amber-horizontal-white.svg" alt="앰버 보틀 네이비 바탕"><figcaption>네이비 바탕 (홈페이지 회사소개·하단)</figcaption></figure>
+      </div>
+    </div>
     <div class="apply">
       <figure class="ap ap--shirt"><svg viewBox="0 0 240 200" class="mock-shirt" aria-hidden="true">
       <path d="M78 12 L100 6 Q120 20 140 6 L162 12 L214 40 L198 84 L176 74 L176 194 L64 194 L64 74 L42 84 L26 40 Z" fill="#1d2b3a"/>
@@ -293,15 +349,15 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
         <figcaption>명함 앞 · 뒤</figcaption>
       </figure>
       <figure class="ap ap--web">
-        <div class="web"><div class="web-bar"><img class="" src="logos/D-amber/d-amber-horizontal-color.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
-        <figcaption>홈페이지 헤더</figcaption>
+        <div class="web"><div class="web-bar"><img class="" src="logos/D-amber/d-amber-horizontal-aqua.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
+        <figcaption>홈페이지 헤더 (아쿠아 버전)</figcaption>
       </figure>
       <figure class="ap ap--box"><div class="box"><img class="" src="logos/D-amber/d-amber-horizontal-black.svg" alt=""><span>FRAGILE · GLASS</span></div><figcaption>박스 스탬프 (1도)</figcaption></figure>
     </div>
     <div class="c-ft">
       <div><h3>좋은 점</h3><ul><li>화장품 업계 감성에 가장 가까움</li><li>브로슈어·카탈로그 표지에 고급스러움</li><li>병 심볼 하나로도 쓸 수 있음</li></ul></div>
       <div><h3>고려할 점</h3><ul><li>가는 세리프라 아주 작은 크기·자수에는 굵게 다듬어야 함</li></ul></div>
-      <details class="files"><summary>벡터 파일 9개 (SVG)</summary><ul><li><a href="logos/D-amber/d-amber-horizontal-color.svg" download>d-amber-horizontal-color.svg</a></li><li><a href="logos/D-amber/d-amber-horizontal-black.svg" download>d-amber-horizontal-black.svg</a></li><li><a href="logos/D-amber/d-amber-horizontal-white.svg" download>d-amber-horizontal-white.svg</a></li><li><a href="logos/D-amber/d-amber-stacked-color.svg" download>d-amber-stacked-color.svg</a></li><li><a href="logos/D-amber/d-amber-stacked-black.svg" download>d-amber-stacked-black.svg</a></li><li><a href="logos/D-amber/d-amber-stacked-white.svg" download>d-amber-stacked-white.svg</a></li><li><a href="logos/D-amber/d-amber-symbol-color.svg" download>d-amber-symbol-color.svg</a></li><li><a href="logos/D-amber/d-amber-symbol-black.svg" download>d-amber-symbol-black.svg</a></li><li><a href="logos/D-amber/d-amber-symbol-white.svg" download>d-amber-symbol-white.svg</a></li></ul></details>
+      <details class="files"><summary>벡터 파일 12개 (SVG)</summary><ul><li><a href="logos/D-amber/d-amber-horizontal-color.svg" download>d-amber-horizontal-color.svg</a></li><li><a href="logos/D-amber/d-amber-horizontal-aqua.svg" download>d-amber-horizontal-aqua.svg</a></li><li><a href="logos/D-amber/d-amber-horizontal-black.svg" download>d-amber-horizontal-black.svg</a></li><li><a href="logos/D-amber/d-amber-horizontal-white.svg" download>d-amber-horizontal-white.svg</a></li><li><a href="logos/D-amber/d-amber-stacked-color.svg" download>d-amber-stacked-color.svg</a></li><li><a href="logos/D-amber/d-amber-stacked-aqua.svg" download>d-amber-stacked-aqua.svg</a></li><li><a href="logos/D-amber/d-amber-stacked-black.svg" download>d-amber-stacked-black.svg</a></li><li><a href="logos/D-amber/d-amber-stacked-white.svg" download>d-amber-stacked-white.svg</a></li><li><a href="logos/D-amber/d-amber-symbol-color.svg" download>d-amber-symbol-color.svg</a></li><li><a href="logos/D-amber/d-amber-symbol-aqua.svg" download>d-amber-symbol-aqua.svg</a></li><li><a href="logos/D-amber/d-amber-symbol-black.svg" download>d-amber-symbol-black.svg</a></li><li><a href="logos/D-amber/d-amber-symbol-white.svg" download>d-amber-symbol-white.svg</a></li></ul></details>
       <div class="memo"><h3>사장님 의견</h3><div class="memo-box"></div></div>
     </div>
   </section>
@@ -309,7 +365,8 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
     <header class="c-hd">
       <span class="c-letter">E</span>
       <div><h2>엠블럼 <small>BADGE</small></h2><p>원형 배지형입니다. 다른 안의 보조 로고로 유니폼 패치, 박스 스탬프, 품질 확인 도장, 굿즈에 함께 쓰는 것을 추천합니다. (가운데 심볼은 선택한 안으로 바꿀 수 있습니다)</p></div>
-      <label class="pick"><input type="checkbox"> 이 안 선택</label>
+      <div class="pick"><label><input type="checkbox"> 이 안 선택</label>
+        <span class="pick-color">색 <label><input type="radio" name="c-E-emblem"> 앰버</label><label><input type="radio" name="c-E-emblem"> 아쿠아</label></span></div>
     </header>
     <div class="c-grid">
       <figure class="tile tile--hero"><img class="hero-logo" src="logos/E-emblem/e-emblem-badge-color.svg" alt="엠블럼 기본형"><figcaption>기본형 (컬러)</figcaption></figure>
@@ -326,6 +383,15 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
         <figcaption>작은 크기 테스트 (파비콘·앱 아이콘)</figcaption>
       </figure>
     </div>
+    <div class="aqua">
+      <p class="aqua-hd"><b>아쿠아 버전</b> 새 홈페이지(클리어 글래스) 색과 맞춘 버전입니다. 모양은 같고 색만 다릅니다.</p>
+      <div class="aqua-grid">
+        <figure class="tile tile--mist"><img class="" src="logos/E-emblem/e-emblem-badge-aqua.svg" alt="엠블럼 아쿠아 기본형"><figcaption>배지 · 아쿠아</figcaption></figure>
+        
+        <figure class="tile tile--aqua"><img class="" src="logos/E-emblem/e-emblem-badge-white.svg" alt="엠블럼 심볼 아쿠아 바탕"><figcaption>심볼 · 아쿠아 바탕</figcaption></figure>
+        <figure class="tile tile--navy"><img class="" src="logos/E-emblem/e-emblem-badge-white.svg" alt="엠블럼 네이비 바탕"><figcaption>네이비 바탕 (홈페이지 회사소개·하단)</figcaption></figure>
+      </div>
+    </div>
     <div class="apply">
       <figure class="ap ap--shirt"><svg viewBox="0 0 240 200" class="mock-shirt" aria-hidden="true">
       <path d="M78 12 L100 6 Q120 20 140 6 L162 12 L214 40 L198 84 L176 74 L176 194 L64 194 L64 74 L42 84 L26 40 Z" fill="#1d2b3a"/>
@@ -339,15 +405,15 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
         <figcaption>명함 앞 · 뒤</figcaption>
       </figure>
       <figure class="ap ap--web">
-        <div class="web"><div class="web-bar"><img class="" src="logos/E-emblem/e-emblem-badge-color.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
-        <figcaption>홈페이지 헤더</figcaption>
+        <div class="web"><div class="web-bar"><img class="" src="logos/E-emblem/e-emblem-badge-aqua.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
+        <figcaption>홈페이지 헤더 (아쿠아 버전)</figcaption>
       </figure>
       <figure class="ap ap--box"><div class="box"><img class="" src="logos/E-emblem/e-emblem-badge-black.svg" alt=""><span>FRAGILE · GLASS</span></div><figcaption>박스 스탬프 (1도)</figcaption></figure>
     </div>
     <div class="c-ft">
       <div><h3>좋은 점</h3><ul><li>유니폼 패치·모자·스티커에 바로 적용</li><li>도장·스탬프로 찍기 좋음</li><li>다른 안과 함께 쓰는 보조 로고</li></ul></div>
       <div><h3>고려할 점</h3><ul><li>단독 메인 로고로는 정보가 많음</li></ul></div>
-      <details class="files"><summary>벡터 파일 3개 (SVG)</summary><ul><li><a href="logos/E-emblem/e-emblem-badge-color.svg" download>e-emblem-badge-color.svg</a></li><li><a href="logos/E-emblem/e-emblem-badge-black.svg" download>e-emblem-badge-black.svg</a></li><li><a href="logos/E-emblem/e-emblem-badge-white.svg" download>e-emblem-badge-white.svg</a></li></ul></details>
+      <details class="files"><summary>벡터 파일 4개 (SVG)</summary><ul><li><a href="logos/E-emblem/e-emblem-badge-color.svg" download>e-emblem-badge-color.svg</a></li><li><a href="logos/E-emblem/e-emblem-badge-aqua.svg" download>e-emblem-badge-aqua.svg</a></li><li><a href="logos/E-emblem/e-emblem-badge-black.svg" download>e-emblem-badge-black.svg</a></li><li><a href="logos/E-emblem/e-emblem-badge-white.svg" download>e-emblem-badge-white.svg</a></li></ul></details>
       <div class="memo"><h3>사장님 의견</h3><div class="memo-box"></div></div>
     </div>
   </section>
@@ -355,9 +421,12 @@ thead th { background:var(--ink); color:#fff; font-weight:600; }
     <h2>공통 사항</h2>
     <div class="g-grid">
       <div><h3>브랜드 색상</h3>
+        <p style="font-size:12px;color:#6b7378;margin:0 0 6px">앰버 버전</p>
         <div class="sw"><div><i style="background:#121619"></i><small>INK<br>#121619</small></div><div><i style="background:#A8571B"></i><small>AMBER<br>#A8571B</small></div><div><i style="background:#F3F2EE"></i><small>PAPER<br>#F3F2EE</small></div></div>
-        <p style="font-size:13px;color:#384046">홈페이지 색과 같습니다. 인쇄용 별색(PANTONE)은 선택한 안으로 실물 교정 후 정합니다.</p></div>
-      <div><h3>파일 종류</h3><p style="font-size:13px;color:#384046">모든 시안은 <b>SVG 벡터</b>입니다. 글자는 윤곽선(path)으로 변환되어 폰트 없이도 똑같이 보이며, 일러스트레이터·인쇄소·자수 업체에서 그대로 열 수 있습니다. 각 안마다 <b>컬러 / 흑백 / 흰색(어두운 바탕용)</b> × <b>가로형 / 세로형 / 심볼</b>이 있습니다.</p></div>
+        <p style="font-size:12px;color:#6b7378;margin:12px 0 6px">아쿠아 버전 (새 홈페이지 색)</p>
+        <div class="sw"><div><i style="background:#0B1A22"></i><small>NAVY<br>#0B1A22</small></div><div><i style="background:#1D7A8C"></i><small>AQUA<br>#1D7A8C</small></div><div><i style="background:#F2F6F7"></i><small>MIST<br>#F2F6F7</small></div></div>
+        <p style="font-size:13px;color:#384046">아쿠아 버전은 현재 홈페이지 색과 같습니다. 인쇄용 별색(PANTONE)은 선택한 안으로 실물 교정 후 정합니다.</p></div>
+      <div><h3>파일 종류</h3><p style="font-size:13px;color:#384046">모든 시안은 <b>SVG 벡터</b>입니다. 글자는 윤곽선(path)으로 변환되어 폰트 없이도 똑같이 보이며, 일러스트레이터·인쇄소·자수 업체에서 그대로 열 수 있습니다. 각 안마다 <b>앰버 / 아쿠아 / 흑백 / 흰색(어두운 바탕용)</b> × <b>가로형 / 세로형 / 심볼</b>이 있습니다.</p></div>
       <div><h3>사용 가이드</h3><ul style="font-size:13px;color:#384046;padding-left:18px;margin:0">
         <li>로고 주변 여백: 심볼 높이의 1/4 이상</li><li>유니폼 자수 최소 폭: 가로형 60mm, 심볼 18mm</li><li>도장·박스·레이저 각인은 흑백 1도 파일 사용</li><li>로고 비율을 늘리거나 줄이지 마세요</li></ul></div>
     </div>

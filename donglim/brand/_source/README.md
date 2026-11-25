@@ -20,4 +20,6 @@ python donglim/brand/_source/build_logos.py /tmp/fonts/node_modules/@fontsource 
 python donglim/brand/_source/gen_board.py donglim/brand
 ```
 
+색 버전은 `color`(앰버), `aqua`(홈페이지 색과 같은 네이비·아쿠아), `black`(1도), `white`(어두운 바탕용) 네 가지입니다.
+
 글꼴은 모두 SIL Open Font License(로고·상업적 사용 가능)이며, 결과 SVG에는 글자가 윤곽선(path)으로 들어가 폰트 없이 열립니다.
