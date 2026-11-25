@@ -5,7 +5,9 @@
  */
 window.Bottle = (function () {
   let uid = 0;
-  const INK = '#1b2226';
+  const INK = '#2d4350';          // 차가운 회청색 윤곽선
+  const CAP = '#e3e9ec';          // 마개(부자재) 색
+  const DIM = '#2a8197';          // 치수선 색
 
   function neckDia(neck) {
     const m = String(neck || '').match(/(\d+(?:\.\d+)?)/);
@@ -49,7 +51,7 @@ window.Bottle = (function () {
   /* 부자재(마개) — 병 위쪽에 그림. 반환값의 top은 가장 높은 y(음수), half는 좌우 최대 폭의 절반 */
   function closure(type, p, g, sw, solid) {
     const { n, nh, nb, top, R, H } = g;
-    const fill = solid ? '#e6e3dc' : 'rgba(251,251,249,.55)';
+    const fill = solid ? CAP : 'rgba(250,252,253,.6)';
     const st = `fill="${fill}" stroke="${INK}" stroke-width="${sw}" ${solid ? '' : `stroke-dasharray="${sw * 2.4} ${sw * 2}" stroke-opacity=".65"`}`;
     let out = '', t = top, half = n + 1.5;
     const rect = (x, y, w, h, r = 0.8) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" ${st}/>`;
@@ -132,7 +134,7 @@ window.Bottle = (function () {
     const s = Math.min((W - pad.l - pad.r) / (half * 2), (Hpx - pad.t - pad.b) / -extTop);
     const ox = pad.l + (W - pad.l - pad.r) / 2;
     const oy = Hpx - pad.b;
-    const sw = (drawing ? 1.3 : 1.1) / s;
+    const sw = (drawing ? 1.2 : 0.95) / s;
     const cl = closure(closureType, p, g, sw, drawing);
     const body = bodyPath(p, g);
     const { R, n, nh, sb, top, baseT } = g;
@@ -162,15 +164,19 @@ window.Bottle = (function () {
       <defs>
         <clipPath id="${id}c"><path d="${body}"/></clipPath>
         <linearGradient id="${id}g" x1="0" x2="1" y1="0" y2="0">
-          <stop offset="0" stop-color="#000" stop-opacity=".18"/>
-          <stop offset=".22" stop-color="#fff" stop-opacity=".22"/>
-          <stop offset=".55" stop-color="#fff" stop-opacity="0"/>
-          <stop offset=".85" stop-color="#000" stop-opacity=".08"/>
-          <stop offset="1" stop-color="#000" stop-opacity=".22"/>
+          <stop offset="0" stop-color="#0f3b48" stop-opacity=".26"/>
+          <stop offset=".07" stop-color="#0f3b48" stop-opacity=".06"/>
+          <stop offset=".24" stop-color="#fff" stop-opacity=".55"/>
+          <stop offset=".46" stop-color="#fff" stop-opacity="0"/>
+          <stop offset=".82" stop-color="#0f3b48" stop-opacity=".04"/>
+          <stop offset=".94" stop-color="#0f3b48" stop-opacity=".14"/>
+          <stop offset="1" stop-color="#0f3b48" stop-opacity=".28"/>
         </linearGradient>
       </defs>`;
     if (!drawing) {
-      svg += `<ellipse cx="${ox}" cy="${oy + 2}" rx="${R * s * 1.15}" ry="${Math.max(2.5, R * s * 0.12)}" fill="#1b2226" fill-opacity=".09"/>`;
+      // 바닥 그림자 + 유리를 통과한 빛(커스틱)
+      svg += `<ellipse cx="${ox}" cy="${oy + 2}" rx="${R * s * 1.2}" ry="${Math.max(2.5, R * s * 0.13)}" fill="#0f3b48" fill-opacity=".1"/>`;
+      svg += `<ellipse cx="${ox + R * s * 0.25}" cy="${oy + 3}" rx="${R * s * 0.75}" ry="${Math.max(1.6, R * s * 0.07)}" fill="#5fc3d6" fill-opacity=".22"/>`;
     }
     svg += `<g transform="translate(${ox} ${oy}) scale(${s})">
       <g class="glass" clip-path="url(#${id}c)">
@@ -189,7 +195,7 @@ window.Bottle = (function () {
   }
 
   function dims(p, g, s, ox, oy, cl) {
-    const c = '#a8571b';
+    const c = DIM;
     const fmt = (v) => (Math.round(Number(v) * 10) / 10).toFixed(1);
     const R = g.R * s, H = g.H * s, n = g.n * s;
     const xr = ox + Math.max(R, Math.min(cl.half * s, R + 30)) + 26;
