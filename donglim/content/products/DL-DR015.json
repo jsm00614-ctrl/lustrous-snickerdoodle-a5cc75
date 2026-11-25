@@ -1,0 +1,39 @@
+{
+  "code": "DL-DR015",
+  "name": "보스턴 드롭퍼 15",
+  "category": "dropper",
+  "shape": "boston",
+  "capacity": 15,
+  "fullCapacity": 17,
+  "height": 70,
+  "diameter": 28,
+  "depth": 0,
+  "neck": "18/410",
+  "weight": 38,
+  "colors": [
+    "amber",
+    "cobalt",
+    "flint",
+    "green"
+  ],
+  "closures": [
+    "dropper",
+    "cap"
+  ],
+  "decorations": [
+    "silk",
+    "coating",
+    "decal"
+  ],
+  "moq": 1000,
+  "stock": true,
+  "leadTime": "재고 즉시출고 (D+2)",
+  "badge": "BEST",
+  "summary": "에센셜 오일·앰플용 보스턴 라운드 병. 소량(1,000개) 주문이 가능합니다.",
+  "moldType": "auto",
+  "material": "소다석회 유리 (Soda-lime Glass)",
+  "image": "",
+  "gallery": [],
+  "model3d": "",
+  "published": true
+}

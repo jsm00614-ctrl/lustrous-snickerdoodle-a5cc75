@@ -1,0 +1,959 @@
+{
+  "generated": "build-products.mjs 가 자동 생성 — 직접 수정하지 마세요",
+  "count": 24,
+  "items": [
+    {
+      "code": "DL-SQ030",
+      "name": "스퀘어 세럼 30",
+      "category": "serum",
+      "shape": "square",
+      "capacity": 30,
+      "fullCapacity": 32,
+      "height": 92,
+      "diameter": 36,
+      "depth": 36,
+      "neck": "20/410",
+      "weight": 96,
+      "colors": [
+        "flint",
+        "frost",
+        "black"
+      ],
+      "closures": [
+        "pump",
+        "cap"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "metallize",
+        "laser"
+      ],
+      "moq": 5000,
+      "stock": false,
+      "leadTime": "생산 4~5주",
+      "badge": "NEW",
+      "summary": "두꺼운 바닥 유리로 무게감을 준 스퀘어 세럼 병. 프리미엄 라인용.",
+      "moldType": "manual",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-SR030",
+      "name": "라운드 세럼 30",
+      "category": "serum",
+      "shape": "round",
+      "capacity": 30,
+      "fullCapacity": 33,
+      "height": 96,
+      "diameter": 34,
+      "depth": 0,
+      "neck": "20/410",
+      "weight": 62,
+      "colors": [
+        "flint",
+        "amber",
+        "frost",
+        "opal"
+      ],
+      "closures": [
+        "pump",
+        "dropper",
+        "cap"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "gradient",
+        "frost",
+        "sandblast"
+      ],
+      "moq": 3000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "BEST",
+      "summary": "가장 많이 쓰이는 30mL 세럼 병. 펌프·드롭퍼·캡 모두 20/410 규격으로 호환됩니다.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "/donglim/models/example-round-bottle.js",
+      "published": true
+    },
+    {
+      "code": "DL-SH040",
+      "name": "숄더 에센스 40",
+      "category": "serum",
+      "shape": "boston",
+      "capacity": 40,
+      "fullCapacity": 44,
+      "height": 104,
+      "diameter": 38,
+      "depth": 0,
+      "neck": "18/415",
+      "weight": 80,
+      "colors": [
+        "flint",
+        "opal",
+        "frost"
+      ],
+      "closures": [
+        "pump",
+        "dropper"
+      ],
+      "decorations": [
+        "silk",
+        "coating",
+        "gradient",
+        "frost",
+        "sandblast",
+        "decal"
+      ],
+      "moq": 5000,
+      "stock": false,
+      "leadTime": "생산 4~6주",
+      "badge": "",
+      "summary": "둥근 어깨선의 에센스 병. 오팔(유백) 유리로 차광 효과를 낼 수 있습니다.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-SR050",
+      "name": "라운드 세럼 50",
+      "category": "serum",
+      "shape": "round",
+      "capacity": 50,
+      "fullCapacity": 55,
+      "height": 110,
+      "diameter": 40,
+      "depth": 0,
+      "neck": "20/410",
+      "weight": 88,
+      "colors": [
+        "flint",
+        "amber",
+        "frost"
+      ],
+      "closures": [
+        "pump",
+        "dropper",
+        "cap"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "gradient",
+        "frost",
+        "sandblast"
+      ],
+      "moq": 3000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "",
+      "summary": "30mL와 같은 디자인의 50mL. 라인업 구성용으로 함께 많이 찾습니다.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-TN100",
+      "name": "스퀘어 토너 100",
+      "category": "toner",
+      "shape": "square",
+      "capacity": 100,
+      "fullCapacity": 106,
+      "height": 128,
+      "diameter": 48,
+      "depth": 48,
+      "neck": "24/410",
+      "weight": 190,
+      "colors": [
+        "flint",
+        "frost"
+      ],
+      "closures": [
+        "cap",
+        "pump"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "frost",
+        "sandblast"
+      ],
+      "moq": 5000,
+      "stock": false,
+      "leadTime": "생산 4~6주",
+      "badge": "NEW",
+      "summary": "면이 평평해 실크 인쇄 면적이 넓은 스퀘어 토너 병.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-TN120",
+      "name": "라운드 토너 120",
+      "category": "toner",
+      "shape": "round",
+      "capacity": 120,
+      "fullCapacity": 128,
+      "height": 140,
+      "diameter": 50,
+      "depth": 0,
+      "neck": "24/410",
+      "weight": 180,
+      "colors": [
+        "flint",
+        "amber",
+        "frost",
+        "green"
+      ],
+      "closures": [
+        "cap",
+        "pump"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "gradient",
+        "frost",
+        "sandblast",
+        "decal"
+      ],
+      "moq": 3000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "BEST",
+      "summary": "토너·스킨·로션용 기본 120mL 병. 오리피스(중마개)와 캡 세트 구성이 가능합니다.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-TN150",
+      "name": "라운드 토너 150",
+      "category": "toner",
+      "shape": "round",
+      "capacity": 150,
+      "fullCapacity": 158,
+      "height": 152,
+      "diameter": 54,
+      "depth": 0,
+      "neck": "24/410",
+      "weight": 215,
+      "colors": [
+        "flint",
+        "amber",
+        "frost"
+      ],
+      "closures": [
+        "cap",
+        "pump"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "gradient",
+        "frost",
+        "sandblast",
+        "decal"
+      ],
+      "moq": 3000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "",
+      "summary": "대용량 토너·바디 미스트용 150mL 병.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-DR015",
+      "name": "보스턴 드롭퍼 15",
+      "category": "dropper",
+      "shape": "boston",
+      "capacity": 15,
+      "fullCapacity": 17,
+      "height": 70,
+      "diameter": 28,
+      "depth": 0,
+      "neck": "18/410",
+      "weight": 38,
+      "colors": [
+        "amber",
+        "cobalt",
+        "flint",
+        "green"
+      ],
+      "closures": [
+        "dropper",
+        "cap"
+      ],
+      "decorations": [
+        "silk",
+        "coating",
+        "decal"
+      ],
+      "moq": 1000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "BEST",
+      "summary": "에센셜 오일·앰플용 보스턴 라운드 병. 소량(1,000개) 주문이 가능합니다.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-DR030",
+      "name": "보스턴 드롭퍼 30",
+      "category": "dropper",
+      "shape": "boston",
+      "capacity": 30,
+      "fullCapacity": 33,
+      "height": 86,
+      "diameter": 34,
+      "depth": 0,
+      "neck": "18/410",
+      "weight": 58,
+      "colors": [
+        "amber",
+        "cobalt",
+        "flint",
+        "green"
+      ],
+      "closures": [
+        "dropper",
+        "cap",
+        "pump"
+      ],
+      "decorations": [
+        "silk",
+        "coating",
+        "decal"
+      ],
+      "moq": 1000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "",
+      "summary": "가장 흔한 30mL 드롭퍼 병. 차광이 필요한 내용물은 앰버를 권장합니다.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-DR050",
+      "name": "보스턴 드롭퍼 50",
+      "category": "dropper",
+      "shape": "boston",
+      "capacity": 50,
+      "fullCapacity": 55,
+      "height": 98,
+      "diameter": 40,
+      "depth": 0,
+      "neck": "18/410",
+      "weight": 82,
+      "colors": [
+        "amber",
+        "flint"
+      ],
+      "closures": [
+        "dropper",
+        "cap"
+      ],
+      "decorations": [
+        "silk",
+        "coating",
+        "decal"
+      ],
+      "moq": 1000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "",
+      "summary": "50mL 보스턴 드롭퍼 병.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-JR015",
+      "name": "미니 크림 자 15",
+      "category": "jar",
+      "shape": "jar",
+      "capacity": 15,
+      "fullCapacity": 18,
+      "height": 34,
+      "diameter": 46,
+      "depth": 0,
+      "neck": "G40",
+      "weight": 70,
+      "colors": [
+        "flint",
+        "opal",
+        "frost"
+      ],
+      "closures": [
+        "lid"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "frost",
+        "sandblast",
+        "laser"
+      ],
+      "moq": 3000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "",
+      "summary": "아이크림·샘플용 15g 자. 두꺼운 유리벽으로 작아도 무게감이 있습니다.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-JR030",
+      "name": "크림 자 30",
+      "category": "jar",
+      "shape": "jar",
+      "capacity": 30,
+      "fullCapacity": 34,
+      "height": 42,
+      "diameter": 58,
+      "depth": 0,
+      "neck": "G53",
+      "weight": 120,
+      "colors": [
+        "flint",
+        "opal",
+        "frost",
+        "amber"
+      ],
+      "closures": [
+        "lid"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "gradient",
+        "frost",
+        "sandblast",
+        "laser"
+      ],
+      "moq": 3000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "",
+      "summary": "크림·밤용 30g 자. 내캡(이너 디스크) 세트 구성 가능.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-JR050",
+      "name": "크림 자 50",
+      "category": "jar",
+      "shape": "jar",
+      "capacity": 50,
+      "fullCapacity": 56,
+      "height": 50,
+      "diameter": 66,
+      "depth": 0,
+      "neck": "G58",
+      "weight": 165,
+      "colors": [
+        "flint",
+        "opal",
+        "frost",
+        "amber"
+      ],
+      "closures": [
+        "lid"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "gradient",
+        "frost",
+        "sandblast",
+        "laser"
+      ],
+      "moq": 3000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "BEST",
+      "summary": "가장 많이 쓰이는 50g 크림 자.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-JR050H",
+      "name": "헤비 베이스 크림 자 50",
+      "category": "jar",
+      "shape": "jar",
+      "capacity": 50,
+      "fullCapacity": 54,
+      "height": 58,
+      "diameter": 70,
+      "depth": 0,
+      "neck": "G58",
+      "weight": 240,
+      "colors": [
+        "flint",
+        "frost",
+        "black"
+      ],
+      "closures": [
+        "lid"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "metallize",
+        "laser"
+      ],
+      "moq": 5000,
+      "stock": false,
+      "leadTime": "생산 5~6주",
+      "badge": "NEW",
+      "summary": "바닥을 두껍게 만든 프리미엄 크림 자. 럭셔리 라인용.",
+      "moldType": "manual",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-PF010",
+      "name": "트래블 퍼퓸 10",
+      "category": "perfume",
+      "shape": "vial",
+      "capacity": 10,
+      "fullCapacity": 11,
+      "height": 80,
+      "diameter": 18,
+      "depth": 0,
+      "neck": "13/415",
+      "weight": 22,
+      "colors": [
+        "flint",
+        "black",
+        "frost"
+      ],
+      "closures": [
+        "spray",
+        "cap"
+      ],
+      "decorations": [
+        "silk",
+        "coating",
+        "metallize",
+        "laser"
+      ],
+      "moq": 3000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "",
+      "summary": "휴대용 스크류 아토마이저 병.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-PF030",
+      "name": "스퀘어 퍼퓸 30",
+      "category": "perfume",
+      "shape": "perfume",
+      "capacity": 30,
+      "fullCapacity": 33,
+      "height": 82,
+      "diameter": 46,
+      "depth": 28,
+      "neck": "FEA15",
+      "weight": 120,
+      "colors": [
+        "flint",
+        "frost",
+        "black"
+      ],
+      "closures": [
+        "spray"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "gradient",
+        "metallize",
+        "laser"
+      ],
+      "moq": 5000,
+      "stock": false,
+      "leadTime": "생산 4~6주",
+      "badge": "",
+      "summary": "FEA15 크림프 넥의 스퀘어 향수병. 바닥 유리가 두꺼워 빛이 굴절됩니다.",
+      "moldType": "manual",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-PF050",
+      "name": "스퀘어 퍼퓸 50",
+      "category": "perfume",
+      "shape": "perfume",
+      "capacity": 50,
+      "fullCapacity": 54,
+      "height": 96,
+      "diameter": 52,
+      "depth": 32,
+      "neck": "FEA15",
+      "weight": 160,
+      "colors": [
+        "flint",
+        "frost",
+        "black"
+      ],
+      "closures": [
+        "spray"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "gradient",
+        "metallize",
+        "laser"
+      ],
+      "moq": 5000,
+      "stock": false,
+      "leadTime": "생산 4~6주",
+      "badge": "BEST",
+      "summary": "가장 많이 쓰이는 50mL 향수병.",
+      "moldType": "manual",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-PF100",
+      "name": "스퀘어 퍼퓸 100",
+      "category": "perfume",
+      "shape": "perfume",
+      "capacity": 100,
+      "fullCapacity": 106,
+      "height": 118,
+      "diameter": 62,
+      "depth": 38,
+      "neck": "FEA15",
+      "weight": 230,
+      "colors": [
+        "flint",
+        "frost"
+      ],
+      "closures": [
+        "spray"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "gradient",
+        "metallize",
+        "laser"
+      ],
+      "moq": 5000,
+      "stock": false,
+      "leadTime": "생산 5~6주",
+      "badge": "",
+      "summary": "100mL 대용량 향수병.",
+      "moldType": "manual",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-RO005",
+      "name": "미니 롤온 5",
+      "category": "rollon",
+      "shape": "vial",
+      "capacity": 5,
+      "fullCapacity": 5.5,
+      "height": 64,
+      "diameter": 17,
+      "depth": 0,
+      "neck": "RO16",
+      "weight": 14,
+      "colors": [
+        "flint",
+        "amber",
+        "frost"
+      ],
+      "closures": [
+        "rollon"
+      ],
+      "decorations": [
+        "silk",
+        "coating"
+      ],
+      "moq": 3000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "",
+      "summary": "립 오일·아이 세럼용 5mL 롤온.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-RO010",
+      "name": "롤온 10",
+      "category": "rollon",
+      "shape": "vial",
+      "capacity": 10,
+      "fullCapacity": 11,
+      "height": 84,
+      "diameter": 20,
+      "depth": 0,
+      "neck": "RO16",
+      "weight": 20,
+      "colors": [
+        "flint",
+        "amber",
+        "cobalt",
+        "frost"
+      ],
+      "closures": [
+        "rollon"
+      ],
+      "decorations": [
+        "silk",
+        "coating",
+        "decal"
+      ],
+      "moq": 3000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "",
+      "summary": "스테인리스·유리 롤볼을 끼울 수 있는 10mL 롤온.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-VL002",
+      "name": "샘플 바이알 2",
+      "category": "vial",
+      "shape": "vial",
+      "capacity": 2,
+      "fullCapacity": 2.6,
+      "height": 40,
+      "diameter": 12,
+      "depth": 0,
+      "neck": "8/425",
+      "weight": 4,
+      "colors": [
+        "flint",
+        "amber"
+      ],
+      "closures": [
+        "cap"
+      ],
+      "decorations": [
+        "silk"
+      ],
+      "moq": 10000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "",
+      "summary": "증정용 샘플 바이알. 1박스 단위로 출고합니다.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-VL005",
+      "name": "앰플 바이알 5",
+      "category": "vial",
+      "shape": "vial",
+      "capacity": 5,
+      "fullCapacity": 6,
+      "height": 48,
+      "diameter": 18,
+      "depth": 0,
+      "neck": "13/425",
+      "weight": 10,
+      "colors": [
+        "flint",
+        "amber"
+      ],
+      "closures": [
+        "dropper",
+        "cap"
+      ],
+      "decorations": [
+        "silk",
+        "coating"
+      ],
+      "moq": 5000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "",
+      "summary": "1회분 앰플용 5mL 바이알. 미니 드롭퍼와 호환됩니다.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-DF100",
+      "name": "스퀘어 디퓨저 100",
+      "category": "diffuser",
+      "shape": "square",
+      "capacity": 100,
+      "fullCapacity": 110,
+      "height": 92,
+      "diameter": 60,
+      "depth": 60,
+      "neck": "24/410",
+      "weight": 260,
+      "colors": [
+        "flint",
+        "frost",
+        "amber",
+        "black"
+      ],
+      "closures": [
+        "reed",
+        "cap"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "gradient",
+        "decal",
+        "laser"
+      ],
+      "moq": 2000,
+      "stock": true,
+      "leadTime": "재고 즉시출고 (D+2)",
+      "badge": "",
+      "summary": "홈 프래그런스용 두꺼운 스퀘어 병. 리드스틱·마개 세트로 구성 가능.",
+      "moldType": "manual",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    },
+    {
+      "code": "DL-DF200",
+      "name": "라운드 디퓨저 200",
+      "category": "diffuser",
+      "shape": "round",
+      "capacity": 200,
+      "fullCapacity": 215,
+      "height": 108,
+      "diameter": 78,
+      "depth": 0,
+      "neck": "24/410",
+      "weight": 340,
+      "colors": [
+        "flint",
+        "amber",
+        "frost"
+      ],
+      "closures": [
+        "reed",
+        "cap"
+      ],
+      "decorations": [
+        "silk",
+        "hotstamp",
+        "coating",
+        "gradient",
+        "decal"
+      ],
+      "moq": 2000,
+      "stock": false,
+      "leadTime": "생산 4주",
+      "badge": "",
+      "summary": "200mL 대용량 라운드 디퓨저 병.",
+      "moldType": "auto",
+      "material": "소다석회 유리 (Soda-lime Glass)",
+      "image": "",
+      "gallery": [],
+      "model3d": "",
+      "published": true
+    }
+  ]
+}
