@@ -41,8 +41,9 @@ export async function mount(container, url, options = {}) {
     object = gltf.scene;
   } else {
     const mod = await import(new URL(url, location.href).href);
-    const create = mod.default || mod.createModel;
-    if (typeof create !== 'function') throw new Error('3D 모듈에 export default function 이 없습니다.');
+    // default → createModel → 처음 나오는 함수 순서로 찾습니다 (img2threejs의 이름 붙은 팩토리도 그대로 동작)
+    const create = [mod.default, mod.createModel, ...Object.values(mod)].find((f) => typeof f === 'function');
+    if (!create) throw new Error('3D 모듈에서 모델을 만드는 함수를 찾지 못했습니다.');
     object = await create(THREE, options);
   }
   scene.add(object);

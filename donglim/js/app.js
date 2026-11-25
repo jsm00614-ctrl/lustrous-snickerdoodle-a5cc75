@@ -77,6 +77,8 @@
     $$('[data-site]').forEach((el) => {
       const v = pick(s, el.dataset.site);
       if (v == null) return;
+      // 회사 정보 중 비워 둔 항목(예: 팩스)은 하단에서 줄째 숨깁니다.
+      if (el.closest('.ft__info')) el.parentElement.hidden = String(v).trim() === '';
       if (el.hasAttribute('data-multiline')) el.innerHTML = esc(v).replace(/\n/g, '<br>');
       else el.textContent = v;
     });

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <!-- 동림 파비콘: 잉크색 둥근 사각형 위 D (wordmark에는 심볼이 없어 머리글자 타일을 씀) -->
+  <rect width="24" height="24" rx="5.5" fill="#1c1d1f"/>
+  <path fill="#eeeeeb" fill-rule="evenodd" d="M7 5.5h4.6a6.5 6.5 0 0 1 0 13H7zm2.7 2.6v7.8h1.9a3.9 3.9 0 0 0 0-7.8z"/>
+</svg>
