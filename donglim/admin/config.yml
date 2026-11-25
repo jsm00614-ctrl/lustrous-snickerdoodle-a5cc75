@@ -1,0 +1,319 @@
+# ─────────────────────────────────────────────────────────────
+# 동림 홈페이지 관리자 (Decap CMS) 설정
+# 관리자 주소: https://<사이트주소>/donglim/admin/
+# 저장하면 GitHub 저장소에 커밋되고, Netlify가 자동으로 다시 배포합니다 (1~2분).
+# ─────────────────────────────────────────────────────────────
+backend:
+  name: github
+  repo: jsm00614-ctrl/lustrous-snickerdoodle-a5cc75
+  branch: main
+  commit_messages:
+    create: "제품 추가: {{slug}}"
+    update: "{{collection}} 수정: {{slug}}"
+    delete: "{{collection}} 삭제: {{slug}}"
+    uploadMedia: "파일 업로드: {{path}}"
+    deleteMedia: "파일 삭제: {{path}}"
+
+# 로컬에서 로그인 없이 수정할 때: 저장소 루트에서 `npx decap-server` 실행 후 /donglim/admin/ 접속
+local_backend: true
+
+locale: ko
+site_url: /donglim/
+display_url: /donglim/
+logo_url: /donglim/admin/logo.svg
+
+media_folder: donglim/images/uploads
+public_folder: /donglim/images/uploads
+
+collections:
+  # ───────────── 제품 ─────────────
+  - name: products
+    label: "제품 (프리몰드)"
+    label_singular: "제품"
+    description: "제품 1개 = 파일 1개입니다. 비슷한 제품은 기존 제품을 열고 오른쪽 위 ‘게시’ 메뉴의 ‘복제’를 누른 뒤 품번·용량만 바꾸면 빠릅니다. 여러 개를 한 번에 올리려면 왼쪽 ‘설정 → 엑셀 일괄 등록’을 쓰세요."
+    folder: donglim/content/products
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: "{{code}}"
+    identifier_field: code
+    summary: "{{code}} · {{name}} · {{capacity}}mL · {{neck}}"
+    sortable_fields: ["code", "name", "capacity", "category"]
+    view_filters:
+      - { label: "재고 즉시출고", field: stock, pattern: true }
+      - { label: "자동병", field: moldType, pattern: "auto" }
+      - { label: "수동병", field: moldType, pattern: "manual" }
+      - { label: "비공개(숨김)", field: published, pattern: false }
+    view_groups:
+      - { label: "용도", field: category }
+      - { label: "넥 규격", field: neck }
+    fields:
+      - { label: "공개", name: published, widget: boolean, default: true, hint: "끄면 사이트에서 숨겨집니다." }
+      - { label: "품번", name: code, widget: string, hint: "예: DL-SR030. 파일 이름이 되므로 영문·숫자·하이픈만 쓰세요.", pattern: ['^[A-Za-z0-9_-]+$', "영문, 숫자, -, _ 만 쓸 수 있습니다."] }
+      - { label: "제품명", name: name, widget: string }
+      - label: "용도 (분류)"
+        name: category
+        widget: relation
+        collection: settings
+        file: taxonomy
+        search_fields: ["categories.*.label"]
+        display_fields: ["categories.*.label"]
+        value_field: "categories.*.key"
+        hint: "목록에 없는 분류는 ‘설정 → 분류·옵션’에서 먼저 추가하세요."
+      - label: "형태"
+        name: shape
+        widget: select
+        default: round
+        hint: "도면을 그릴 때 쓰는 기본 실루엣입니다."
+        options:
+          - { label: "라운드 (원통형 병)", value: round }
+          - { label: "스퀘어 (사각 병)", value: square }
+          - { label: "보스턴 (둥근 어깨 병)", value: boston }
+          - { label: "자 (크림 용기)", value: jar }
+          - { label: "향수병 (사각·두꺼운 바닥)", value: perfume }
+          - { label: "바이알·롤온 (가는 병)", value: vial }
+      - label: "생산 방식"
+        name: moldType
+        widget: relation
+        collection: settings
+        file: taxonomy
+        search_fields: ["moldTypes.*.label"]
+        display_fields: ["moldTypes.*.label"]
+        value_field: "moldTypes.*.key"
+      - { label: "용량 (mL)", name: capacity, widget: number, value_type: float, min: 0 }
+      - { label: "만수 용량 (mL)", name: fullCapacity, widget: number, value_type: float, min: 0, required: false, hint: "입구까지 가득 채운 용량" }
+      - { label: "높이 (mm)", name: height, widget: number, value_type: float, min: 0, hint: "마개를 뺀 유리병 높이" }
+      - { label: "지름 또는 가로 (mm)", name: diameter, widget: number, value_type: float, min: 0 }
+      - { label: "세로 (mm)", name: depth, widget: number, value_type: float, min: 0, default: 0, required: false, hint: "사각 병일 때만 입력. 원형은 0" }
+      - { label: "넥 규격", name: neck, widget: string, hint: "예: 20/410, 24/410, FEA15, G58, RO16" }
+      - { label: "중량 (g)", name: weight, widget: number, value_type: float, min: 0, required: false }
+      - label: "유리 색상"
+        name: colors
+        widget: relation
+        multiple: true
+        collection: settings
+        file: taxonomy
+        search_fields: ["colors.*.label"]
+        display_fields: ["colors.*.label"]
+        value_field: "colors.*.key"
+        hint: "첫 번째 색상이 목록 이미지 색으로 쓰입니다."
+      - label: "호환 부자재"
+        name: closures
+        widget: relation
+        multiple: true
+        required: false
+        collection: settings
+        file: taxonomy
+        search_fields: ["closures.*.label"]
+        display_fields: ["closures.*.label"]
+        value_field: "closures.*.key"
+      - label: "가능한 후가공"
+        name: decorations
+        widget: relation
+        multiple: true
+        required: false
+        collection: settings
+        file: taxonomy
+        search_fields: ["decorations.*.label"]
+        display_fields: ["decorations.*.label"]
+        value_field: "decorations.*.key"
+      - { label: "기본 MOQ (개)", name: moq, widget: number, value_type: int, min: 0, default: 3000 }
+      - { label: "재고 즉시출고", name: stock, widget: boolean, default: false }
+      - { label: "납기 문구", name: leadTime, widget: string, default: "생산 4~6주", hint: "예: 재고 즉시출고 (D+2), 생산 4~6주" }
+      - label: "배지"
+        name: badge
+        widget: select
+        required: false
+        options: [{ label: "없음", value: "" }, { label: "BEST", value: "BEST" }, { label: "NEW", value: "NEW" }]
+      - { label: "재질", name: material, widget: string, required: false, default: "소다석회 유리 (Soda-lime Glass)" }
+      - { label: "설명", name: summary, widget: text, required: false }
+      - { label: "대표 사진", name: image, widget: image, required: false, hint: "없으면 입력한 치수로 그린 도면이 대신 보입니다. 배경을 지운 PNG를 권장합니다." }
+      - label: "추가 사진"
+        name: gallery
+        widget: list
+        required: false
+        field: { label: "사진", name: src, widget: image }
+      - label: "3D 모델"
+        name: model3d
+        widget: file
+        required: false
+        media_folder: /donglim/models
+        public_folder: /donglim/models
+        hint: ".glb / .gltf 파일, 또는 Three.js 모듈(.js, export default function createModel(THREE, options)). 올리면 제품 상세에 ‘3D’ 탭이 생깁니다."
+
+  # ───────────── 설정 ─────────────
+  - name: settings
+    label: "설정"
+    editor: { preview: false }
+    files:
+      - name: bulk
+        label: "엑셀 일괄 등록"
+        file: donglim/content/bulk.json
+        description: "엑셀에서 ‘CSV UTF-8’로 저장한 파일을 올리면 다음 배포 때 제품으로 등록됩니다. 같은 품번이 ‘제품’ 메뉴에도 있으면 ‘제품’ 메뉴의 내용이 우선합니다."
+        fields:
+          - label: "CSV 파일 목록"
+            name: files
+            widget: list
+            summary: "{{fields.note}} — {{fields.file}}"
+            hint: "양식 내려받기: /donglim/admin/products-template.csv (첫 줄 머리글은 그대로 두세요)"
+            fields:
+              - { label: "사용", name: enabled, widget: boolean, default: true, hint: "끄면 이 파일의 제품은 등록되지 않습니다." }
+              - { label: "메모", name: note, widget: string, required: false, hint: "예: 2026년 신규 드롭퍼 라인" }
+              - { label: "CSV 파일", name: file, widget: file, media_folder: /donglim/content/bulk, public_folder: /donglim/content/bulk }
+
+      - name: site
+        label: "회사 정보 · 메인 문구"
+        file: donglim/content/site.json
+        fields:
+          - label: "회사 정보"
+            name: company
+            widget: object
+            fields:
+              - { label: "회사명", name: name, widget: string }
+              - { label: "영문명", name: nameEn, widget: string }
+              - { label: "한 줄 소개", name: tagline, widget: string }
+              - { label: "대표자", name: ceo, widget: string }
+              - { label: "사업자등록번호", name: bizNo, widget: string }
+              - { label: "주소", name: address, widget: string }
+              - { label: "전화", name: tel, widget: string }
+              - { label: "팩스", name: fax, widget: string, required: false }
+              - { label: "이메일", name: email, widget: string }
+              - { label: "상담 시간", name: hours, widget: string }
+              - { label: "카카오톡 채널 주소", name: kakaoUrl, widget: string, required: false, hint: "예: https://pf.kakao.com/_xxxx/chat — 넣으면 상담 버튼이 나타납니다." }
+              - { label: "전체 카탈로그 PDF", name: catalogPdf, widget: file, required: false }
+          - label: "메인 상단"
+            name: hero
+            widget: object
+            fields:
+              - { label: "작은 제목", name: eyebrow, widget: string }
+              - { label: "큰 제목", name: title, widget: text, hint: "줄바꿈이 그대로 반영됩니다." }
+              - { label: "설명", name: subtitle, widget: text }
+          - label: "메인 숫자 4개"
+            name: stats
+            widget: list
+            summary: "{{fields.value}} — {{fields.label}}"
+            fields:
+              - { label: "값", name: value, widget: string }
+              - { label: "설명", name: label, widget: string }
+          - { label: "상단 안내 문구", name: notice, widget: string }
+          - label: "회사 소개"
+            name: about
+            widget: object
+            fields:
+              - { label: "작은 제목", name: eyebrow, widget: string }
+              - { label: "제목", name: title, widget: text }
+              - { label: "본문", name: body, widget: text }
+          - label: "강점"
+            name: strengths
+            widget: list
+            summary: "{{fields.no}} {{fields.title}}"
+            fields:
+              - { label: "번호", name: no, widget: string }
+              - { label: "제목", name: title, widget: string }
+              - { label: "설명", name: desc, widget: text }
+              - { label: "요점", name: points, widget: list, field: { label: "요점", name: point, widget: string } }
+
+      - name: taxonomy
+        label: "분류 · 옵션"
+        file: donglim/content/taxonomy.json
+        description: "‘키’는 영문으로 한 번 정하면 바꾸지 마세요 (제품들이 키로 연결되어 있습니다). 이름은 언제든 바꿔도 됩니다."
+        fields:
+          - label: "용도 분류"
+            name: categories
+            widget: list
+            summary: "{{fields.label}} ({{fields.key}})"
+            fields:
+              - { label: "키 (영문)", name: key, widget: string }
+              - { label: "이름", name: label, widget: string }
+              - { label: "설명", name: desc, widget: string, required: false }
+          - label: "유리 색상"
+            name: colors
+            widget: list
+            summary: "{{fields.label}} ({{fields.key}})"
+            fields:
+              - { label: "키 (영문)", name: key, widget: string }
+              - { label: "이름", name: label, widget: string }
+              - { label: "색상", name: hex, widget: color }
+              - { label: "불투명도 (0.1~1)", name: opacity, widget: number, value_type: float, min: 0.1, max: 1, step: 0.05 }
+          - label: "부자재"
+            name: closures
+            widget: list
+            summary: "{{fields.label}} ({{fields.key}})"
+            hint: "도면에 그림이 있는 키: pump, dropper, cap, lid, spray, rollon, reed"
+            fields:
+              - { label: "키 (영문)", name: key, widget: string }
+              - { label: "이름", name: label, widget: string }
+          - label: "후가공"
+            name: decorations
+            widget: list
+            summary: "{{fields.label}} ({{fields.key}})"
+            fields:
+              - { label: "키 (영문)", name: key, widget: string }
+              - { label: "이름", name: label, widget: string }
+              - { label: "설명", name: desc, widget: string }
+              - { label: "MOQ 안내", name: moq, widget: string, required: false }
+          - label: "생산 방식"
+            name: moldTypes
+            widget: list
+            summary: "{{fields.label}} ({{fields.key}})"
+            fields:
+              - { label: "키 (영문)", name: key, widget: string }
+              - { label: "이름", name: label, widget: string }
+              - { label: "설명", name: desc, widget: text }
+
+      - name: services
+        label: "서비스 · 금형 개발"
+        file: donglim/content/services.json
+        fields:
+          - label: "서비스 카드"
+            name: services
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - label: "아이콘"
+                name: icon
+                widget: select
+                options:
+                  - { label: "금형", value: mold }
+                  - { label: "샘플", value: sample }
+                  - { label: "후가공", value: deco }
+                  - { label: "부자재", value: match }
+                  - { label: "재고·박스", value: stock }
+                  - { label: "문서", value: file }
+              - { label: "제목", name: title, widget: string }
+              - { label: "설명", name: desc, widget: text }
+              - { label: "보조 문구", name: meta, widget: string, required: false }
+          - label: "자동병 · 수동병 비교"
+            name: moldCompare
+            widget: object
+            fields:
+              - { label: "안내 문구", name: note, widget: text }
+              - label: "비교 항목"
+                name: rows
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "항목", name: label, widget: string }
+                  - { label: "자동병", name: auto, widget: string }
+                  - { label: "수동병", name: manual, widget: string }
+          - label: "금형 개발 단계"
+            name: process
+            widget: list
+            summary: "{{fields.title}} ({{fields.duration}})"
+            fields:
+              - { label: "단계 이름", name: title, widget: string }
+              - { label: "설명", name: desc, widget: text }
+              - { label: "기간", name: duration, widget: string }
+
+      - name: faq
+        label: "자주 묻는 질문"
+        file: donglim/content/faq.json
+        fields:
+          - label: "질문 목록"
+            name: items
+            widget: list
+            summary: "{{fields.q}}"
+            fields:
+              - { label: "질문", name: q, widget: string }
+              - { label: "답변", name: a, widget: text }

@@ -1,0 +1,42 @@
+{
+  "code": "DL-TN150",
+  "name": "라운드 토너 150",
+  "category": "toner",
+  "shape": "round",
+  "capacity": 150,
+  "fullCapacity": 158,
+  "height": 152,
+  "diameter": 54,
+  "depth": 0,
+  "neck": "24/410",
+  "weight": 215,
+  "colors": [
+    "flint",
+    "amber",
+    "frost"
+  ],
+  "closures": [
+    "cap",
+    "pump"
+  ],
+  "decorations": [
+    "silk",
+    "hotstamp",
+    "coating",
+    "gradient",
+    "frost",
+    "sandblast",
+    "decal"
+  ],
+  "moq": 3000,
+  "stock": true,
+  "leadTime": "재고 즉시출고 (D+2)",
+  "badge": "",
+  "summary": "대용량 토너·바디 미스트용 150mL 병.",
+  "moldType": "auto",
+  "material": "소다석회 유리 (Soda-lime Glass)",
+  "image": "",
+  "gallery": [],
+  "model3d": "",
+  "published": true
+}

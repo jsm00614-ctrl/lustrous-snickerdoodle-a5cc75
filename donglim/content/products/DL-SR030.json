@@ -1,0 +1,43 @@
+{
+  "code": "DL-SR030",
+  "name": "라운드 세럼 30",
+  "category": "serum",
+  "shape": "round",
+  "capacity": 30,
+  "fullCapacity": 33,
+  "height": 96,
+  "diameter": 34,
+  "depth": 0,
+  "neck": "20/410",
+  "weight": 62,
+  "colors": [
+    "flint",
+    "amber",
+    "frost",
+    "opal"
+  ],
+  "closures": [
+    "pump",
+    "dropper",
+    "cap"
+  ],
+  "decorations": [
+    "silk",
+    "hotstamp",
+    "coating",
+    "gradient",
+    "frost",
+    "sandblast"
+  ],
+  "moq": 3000,
+  "stock": true,
+  "leadTime": "재고 즉시출고 (D+2)",
+  "badge": "BEST",
+  "summary": "가장 많이 쓰이는 30mL 세럼 병. 펌프·드롭퍼·캡 모두 20/410 규격으로 호환됩니다.",
+  "moldType": "auto",
+  "material": "소다석회 유리 (Soda-lime Glass)",
+  "image": "",
+  "gallery": [],
+  "model3d": "/donglim/models/example-round-bottle.js",
+  "published": true
+}

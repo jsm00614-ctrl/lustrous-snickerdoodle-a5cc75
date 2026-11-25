@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>동림 로고 시안</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+KR:wght@400;600;700&family=Noto+Serif+KR:wght@700&display=swap" rel="stylesheet">
+<style>
+:root { --paper:#f3f2ee; --sheet:#fbfbf9; --ink:#121619; --ink2:#384046; --muted:#6b7378; --line:#d6d3cb; --amber:#a8571b; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.75 'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif; word-break:keep-all; }
+img { display:block; max-width:100%; }
+.wrap { max-width:1200px; margin:0 auto; padding:0 24px; }
+.cover { min-height:70vh; display:grid; align-content:center; gap:18px; padding:72px 0; border-bottom:1px solid var(--ink); }
+.eyebrow { font:500 12px 'IBM Plex Mono',monospace; letter-spacing:.2em; color:var(--amber); }
+.cover h1 { font:700 clamp(36px,6vw,72px)/1.15 'Noto Serif KR',serif; margin:0; letter-spacing:-.03em; }
+.cover p { max-width:640px; color:var(--ink2); margin:0; }
+.toc { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; margin-top:28px; }
+.toc a { display:grid; gap:10px; padding:14px; background:var(--sheet); border:1px solid var(--line); text-decoration:none; color:inherit; }
+.toc a:hover { border-color:var(--ink); }
+.toc img { height:64px; object-fit:contain; }
+.toc b { font-size:14px; }
+.concept { padding:64px 0; border-bottom:1px solid var(--ink); break-before:page; }
+.c-hd { display:grid; grid-template-columns:auto 1fr auto; gap:24px; align-items:start; margin-bottom:28px; }
+.c-letter { width:64px; height:64px; display:grid; place-items:center; background:var(--ink); color:#fff; font:700 30px 'Noto Serif KR',serif; }
+.c-hd h2 { margin:0 0 6px; font:700 30px/1.2 'Noto Serif KR',serif; }
+.c-hd h2 small { font:500 12px 'IBM Plex Mono',monospace; letter-spacing:.18em; color:var(--amber); margin-left:8px; vertical-align:middle; }
+.c-hd p { margin:0; color:var(--ink2); max-width:720px; }
+.pick { display:flex; gap:8px; align-items:center; border:1px solid var(--ink); padding:8px 14px; font-weight:600; white-space:nowrap; cursor:pointer; }
+.pick input { width:18px; height:18px; accent-color:var(--amber); }
+.c-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; }
+.tile { margin:0; background:#fff; border:1px solid var(--line); display:grid; grid-template-rows:1fr auto; min-height:180px; grid-column:span 2; }
+.tile img { width:100%; height:100%; max-height:150px; object-fit:contain; margin:auto; padding:22px; }
+.tile--hero { grid-column:span 4; grid-row:span 2; }
+.tile--hero img { max-height:300px; padding:40px 56px; }
+.tile--dark { background:var(--ink); border-color:var(--ink); }
+.tile--amber { background:var(--amber); border-color:var(--amber); }
+.tile--sq { grid-column:span 2; }
+.tile figcaption { font-size:12px; color:var(--muted); padding:8px 12px; border-top:1px solid var(--line); background:var(--sheet); }
+.tile--dark figcaption, .tile--amber figcaption { border-color:transparent; }
+.sizes { display:flex; align-items:flex-end; justify-content:center; gap:22px; padding:20px; }
+.sizes span { display:grid; justify-items:center; gap:6px; font:11px 'IBM Plex Mono',monospace; color:var(--muted); }
+.sizes i { display:block; background:center/contain no-repeat; }
+.apply { display:grid; grid-template-columns:200px minmax(0,1.3fr) minmax(0,1fr) 200px; gap:12px; margin-top:12px; }
+.ap { margin:0; background:var(--sheet); border:1px solid var(--line); padding:14px; display:flex; flex-direction:column; gap:10px; min-width:0; }
+.ap > :first-child { flex:1; display:flex; align-items:center; justify-content:center; min-height:180px; }
+.ap figcaption { font-size:12px; color:var(--muted); }
+.mock-shirt { width:100%; height:180px; }
+.ap--card .cards { display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; align-items:center; }
+.card-front, .card-back { aspect-ratio:9/5; box-shadow:0 8px 20px -12px rgba(0,0,0,.35); min-width:0; }
+.card-front { background:#fff; padding:10px 12px; display:flex; flex-direction:column; justify-content:space-between; }
+.card-front img { height:24px; width:auto; max-width:100%; object-fit:contain; object-position:left; }
+.card-front p { margin:0; font-size:8.5px; line-height:1.45; color:var(--ink2); }
+.card-front b { font-size:10px; color:var(--ink); }
+.card-front span { font-family:'IBM Plex Mono',monospace; font-size:7.5px; color:var(--muted); }
+.card-back { background:var(--ink); display:grid; place-items:center; }
+.card-back img { height:36px; width:auto; }
+.web { border:1px solid var(--line); background:#fff; overflow:hidden; width:100%; flex-direction:column; align-items:stretch !important; }
+.web-bar { display:flex; align-items:center; gap:12px; padding:10px 12px; border-bottom:1px solid var(--line); background:var(--paper); min-width:0; }
+.web-bar img { height:26px; width:auto; max-width:50%; object-fit:contain; object-position:left; }
+.web-bar nav { margin-left:auto; display:flex; gap:8px; font-size:9.5px; color:var(--ink2); white-space:nowrap; overflow:hidden; }
+.web-body { flex:1; min-height:120px; background:linear-gradient(#e4e1da 1px,transparent 1px) 0 0/100% 16px,linear-gradient(90deg,#e4e1da 1px,transparent 1px) 0 0/16px 100%; }
+.box { width:170px; height:170px; background:#c9a77c; flex-direction:column; gap:8px; padding:16px; }
+.box img { max-height:72px; max-width:100%; width:auto; opacity:.85; mix-blend-mode:multiply; }
+.box span { font:500 8.5px 'IBM Plex Mono',monospace; letter-spacing:.2em; color:#3b2a18; }
+.c-ft { display:grid; grid-template-columns:1fr 1fr 1fr 1.2fr; gap:24px; margin-top:22px; }
+.c-ft h3 { font-size:13px; margin:0 0 6px; }
+.c-ft ul { margin:0; padding-left:18px; font-size:13.5px; color:var(--ink2); }
+.files summary { font-size:13px; font-weight:600; cursor:pointer; }
+.files ul { list-style:none; padding:0; font:12px 'IBM Plex Mono',monospace; }
+.files a { color:var(--amber); }
+.memo-box { height:72px; border:1px dashed var(--ink2); background:#fff; }
+.guide { padding:64px 0 96px; break-before:page; }
+.guide h2 { font:700 28px 'Noto Serif KR',serif; margin:0 0 20px; }
+.g-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.g-grid > div { background:var(--sheet); border:1px solid var(--line); padding:20px; }
+.sw { display:flex; gap:10px; margin-top:10px; }
+.sw i { width:64px; height:64px; display:block; border:1px solid var(--line); }
+.sw small { display:block; font:11px/1.5 'IBM Plex Mono',monospace; color:var(--muted); margin-top:4px; }
+table { width:100%; border-collapse:collapse; font-size:13.5px; margin-top:16px; background:var(--sheet); }
+th, td { border:1px solid var(--line); padding:9px 12px; text-align:center; }
+th:first-child, td:first-child { text-align:left; }
+thead th { background:var(--ink); color:#fff; font-weight:600; }
+@media (max-width:860px) {
+  .toc { grid-template-columns:repeat(2,1fr); }
+  .c-hd { grid-template-columns:auto 1fr; }
+  .pick { grid-column:1 / -1; justify-self:start; }
+  .c-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .tile, .tile--hero, .tile--sq { grid-column:span 1; grid-row:auto; }
+  .tile--hero { grid-column:1 / -1; }
+  .apply, .c-ft, .g-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+  .ap--card, .ap--web { grid-column:1 / -1; }
+  .box { width:100%; height:auto; aspect-ratio:1; }
+  .table-wrap { overflow-x:auto; }
+}
+@media print {
+  @page { size:A4 landscape; margin:10mm; }
+  body { background:#fff; font-size:12px; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0; }
+  .cover { min-height:auto; padding:40px 0; }
+  .concept { padding:0; border:0; break-inside:avoid; }
+  .guide { padding:0; }
+  .files { display:none; }
+  .apply { margin-top:8px; }
+  .ap { padding:10px; }
+  .mock-shirt { height:150px; }
+  .ap > :first-child { min-height:150px; }
+  .web-body { height:70px; }
+  .c-ft { margin-top:10px; }
+  .tile--dark, .tile--amber, .c-letter, .card-back, thead th, .box { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="cover">
+    <p class="eyebrow">DONGLIM · LOGO PROPOSAL</p>
+    <h1>동림 로고 시안</h1>
+    <p>화장품 유리용기 · 금형 개발 · 후가공 전 공정. 동림의 강점을 담은 다섯 가지 방향입니다. 마음에 드는 안의 <b>‘이 안 선택’</b>에 표시하고, 아래 칸에 의견을 적어주세요. 선택한 안을 바탕으로 세부 다듬기와 최종 파일 정리를 진행합니다.</p>
+    <nav class="toc"><a href="#A-mold"><img src="logos/A-mold/a-mold-symbol-color.svg" alt=""><b>A. 몰드</b></a><a href="#B-d-bottle"><img src="logos/B-d-bottle/b-d-bottle-symbol-color.svg" alt=""><b>B. D 보틀</b></a><a href="#C-neck-ring"><img src="logos/C-neck-ring/c-neck-ring-symbol-color.svg" alt=""><b>C. 넥 링</b></a><a href="#D-amber"><img src="logos/D-amber/d-amber-symbol-color.svg" alt=""><b>D. 앰버 보틀</b></a><a href="#E-emblem"><img src="logos/E-emblem/e-emblem-badge-color.svg" alt=""><b>E. 엠블럼</b></a></nav>
+  </section>
+  
+  <section class="concept" id="A-mold">
+    <header class="c-hd">
+      <span class="c-letter">A</span>
+      <div><h2>몰드 <small>MOLD</small></h2><p>열린 금형의 두 쪽 사이, 비어 있는 공간이 그대로 유리병이 됩니다. 자동병·수동병 금형을 직접 개발하는 회사라는 점을 가장 직접적으로 보여주는 안입니다.</p></div>
+      <label class="pick"><input type="checkbox"> 이 안 선택</label>
+    </header>
+    <div class="c-grid">
+      <figure class="tile tile--hero"><img class="hero-logo" src="logos/A-mold/a-mold-horizontal-color.svg" alt="몰드 기본형"><figcaption>기본형 (컬러)</figcaption></figure>
+      <figure class="tile tile--dark"><img class="" src="logos/A-mold/a-mold-horizontal-white.svg" alt="몰드 반전"><figcaption>어두운 바탕</figcaption></figure>
+      <figure class="tile"><img class="" src="logos/A-mold/a-mold-horizontal-black.svg" alt="몰드 흑백"><figcaption>흑백 1도 (도장·팩스·레이저 각인)</figcaption></figure>
+      <figure class="tile tile--sq"><img class="" src="logos/A-mold/a-mold-stacked-color.svg" alt="몰드 세로형"><figcaption>세로형</figcaption></figure>
+      <figure class="tile tile--sq tile--amber"><img class="" src="logos/A-mold/a-mold-symbol-white.svg" alt="몰드 심볼"><figcaption>심볼 · 앰버 바탕</figcaption></figure>
+      <figure class="tile tile--sizes">
+        <div class="sizes">
+          <span><i style="width:16px;height:16px;background-image:url(logos/A-mold/a-mold-symbol-black.svg)"></i>16px</span>
+          <span><i style="width:32px;height:32px;background-image:url(logos/A-mold/a-mold-symbol-black.svg)"></i>32px</span>
+          <span><i style="width:64px;height:64px;background-image:url(logos/A-mold/a-mold-symbol-color.svg)"></i>64px</span>
+        </div>
+        <figcaption>작은 크기 테스트 (파비콘·앱 아이콘)</figcaption>
+      </figure>
+    </div>
+    <div class="apply">
+      <figure class="ap ap--shirt"><svg viewBox="0 0 240 200" class="mock-shirt" aria-hidden="true">
+      <path d="M78 12 L100 6 Q120 20 140 6 L162 12 L214 40 L198 84 L176 74 L176 194 L64 194 L64 74 L42 84 L26 40 Z" fill="#1d2b3a"/>
+      <path d="M100 6 Q120 20 140 6 L132 30 L120 44 L108 30 Z" fill="#16222e"/>
+      <path d="M120 44 L120 84" stroke="#0f1822" stroke-width="2"/><circle cx="120" cy="58" r="2" fill="#c9d1d6"/><circle cx="120" cy="72" r="2" fill="#c9d1d6"/>
+      <image href="logos/A-mold/a-mold-symbol-white.svg" x="134" y="54" width="34" height="34" preserveAspectRatio="xMidYMid meet"/>
+    </svg><figcaption>유니폼 가슴 자수</figcaption></figure>
+      <figure class="ap ap--card">
+        <div class="cards"><div class="card-front"><img class="" src="logos/A-mold/a-mold-horizontal-color.svg" alt=""><p><b>홍길동</b> 영업팀 과장<br><span>02-000-0000 · sales@example.com</span></p></div>
+        <div class="card-back"><img class="" src="logos/A-mold/a-mold-symbol-white.svg" alt=""></div></div>
+        <figcaption>명함 앞 · 뒤</figcaption>
+      </figure>
+      <figure class="ap ap--web">
+        <div class="web"><div class="web-bar"><img class="" src="logos/A-mold/a-mold-horizontal-color.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
+        <figcaption>홈페이지 헤더</figcaption>
+      </figure>
+      <figure class="ap ap--box"><div class="box"><img class="" src="logos/A-mold/a-mold-horizontal-black.svg" alt=""><span>FRAGILE · GLASS</span></div><figcaption>박스 스탬프 (1도)</figcaption></figure>
+    </div>
+    <div class="c-ft">
+      <div><h3>좋은 점</h3><ul><li>금형 개발 역량이 한눈에 보임</li><li>네모 블록이라 자수·도장·작은 크기에 강함</li><li>흑백 한 색으로도 의미가 유지됨</li></ul></div>
+      <div><h3>고려할 점</h3><ul><li>병 모양이 ‘빈 공간’이라 처음엔 블록이 먼저 보일 수 있음</li></ul></div>
+      <details class="files"><summary>벡터 파일 9개 (SVG)</summary><ul><li><a href="logos/A-mold/a-mold-horizontal-color.svg" download>a-mold-horizontal-color.svg</a></li><li><a href="logos/A-mold/a-mold-horizontal-black.svg" download>a-mold-horizontal-black.svg</a></li><li><a href="logos/A-mold/a-mold-horizontal-white.svg" download>a-mold-horizontal-white.svg</a></li><li><a href="logos/A-mold/a-mold-stacked-color.svg" download>a-mold-stacked-color.svg</a></li><li><a href="logos/A-mold/a-mold-stacked-black.svg" download>a-mold-stacked-black.svg</a></li><li><a href="logos/A-mold/a-mold-stacked-white.svg" download>a-mold-stacked-white.svg</a></li><li><a href="logos/A-mold/a-mold-symbol-color.svg" download>a-mold-symbol-color.svg</a></li><li><a href="logos/A-mold/a-mold-symbol-black.svg" download>a-mold-symbol-black.svg</a></li><li><a href="logos/A-mold/a-mold-symbol-white.svg" download>a-mold-symbol-white.svg</a></li></ul></details>
+      <div class="memo"><h3>사장님 의견</h3><div class="memo-box"></div></div>
+    </div>
+  </section>
+  <section class="concept" id="B-d-bottle">
+    <header class="c-hd">
+      <span class="c-letter">B</span>
+      <div><h2>D 보틀 <small>MONOGRAM</small></h2><p>이니셜 D의 안쪽 공간을 유리병 모양으로 비웠습니다. 동림(DONGLIM)과 유리용기를 한 글자에 담은 모노그램입니다.</p></div>
+      <label class="pick"><input type="checkbox"> 이 안 선택</label>
+    </header>
+    <div class="c-grid">
+      <figure class="tile tile--hero"><img class="hero-logo" src="logos/B-d-bottle/b-d-bottle-horizontal-color.svg" alt="D 보틀 기본형"><figcaption>기본형 (컬러)</figcaption></figure>
+      <figure class="tile tile--dark"><img class="" src="logos/B-d-bottle/b-d-bottle-horizontal-white.svg" alt="D 보틀 반전"><figcaption>어두운 바탕</figcaption></figure>
+      <figure class="tile"><img class="" src="logos/B-d-bottle/b-d-bottle-horizontal-black.svg" alt="D 보틀 흑백"><figcaption>흑백 1도 (도장·팩스·레이저 각인)</figcaption></figure>
+      <figure class="tile tile--sq"><img class="" src="logos/B-d-bottle/b-d-bottle-stacked-color.svg" alt="D 보틀 세로형"><figcaption>세로형</figcaption></figure>
+      <figure class="tile tile--sq tile--amber"><img class="" src="logos/B-d-bottle/b-d-bottle-symbol-white.svg" alt="D 보틀 심볼"><figcaption>심볼 · 앰버 바탕</figcaption></figure>
+      <figure class="tile tile--sizes">
+        <div class="sizes">
+          <span><i style="width:16px;height:16px;background-image:url(logos/B-d-bottle/b-d-bottle-symbol-black.svg)"></i>16px</span>
+          <span><i style="width:32px;height:32px;background-image:url(logos/B-d-bottle/b-d-bottle-symbol-black.svg)"></i>32px</span>
+          <span><i style="width:64px;height:64px;background-image:url(logos/B-d-bottle/b-d-bottle-symbol-color.svg)"></i>64px</span>
+        </div>
+        <figcaption>작은 크기 테스트 (파비콘·앱 아이콘)</figcaption>
+      </figure>
+    </div>
+    <div class="apply">
+      <figure class="ap ap--shirt"><svg viewBox="0 0 240 200" class="mock-shirt" aria-hidden="true">
+      <path d="M78 12 L100 6 Q120 20 140 6 L162 12 L214 40 L198 84 L176 74 L176 194 L64 194 L64 74 L42 84 L26 40 Z" fill="#1d2b3a"/>
+      <path d="M100 6 Q120 20 140 6 L132 30 L120 44 L108 30 Z" fill="#16222e"/>
+      <path d="M120 44 L120 84" stroke="#0f1822" stroke-width="2"/><circle cx="120" cy="58" r="2" fill="#c9d1d6"/><circle cx="120" cy="72" r="2" fill="#c9d1d6"/>
+      <image href="logos/B-d-bottle/b-d-bottle-symbol-white.svg" x="134" y="54" width="34" height="34" preserveAspectRatio="xMidYMid meet"/>
+    </svg><figcaption>유니폼 가슴 자수</figcaption></figure>
+      <figure class="ap ap--card">
+        <div class="cards"><div class="card-front"><img class="" src="logos/B-d-bottle/b-d-bottle-horizontal-color.svg" alt=""><p><b>홍길동</b> 영업팀 과장<br><span>02-000-0000 · sales@example.com</span></p></div>
+        <div class="card-back"><img class="" src="logos/B-d-bottle/b-d-bottle-symbol-white.svg" alt=""></div></div>
+        <figcaption>명함 앞 · 뒤</figcaption>
+      </figure>
+      <figure class="ap ap--web">
+        <div class="web"><div class="web-bar"><img class="" src="logos/B-d-bottle/b-d-bottle-horizontal-color.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
+        <figcaption>홈페이지 헤더</figcaption>
+      </figure>
+      <figure class="ap ap--box"><div class="box"><img class="" src="logos/B-d-bottle/b-d-bottle-horizontal-black.svg" alt=""><span>FRAGILE · GLASS</span></div><figcaption>박스 스탬프 (1도)</figcaption></figure>
+    </div>
+    <div class="c-ft">
+      <div><h3>좋은 점</h3><ul><li>이니셜이라 기억하기 쉬움</li><li>앱 아이콘·파비콘·명함 뒷면에 잘 어울림</li><li>굵은 워드마크로 멀리서도 잘 읽힘</li></ul></div>
+      <div><h3>고려할 점</h3><ul><li>D 이니셜을 쓰는 다른 브랜드와 겹칠 수 있음</li></ul></div>
+      <details class="files"><summary>벡터 파일 9개 (SVG)</summary><ul><li><a href="logos/B-d-bottle/b-d-bottle-horizontal-color.svg" download>b-d-bottle-horizontal-color.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-horizontal-black.svg" download>b-d-bottle-horizontal-black.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-horizontal-white.svg" download>b-d-bottle-horizontal-white.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-stacked-color.svg" download>b-d-bottle-stacked-color.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-stacked-black.svg" download>b-d-bottle-stacked-black.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-stacked-white.svg" download>b-d-bottle-stacked-white.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-symbol-color.svg" download>b-d-bottle-symbol-color.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-symbol-black.svg" download>b-d-bottle-symbol-black.svg</a></li><li><a href="logos/B-d-bottle/b-d-bottle-symbol-white.svg" download>b-d-bottle-symbol-white.svg</a></li></ul></details>
+      <div class="memo"><h3>사장님 의견</h3><div class="memo-box"></div></div>
+    </div>
+  </section>
+  <section class="concept" id="C-neck-ring">
+    <header class="c-hd">
+      <span class="c-letter">C</span>
+      <div><h2>넥 링 <small>HANGUL WORDMARK</small></h2><p>한글 ‘동림’을 직접 설계했습니다. ‘동’의 ㅇ은 병 입구를 위에서 내려다본 모습(넥 링)입니다. 국내 거래처에 한글 이름을 강하게 남기는 안입니다.</p></div>
+      <label class="pick"><input type="checkbox"> 이 안 선택</label>
+    </header>
+    <div class="c-grid">
+      <figure class="tile tile--hero"><img class="hero-logo" src="logos/C-neck-ring/c-neck-ring-horizontal-color.svg" alt="넥 링 기본형"><figcaption>기본형 (컬러)</figcaption></figure>
+      <figure class="tile tile--dark"><img class="" src="logos/C-neck-ring/c-neck-ring-horizontal-white.svg" alt="넥 링 반전"><figcaption>어두운 바탕</figcaption></figure>
+      <figure class="tile"><img class="" src="logos/C-neck-ring/c-neck-ring-horizontal-black.svg" alt="넥 링 흑백"><figcaption>흑백 1도 (도장·팩스·레이저 각인)</figcaption></figure>
+      <figure class="tile tile--sq"><img class="" src="logos/C-neck-ring/c-neck-ring-stacked-color.svg" alt="넥 링 세로형"><figcaption>세로형</figcaption></figure>
+      <figure class="tile tile--sq tile--amber"><img class="" src="logos/C-neck-ring/c-neck-ring-symbol-white.svg" alt="넥 링 심볼"><figcaption>심볼 · 앰버 바탕</figcaption></figure>
+      <figure class="tile tile--sizes">
+        <div class="sizes">
+          <span><i style="width:16px;height:16px;background-image:url(logos/C-neck-ring/c-neck-ring-symbol-black.svg)"></i>16px</span>
+          <span><i style="width:32px;height:32px;background-image:url(logos/C-neck-ring/c-neck-ring-symbol-black.svg)"></i>32px</span>
+          <span><i style="width:64px;height:64px;background-image:url(logos/C-neck-ring/c-neck-ring-symbol-color.svg)"></i>64px</span>
+        </div>
+        <figcaption>작은 크기 테스트 (파비콘·앱 아이콘)</figcaption>
+      </figure>
+    </div>
+    <div class="apply">
+      <figure class="ap ap--shirt"><svg viewBox="0 0 240 200" class="mock-shirt" aria-hidden="true">
+      <path d="M78 12 L100 6 Q120 20 140 6 L162 12 L214 40 L198 84 L176 74 L176 194 L64 194 L64 74 L42 84 L26 40 Z" fill="#1d2b3a"/>
+      <path d="M100 6 Q120 20 140 6 L132 30 L120 44 L108 30 Z" fill="#16222e"/>
+      <path d="M120 44 L120 84" stroke="#0f1822" stroke-width="2"/><circle cx="120" cy="58" r="2" fill="#c9d1d6"/><circle cx="120" cy="72" r="2" fill="#c9d1d6"/>
+      <image href="logos/C-neck-ring/c-neck-ring-stacked-white.svg" x="134" y="54" width="34" height="34" preserveAspectRatio="xMidYMid meet"/>
+    </svg><figcaption>유니폼 가슴 자수</figcaption></figure>
+      <figure class="ap ap--card">
+        <div class="cards"><div class="card-front"><img class="" src="logos/C-neck-ring/c-neck-ring-horizontal-color.svg" alt=""><p><b>홍길동</b> 영업팀 과장<br><span>02-000-0000 · sales@example.com</span></p></div>
+        <div class="card-back"><img class="" src="logos/C-neck-ring/c-neck-ring-symbol-white.svg" alt=""></div></div>
+        <figcaption>명함 앞 · 뒤</figcaption>
+      </figure>
+      <figure class="ap ap--web">
+        <div class="web"><div class="web-bar"><img class="" src="logos/C-neck-ring/c-neck-ring-horizontal-color.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
+        <figcaption>홈페이지 헤더</figcaption>
+      </figure>
+      <figure class="ap ap--box"><div class="box"><img class="" src="logos/C-neck-ring/c-neck-ring-horizontal-black.svg" alt=""><span>FRAGILE · GLASS</span></div><figcaption>박스 스탬프 (1도)</figcaption></figure>
+    </div>
+    <div class="c-ft">
+      <div><h3>좋은 점</h3><ul><li>한글 이름이 주인공이라 국내에서 바로 읽힘</li><li>굵은 획이라 유니폼 자수·간판에 유리</li><li>‘동’ 한 글자만 심볼로 쓸 수 있음</li></ul></div>
+      <div><h3>고려할 점</h3><ul><li>해외 거래처에는 영문 표기를 함께 써야 함</li></ul></div>
+      <details class="files"><summary>벡터 파일 9개 (SVG)</summary><ul><li><a href="logos/C-neck-ring/c-neck-ring-horizontal-color.svg" download>c-neck-ring-horizontal-color.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-horizontal-black.svg" download>c-neck-ring-horizontal-black.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-horizontal-white.svg" download>c-neck-ring-horizontal-white.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-stacked-color.svg" download>c-neck-ring-stacked-color.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-stacked-black.svg" download>c-neck-ring-stacked-black.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-stacked-white.svg" download>c-neck-ring-stacked-white.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-symbol-color.svg" download>c-neck-ring-symbol-color.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-symbol-black.svg" download>c-neck-ring-symbol-black.svg</a></li><li><a href="logos/C-neck-ring/c-neck-ring-symbol-white.svg" download>c-neck-ring-symbol-white.svg</a></li></ul></details>
+      <div class="memo"><h3>사장님 의견</h3><div class="memo-box"></div></div>
+    </div>
+  </section>
+  <section class="concept" id="D-amber">
+    <header class="c-hd">
+      <span class="c-letter">D</span>
+      <div><h2>앰버 보틀 <small>SERIF</small></h2><p>고급 화장품 브랜드의 세리프 글꼴에, O 자리를 앰버 유리병으로 바꿨습니다. 프리미엄 화장품 브랜드를 상대하는 B2B 이미지를 노린 안입니다.</p></div>
+      <label class="pick"><input type="checkbox"> 이 안 선택</label>
+    </header>
+    <div class="c-grid">
+      <figure class="tile tile--hero"><img class="hero-logo" src="logos/D-amber/d-amber-horizontal-color.svg" alt="앰버 보틀 기본형"><figcaption>기본형 (컬러)</figcaption></figure>
+      <figure class="tile tile--dark"><img class="" src="logos/D-amber/d-amber-horizontal-white.svg" alt="앰버 보틀 반전"><figcaption>어두운 바탕</figcaption></figure>
+      <figure class="tile"><img class="" src="logos/D-amber/d-amber-horizontal-black.svg" alt="앰버 보틀 흑백"><figcaption>흑백 1도 (도장·팩스·레이저 각인)</figcaption></figure>
+      <figure class="tile tile--sq"><img class="" src="logos/D-amber/d-amber-stacked-color.svg" alt="앰버 보틀 세로형"><figcaption>세로형</figcaption></figure>
+      <figure class="tile tile--sq tile--amber"><img class="" src="logos/D-amber/d-amber-symbol-white.svg" alt="앰버 보틀 심볼"><figcaption>심볼 · 앰버 바탕</figcaption></figure>
+      <figure class="tile tile--sizes">
+        <div class="sizes">
+          <span><i style="width:16px;height:16px;background-image:url(logos/D-amber/d-amber-symbol-black.svg)"></i>16px</span>
+          <span><i style="width:32px;height:32px;background-image:url(logos/D-amber/d-amber-symbol-black.svg)"></i>32px</span>
+          <span><i style="width:64px;height:64px;background-image:url(logos/D-amber/d-amber-symbol-color.svg)"></i>64px</span>
+        </div>
+        <figcaption>작은 크기 테스트 (파비콘·앱 아이콘)</figcaption>
+      </figure>
+    </div>
+    <div class="apply">
+      <figure class="ap ap--shirt"><svg viewBox="0 0 240 200" class="mock-shirt" aria-hidden="true">
+      <path d="M78 12 L100 6 Q120 20 140 6 L162 12 L214 40 L198 84 L176 74 L176 194 L64 194 L64 74 L42 84 L26 40 Z" fill="#1d2b3a"/>
+      <path d="M100 6 Q120 20 140 6 L132 30 L120 44 L108 30 Z" fill="#16222e"/>
+      <path d="M120 44 L120 84" stroke="#0f1822" stroke-width="2"/><circle cx="120" cy="58" r="2" fill="#c9d1d6"/><circle cx="120" cy="72" r="2" fill="#c9d1d6"/>
+      <image href="logos/D-amber/d-amber-symbol-white.svg" x="134" y="54" width="34" height="34" preserveAspectRatio="xMidYMid meet"/>
+    </svg><figcaption>유니폼 가슴 자수</figcaption></figure>
+      <figure class="ap ap--card">
+        <div class="cards"><div class="card-front"><img class="" src="logos/D-amber/d-amber-horizontal-color.svg" alt=""><p><b>홍길동</b> 영업팀 과장<br><span>02-000-0000 · sales@example.com</span></p></div>
+        <div class="card-back"><img class="" src="logos/D-amber/d-amber-symbol-white.svg" alt=""></div></div>
+        <figcaption>명함 앞 · 뒤</figcaption>
+      </figure>
+      <figure class="ap ap--web">
+        <div class="web"><div class="web-bar"><img class="" src="logos/D-amber/d-amber-horizontal-color.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
+        <figcaption>홈페이지 헤더</figcaption>
+      </figure>
+      <figure class="ap ap--box"><div class="box"><img class="" src="logos/D-amber/d-amber-horizontal-black.svg" alt=""><span>FRAGILE · GLASS</span></div><figcaption>박스 스탬프 (1도)</figcaption></figure>
+    </div>
+    <div class="c-ft">
+      <div><h3>좋은 점</h3><ul><li>화장품 업계 감성에 가장 가까움</li><li>브로슈어·카탈로그 표지에 고급스러움</li><li>병 심볼 하나로도 쓸 수 있음</li></ul></div>
+      <div><h3>고려할 점</h3><ul><li>가는 세리프라 아주 작은 크기·자수에는 굵게 다듬어야 함</li></ul></div>
+      <details class="files"><summary>벡터 파일 9개 (SVG)</summary><ul><li><a href="logos/D-amber/d-amber-horizontal-color.svg" download>d-amber-horizontal-color.svg</a></li><li><a href="logos/D-amber/d-amber-horizontal-black.svg" download>d-amber-horizontal-black.svg</a></li><li><a href="logos/D-amber/d-amber-horizontal-white.svg" download>d-amber-horizontal-white.svg</a></li><li><a href="logos/D-amber/d-amber-stacked-color.svg" download>d-amber-stacked-color.svg</a></li><li><a href="logos/D-amber/d-amber-stacked-black.svg" download>d-amber-stacked-black.svg</a></li><li><a href="logos/D-amber/d-amber-stacked-white.svg" download>d-amber-stacked-white.svg</a></li><li><a href="logos/D-amber/d-amber-symbol-color.svg" download>d-amber-symbol-color.svg</a></li><li><a href="logos/D-amber/d-amber-symbol-black.svg" download>d-amber-symbol-black.svg</a></li><li><a href="logos/D-amber/d-amber-symbol-white.svg" download>d-amber-symbol-white.svg</a></li></ul></details>
+      <div class="memo"><h3>사장님 의견</h3><div class="memo-box"></div></div>
+    </div>
+  </section>
+  <section class="concept" id="E-emblem">
+    <header class="c-hd">
+      <span class="c-letter">E</span>
+      <div><h2>엠블럼 <small>BADGE</small></h2><p>원형 배지형입니다. 다른 안의 보조 로고로 유니폼 패치, 박스 스탬프, 품질 확인 도장, 굿즈에 함께 쓰는 것을 추천합니다. (가운데 심볼은 선택한 안으로 바꿀 수 있습니다)</p></div>
+      <label class="pick"><input type="checkbox"> 이 안 선택</label>
+    </header>
+    <div class="c-grid">
+      <figure class="tile tile--hero"><img class="hero-logo" src="logos/E-emblem/e-emblem-badge-color.svg" alt="엠블럼 기본형"><figcaption>기본형 (컬러)</figcaption></figure>
+      <figure class="tile tile--dark"><img class="" src="logos/E-emblem/e-emblem-badge-white.svg" alt="엠블럼 반전"><figcaption>어두운 바탕</figcaption></figure>
+      <figure class="tile"><img class="" src="logos/E-emblem/e-emblem-badge-black.svg" alt="엠블럼 흑백"><figcaption>흑백 1도 (도장·팩스·레이저 각인)</figcaption></figure>
+      <figure class="tile tile--sq"><img class="" src="logos/E-emblem/e-emblem-badge-color.svg" alt="엠블럼 세로형"><figcaption>배지</figcaption></figure>
+      <figure class="tile tile--sq tile--amber"><img class="" src="logos/E-emblem/e-emblem-badge-white.svg" alt="엠블럼 심볼"><figcaption>심볼 · 앰버 바탕</figcaption></figure>
+      <figure class="tile tile--sizes">
+        <div class="sizes">
+          <span><i style="width:16px;height:16px;background-image:url(logos/E-emblem/e-emblem-badge-black.svg)"></i>16px</span>
+          <span><i style="width:32px;height:32px;background-image:url(logos/E-emblem/e-emblem-badge-black.svg)"></i>32px</span>
+          <span><i style="width:64px;height:64px;background-image:url(logos/E-emblem/e-emblem-badge-color.svg)"></i>64px</span>
+        </div>
+        <figcaption>작은 크기 테스트 (파비콘·앱 아이콘)</figcaption>
+      </figure>
+    </div>
+    <div class="apply">
+      <figure class="ap ap--shirt"><svg viewBox="0 0 240 200" class="mock-shirt" aria-hidden="true">
+      <path d="M78 12 L100 6 Q120 20 140 6 L162 12 L214 40 L198 84 L176 74 L176 194 L64 194 L64 74 L42 84 L26 40 Z" fill="#1d2b3a"/>
+      <path d="M100 6 Q120 20 140 6 L132 30 L120 44 L108 30 Z" fill="#16222e"/>
+      <path d="M120 44 L120 84" stroke="#0f1822" stroke-width="2"/><circle cx="120" cy="58" r="2" fill="#c9d1d6"/><circle cx="120" cy="72" r="2" fill="#c9d1d6"/>
+      <image href="logos/E-emblem/e-emblem-badge-white.svg" x="134" y="54" width="34" height="34" preserveAspectRatio="xMidYMid meet"/>
+    </svg><figcaption>유니폼 가슴 자수</figcaption></figure>
+      <figure class="ap ap--card">
+        <div class="cards"><div class="card-front"><img class="" src="logos/E-emblem/e-emblem-badge-color.svg" alt=""><p><b>홍길동</b> 영업팀 과장<br><span>02-000-0000 · sales@example.com</span></p></div>
+        <div class="card-back"><img class="" src="logos/E-emblem/e-emblem-badge-white.svg" alt=""></div></div>
+        <figcaption>명함 앞 · 뒤</figcaption>
+      </figure>
+      <figure class="ap ap--web">
+        <div class="web"><div class="web-bar"><img class="" src="logos/E-emblem/e-emblem-badge-color.svg" alt=""><nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
+        <figcaption>홈페이지 헤더</figcaption>
+      </figure>
+      <figure class="ap ap--box"><div class="box"><img class="" src="logos/E-emblem/e-emblem-badge-black.svg" alt=""><span>FRAGILE · GLASS</span></div><figcaption>박스 스탬프 (1도)</figcaption></figure>
+    </div>
+    <div class="c-ft">
+      <div><h3>좋은 점</h3><ul><li>유니폼 패치·모자·스티커에 바로 적용</li><li>도장·스탬프로 찍기 좋음</li><li>다른 안과 함께 쓰는 보조 로고</li></ul></div>
+      <div><h3>고려할 점</h3><ul><li>단독 메인 로고로는 정보가 많음</li></ul></div>
+      <details class="files"><summary>벡터 파일 3개 (SVG)</summary><ul><li><a href="logos/E-emblem/e-emblem-badge-color.svg" download>e-emblem-badge-color.svg</a></li><li><a href="logos/E-emblem/e-emblem-badge-black.svg" download>e-emblem-badge-black.svg</a></li><li><a href="logos/E-emblem/e-emblem-badge-white.svg" download>e-emblem-badge-white.svg</a></li></ul></details>
+      <div class="memo"><h3>사장님 의견</h3><div class="memo-box"></div></div>
+    </div>
+  </section>
+  <section class="guide">
+    <h2>공통 사항</h2>
+    <div class="g-grid">
+      <div><h3>브랜드 색상</h3>
+        <div class="sw"><div><i style="background:#121619"></i><small>INK<br>#121619</small></div><div><i style="background:#A8571B"></i><small>AMBER<br>#A8571B</small></div><div><i style="background:#F3F2EE"></i><small>PAPER<br>#F3F2EE</small></div></div>
+        <p style="font-size:13px;color:#384046">홈페이지 색과 같습니다. 인쇄용 별색(PANTONE)은 선택한 안으로 실물 교정 후 정합니다.</p></div>
+      <div><h3>파일 종류</h3><p style="font-size:13px;color:#384046">모든 시안은 <b>SVG 벡터</b>입니다. 글자는 윤곽선(path)으로 변환되어 폰트 없이도 똑같이 보이며, 일러스트레이터·인쇄소·자수 업체에서 그대로 열 수 있습니다. 각 안마다 <b>컬러 / 흑백 / 흰색(어두운 바탕용)</b> × <b>가로형 / 세로형 / 심볼</b>이 있습니다.</p></div>
+      <div><h3>사용 가이드</h3><ul style="font-size:13px;color:#384046;padding-left:18px;margin:0">
+        <li>로고 주변 여백: 심볼 높이의 1/4 이상</li><li>유니폼 자수 최소 폭: 가로형 60mm, 심볼 18mm</li><li>도장·박스·레이저 각인은 흑백 1도 파일 사용</li><li>로고 비율을 늘리거나 줄이지 마세요</li></ul></div>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>용도</th><th>A 몰드</th><th>B D 보틀</th><th>C 넥 링</th><th>D 앰버 보틀</th><th>E 엠블럼</th></tr></thead>
+      <tbody>
+        <tr><td>홈페이지·카탈로그</td><td>◎</td><td>◎</td><td>○</td><td>◎</td><td>△</td></tr>
+        <tr><td>유니폼 자수</td><td>◎</td><td>◎</td><td>◎</td><td>○</td><td>◎</td></tr>
+        <tr><td>파비콘·앱 아이콘</td><td>◎</td><td>◎</td><td>◎</td><td>○</td><td>△</td></tr>
+        <tr><td>도장·박스 스탬프</td><td>◎</td><td>○</td><td>○</td><td>○</td><td>◎</td></tr>
+        <tr><td>국내 인지도(한글)</td><td>○</td><td>○</td><td>◎</td><td>○</td><td>○</td></tr>
+        <tr><td>프리미엄 이미지</td><td>○</td><td>○</td><td>○</td><td>◎</td><td>○</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:#6b7378;margin-top:12px">글꼴: Jost, Cormorant Garamond, Noto Sans KR, Noto Serif KR (모두 SIL Open Font License — 로고·상업적 사용 가능). C안의 한글 ‘동림’은 직접 설계했습니다.</p>
+  </section>
+</div>
+</body>
+</html>

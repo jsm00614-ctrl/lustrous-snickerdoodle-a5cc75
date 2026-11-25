@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>동림 DONGLIM — 화장품 유리용기</title>
+  <meta name="description" content="세럼 병, 크림 자, 향수병, 드롭퍼 병 등 화장품 유리용기 전문. 용량·넥 규격·유리 색으로 검색하고 샘플과 견적을 한 번에 신청하세요.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- 3D 탭에서만 쓰는 Three.js 위치 (실제 로딩은 3D 탭을 눌렀을 때) -->
+  <script type="importmap">
+    { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/" } }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#catalog">제품 목록으로 바로가기</a>
+
+  <!-- 상단 안내 바 -->
+  <div class="utilbar">
+    <div class="wrap utilbar__in">
+      <p class="utilbar__notice" data-site="notice"></p>
+      <ul class="utilbar__links">
+        <li><a data-site-href="tel:{company.tel}"><span>대표전화</span> <b data-site="company.tel"></b></a></li>
+        <li><a href="#resources">자료실</a></li>
+        <li><a href="admin/" class="utilbar__admin">관리자</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <header class="hd" id="hd">
+    <div class="wrap hd__in">
+      <a class="logo" href="#top" aria-label="동림 홈">
+        <span class="logo__mark" aria-hidden="true"></span>
+        <span class="logo__en" data-site="company.nameEn">DONGLIM</span>
+        <span class="logo__ko" data-site="company.name">동림</span>
+      </a>
+      <nav class="gnb" aria-label="주요 메뉴">
+        <a href="#about">회사 강점</a>
+        <a href="#catalog">프리몰드 제품</a>
+        <a href="#services">서비스</a>
+        <a href="#decoration">후가공</a>
+        <a href="#guide">규격 가이드</a>
+        <a href="#process">금형 개발</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="hd__act">
+        <label class="hd__search">
+          <span class="sr">품번·제품명 검색</span>
+          <input type="search" id="hdSearch" placeholder="품번·제품명 검색" autocomplete="off">
+        </label>
+        <button class="btn-cart" id="openCart" type="button" aria-label="견적함 열기">
+          견적함 <b class="btn-cart__n" id="cartCount">0</b>
+        </button>
+        <a class="btn btn--ink hd__cta" href="#inquiry">문의하기</a>
+        <button class="hd__menu" id="menuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false"><i></i><i></i></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero__in">
+        <div class="hero__copy">
+          <p class="eyebrow" data-site="hero.eyebrow"></p>
+          <h1 class="hero__title" data-site="hero.title" data-multiline></h1>
+          <p class="hero__sub" data-site="hero.subtitle"></p>
+
+          <form class="finder" id="finder" aria-label="스펙으로 용기 찾기">
+            <div class="finder__f">
+              <label for="fCat">용도</label>
+              <select id="fCat"><option value="">전체</option></select>
+            </div>
+            <div class="finder__f">
+              <label for="fCap">용량</label>
+              <select id="fCap">
+                <option value="">전체</option>
+                <option value="0-15">15mL 이하</option>
+                <option value="15-50">15 – 50mL</option>
+                <option value="50-100">50 – 100mL</option>
+                <option value="100-9999">100mL 이상</option>
+              </select>
+            </div>
+            <div class="finder__f">
+              <label for="fNeck">넥 규격</label>
+              <select id="fNeck"><option value="">전체</option></select>
+            </div>
+            <button class="btn btn--amber finder__go" type="submit">용기 찾기</button>
+          </form>
+
+          <dl class="stats" id="stats"></dl>
+        </div>
+        <figure class="hero__fig" aria-hidden="true">
+          <div class="hero__sheet">
+            <div class="hero__sheet-hd"><span>DWG NO.</span><b id="heroCode">—</b><span class="hero__scale">SCALE 1:1 · mm</span></div>
+            <div class="hero__draw" id="heroDraw"></div>
+            <div class="hero__sheet-ft" id="heroSpec"></div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 강점 -->
+    <section class="about" id="about" aria-labelledby="aboutTitle">
+      <div class="wrap about__in">
+        <div class="about__hd">
+          <p class="eyebrow" data-site="about.eyebrow"></p>
+          <h2 class="about__title" id="aboutTitle" data-site="about.title" data-multiline></h2>
+          <p class="about__body" data-site="about.body"></p>
+        </div>
+        <ol class="str" id="strList"></ol>
+      </div>
+    </section>
+
+    <!-- 카테고리 -->
+    <section class="cats" id="categories" aria-labelledby="catsTitle">
+      <div class="wrap">
+        <div class="sec-hd sec-hd--row">
+          <h2 class="sec-title" id="catsTitle"><span class="sec-no">01</span>용도별 분류</h2>
+          <p class="sec-desc">원하는 용도를 누르면 아래 제품 목록이 바로 걸러집니다.</p>
+        </div>
+        <ul class="cats__grid" id="catTiles"></ul>
+      </div>
+    </section>
+
+    <!-- 제품 카탈로그 -->
+    <section class="catalog" id="catalog" aria-labelledby="catalogTitle">
+      <div class="wrap">
+        <div class="sec-hd sec-hd--row">
+          <h2 class="sec-title" id="catalogTitle"><span class="sec-no">02</span>프리몰드 제품</h2>
+          <p class="sec-desc">동림이 보유한 금형으로 바로 생산할 수 있는 제품입니다. 금형비가 들지 않습니다. 치수는 mm, 용량은 mL 기준이며, 제품을 누르면 도면과 상세 스펙이 열립니다.</p>
+        </div>
+
+        <div class="catalog__layout">
+          <aside class="filters" id="filters" aria-label="제품 필터">
+            <div class="filters__hd">
+              <b>필터</b>
+              <button type="button" class="link" id="resetFilters">초기화</button>
+              <button type="button" class="filters__close" id="closeFilters" aria-label="필터 닫기">닫기</button>
+            </div>
+            <div class="filters__body" id="filterBody"></div>
+          </aside>
+
+          <div class="catalog__main">
+            <div class="toolbar">
+              <button type="button" class="btn btn--line toolbar__filter" id="openFilters">필터</button>
+              <p class="toolbar__count" id="resultCount" aria-live="polite"></p>
+              <div class="toolbar__right">
+                <label class="toolbar__search">
+                  <span class="sr">목록 내 검색</span>
+                  <input type="search" id="catSearch" placeholder="품번·제품명·넥 규격">
+                </label>
+                <label class="sr" for="sortSel">정렬</label>
+                <select id="sortSel">
+                  <option value="rec">추천순</option>
+                  <option value="capAsc">용량 작은순</option>
+                  <option value="capDesc">용량 큰순</option>
+                  <option value="moqAsc">MOQ 낮은순</option>
+                  <option value="code">품번순</option>
+                </select>
+                <div class="seg" role="group" aria-label="보기 방식">
+                  <button type="button" data-view="grid" aria-pressed="true">카드</button>
+                  <button type="button" data-view="table" aria-pressed="false">스펙표</button>
+                </div>
+              </div>
+            </div>
+            <div class="chips" id="activeChips"></div>
+            <div id="productList" class="plist"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 서비스 -->
+    <section class="services" id="services" aria-labelledby="svcTitle">
+      <div class="wrap">
+        <div class="sec-hd">
+          <h2 class="sec-title" id="svcTitle"><span class="sec-no">03</span>동림과 일하면 편한 이유</h2>
+          <p class="sec-desc">샘플 확인부터 부자재 세트 구성, 후가공, 도면 자료까지 한 곳에서 처리합니다.</p>
+        </div>
+        <ul class="svc" id="svcList"></ul>
+      </div>
+    </section>
+
+    <!-- 후가공 -->
+    <section class="deco" id="decoration" aria-labelledby="decoTitle">
+      <div class="wrap">
+        <div class="sec-hd sec-hd--row">
+          <h2 class="sec-title" id="decoTitle"><span class="sec-no">04</span>후가공 옵션</h2>
+          <p class="sec-desc">코팅부터 증착, 레이저 각인까지 대부분의 후가공을 직접 진행합니다. 여러 후가공을 함께 적용할 수도 있습니다. 목록에 없는 효과도 문의해 주세요.</p>
+        </div>
+        <ul class="deco__grid" id="decoList"></ul>
+      </div>
+    </section>
+
+    <!-- 규격 가이드 -->
+    <section class="guide" id="guide" aria-labelledby="guideTitle">
+      <div class="wrap guide__in">
+        <div>
+          <h2 class="sec-title" id="guideTitle"><span class="sec-no">05</span>넥 규격 읽는 법</h2>
+          <p class="guide__lead">넥 규격이 같으면 같은 규격의 펌프·캡·드롭퍼를 끼울 수 있습니다. 부자재를 따로 구하실 때 이 숫자만 맞추면 됩니다.</p>
+          <div class="neckspec" aria-label="20/410 예시">
+            <span class="neckspec__n">20</span><span class="neckspec__slash">/</span><span class="neckspec__t">410</span>
+            <p class="neckspec__a"><b>20</b> 입구 나사 바깥 지름 (mm)</p>
+            <p class="neckspec__b"><b>410</b> 나사산 형태·높이 표준 번호</p>
+          </div>
+          <ul class="guide__notes">
+            <li><b>FEA15</b> 향수병용 크림프(압착) 넥. 스프레이를 눌러 고정합니다.</li>
+            <li><b>G58</b> 크림 자처럼 입구가 넓은 용기의 입구 지름 58mm.</li>
+            <li><b>RO16</b> 롤볼을 끼우는 16mm 롤온 전용 넥.</li>
+          </ul>
+        </div>
+        <div class="guide__tbl">
+          <table class="tbl" id="neckTable">
+            <caption>넥 규격별 보유 품목과 호환 부자재</caption>
+            <thead><tr><th scope="col">넥 규격</th><th scope="col">품목 수</th><th scope="col">호환 부자재</th><th scope="col"></th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 맞춤 개발 -->
+    <section class="process" id="process" aria-labelledby="procTitle">
+      <div class="wrap">
+        <div class="sec-hd sec-hd--row">
+          <h2 class="sec-title" id="procTitle"><span class="sec-no">06</span>맞춤 금형 개발</h2>
+          <p class="sec-desc">프리몰드에 원하는 형태가 없다면 새 금형을 만듭니다. 자동병·수동병 중 수량과 디자인에 맞는 방식을 제안해 드립니다.</p>
+        </div>
+        <div class="mold">
+          <table class="tbl tbl--mold" id="moldTable">
+            <caption class="sr">자동병과 수동병 비교</caption>
+            <thead><tr><th scope="col"><span class="sr">항목</span></th><th scope="col"><b>자동병</b><small>AUTOMATIC</small></th><th scope="col"><b>수동병</b><small>MANUAL</small></th></tr></thead>
+            <tbody></tbody>
+          </table>
+          <p class="mold__note" id="moldNote"></p>
+        </div>
+        <ol class="steps" id="procList"></ol>
+        <div class="process__cta">
+          <p>개발 상담은 문의 유형에서 <b>‘맞춤 개발’</b>을 골라 주세요. 스케치·참고 이미지를 첨부하면 더 빨리 검토할 수 있습니다.</p>
+          <a class="btn btn--ink" href="#inquiry" data-inq-type="개발">개발 상담 신청</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 자료실 + FAQ -->
+    <section class="faq" id="faq" aria-labelledby="faqTitle">
+      <div class="wrap faq__in">
+        <div>
+          <h2 class="sec-title" id="faqTitle"><span class="sec-no">07</span>자주 묻는 질문</h2>
+          <div class="faq__list" id="faqList"></div>
+        </div>
+        <aside class="res" id="resources" aria-label="자료실">
+          <h3>자료실</h3>
+          <ul>
+            <li><a id="catalogPdf" href="#inquiry" data-inq-type="자료요청"><b>전체 카탈로그</b><span>PDF</span></a></li>
+            <li><a href="#inquiry" data-inq-type="자료요청"><b>2D 도면</b><span>PDF · DWG</span></a></li>
+            <li><a href="#inquiry" data-inq-type="자료요청"><b>3D 모델</b><span>STEP</span></a></li>
+            <li><a href="#inquiry" data-inq-type="자료요청"><b>재질·시험 성적서</b><span>요청 시</span></a></li>
+          </ul>
+          <p class="res__note">품목별 스펙시트는 제품 상세에서 바로 인쇄하거나 PDF로 저장할 수 있습니다.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 문의 -->
+    <section class="inq" id="inquiry" aria-labelledby="inqTitle">
+      <div class="wrap inq__in">
+        <div class="inq__side">
+          <h2 class="sec-title sec-title--light" id="inqTitle"><span class="sec-no">08</span>견적·샘플 문의</h2>
+          <p>견적함에 담은 제품이 문의서에 자동으로 들어갑니다. 영업일 기준 하루 안에 담당자가 연락드립니다.</p>
+          <dl class="inq__contact">
+            <div><dt>전화</dt><dd><a data-site-href="tel:{company.tel}" data-site="company.tel"></a></dd></div>
+            <div><dt>이메일</dt><dd><a data-site-href="mailto:{company.email}" data-site="company.email"></a></dd></div>
+            <div><dt>상담시간</dt><dd data-site="company.hours"></dd></div>
+          </dl>
+          <a class="btn btn--kakao" id="kakaoBtn" target="_blank" rel="noopener" hidden>카카오톡 상담</a>
+        </div>
+
+        <form class="form" id="inqForm" name="inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+          <input type="hidden" name="form-name" value="inquiry">
+          <p class="sr"><label>비워두세요 <input name="bot-field"></label></p>
+
+          <fieldset class="form__type">
+            <legend>문의 유형</legend>
+            <label><input type="radio" name="type" value="견적" checked><span>견적</span></label>
+            <label><input type="radio" name="type" value="샘플"><span>샘플 신청</span></label>
+            <label><input type="radio" name="type" value="개발"><span>맞춤 개발</span></label>
+            <label><input type="radio" name="type" value="자료요청"><span>도면·자료</span></label>
+            <label><input type="radio" name="type" value="기타"><span>기타</span></label>
+          </fieldset>
+
+          <div class="form__items">
+            <div class="form__items-hd"><b>문의 제품</b><button type="button" class="link" id="formOpenCart">견적함 편집</button></div>
+            <ul id="formItems"><li class="empty">견적함이 비어 있습니다. 제품 목록에서 <b>견적함 담기</b>를 눌러 추가하세요.</li></ul>
+            <textarea name="items" id="itemsField" hidden></textarea>
+          </div>
+
+          <div class="form__grid">
+            <label>회사·브랜드명 <em>*</em><input name="company" required autocomplete="organization"></label>
+            <label>담당자 <em>*</em><input name="name" required autocomplete="name"></label>
+            <label>연락처 <em>*</em><input name="phone" type="tel" required autocomplete="tel" placeholder="010-0000-0000"></label>
+            <label>이메일 <em>*</em><input name="email" type="email" required autocomplete="email"></label>
+            <label>예상 수량<input name="quantity" placeholder="예: 5,000개"></label>
+            <label>희망 납기<input name="due" type="month"></label>
+          </div>
+          <label class="form__full">내용물·요청사항
+            <textarea name="message" rows="4" placeholder="내용물 종류(오일, 알코올 등), 원하는 후가공, 목표 단가 등을 적어주시면 더 정확한 견적이 가능합니다."></textarea>
+          </label>
+          <label class="form__file">첨부파일 (로고, 스케치, 참고 이미지 · 10MB 이하)
+            <input type="file" name="attachment" accept=".pdf,.png,.jpg,.jpeg,.ai,.zip">
+          </label>
+          <label class="form__agree"><input type="checkbox" name="agree" required> 문의 응대를 위한 개인정보(회사명, 담당자, 연락처, 이메일) 수집·이용에 동의합니다. 문의 처리 후 1년간 보관합니다.</label>
+          <button class="btn btn--amber btn--lg" type="submit">문의 보내기</button>
+          <p class="form__msg" id="formMsg" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ft">
+    <div class="wrap ft__in">
+      <div class="ft__brand">
+        <span class="logo__en" data-site="company.nameEn">DONGLIM</span>
+        <p data-site="company.tagline"></p>
+      </div>
+      <dl class="ft__info">
+        <div><dt>상호</dt><dd data-site="company.name"></dd></div>
+        <div><dt>대표</dt><dd data-site="company.ceo"></dd></div>
+        <div><dt>사업자등록번호</dt><dd data-site="company.bizNo"></dd></div>
+        <div><dt>주소</dt><dd data-site="company.address"></dd></div>
+        <div><dt>전화</dt><dd data-site="company.tel"></dd></div>
+        <div><dt>팩스</dt><dd data-site="company.fax"></dd></div>
+        <div><dt>이메일</dt><dd data-site="company.email"></dd></div>
+      </dl>
+      <p class="ft__copy">© <span id="year"></span> <span data-site="company.nameEn"></span>. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 비교 트레이 -->
+  <div class="ctray" id="compareTray" hidden>
+    <div class="wrap ctray__in">
+      <b>비교함</b>
+      <ul id="compareSlots"></ul>
+      <button type="button" class="btn btn--ink" id="openCompare">비교하기</button>
+      <button type="button" class="link" id="clearCompare">비우기</button>
+    </div>
+  </div>
+
+  <!-- 빠른 메뉴 -->
+  <div class="quick" aria-label="빠른 메뉴">
+    <a class="quick__kakao" id="quickKakao" target="_blank" rel="noopener" hidden>카톡<br>상담</a>
+    <button type="button" id="quickCart">견적함<b id="quickCount">0</b></button>
+    <a href="#top" aria-label="맨 위로">TOP</a>
+  </div>
+
+  <!-- 제품 상세 -->
+  <dialog class="pd" id="productDialog" aria-labelledby="pdTitle">
+    <div class="pd__box" id="pdBody"></div>
+  </dialog>
+
+  <!-- 비교 -->
+  <dialog class="cmp" id="compareDialog" aria-labelledby="cmpTitle">
+    <div class="cmp__box">
+      <div class="cmp__hd"><h2 id="cmpTitle">제품 비교</h2><button type="button" class="x" data-close aria-label="닫기">×</button></div>
+      <div class="cmp__body" id="compareBody"></div>
+    </div>
+  </dialog>
+
+  <!-- 견적함 -->
+  <div class="drawer" id="cartDrawer" aria-hidden="true">
+    <div class="drawer__dim" data-close-cart></div>
+    <aside class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="drawer__hd"><h2 id="cartTitle">견적함</h2><button type="button" class="x" data-close-cart aria-label="닫기">×</button></div>
+      <ul class="cart" id="cartList"></ul>
+      <div class="drawer__ft">
+        <p>수량은 예상치로 적어주셔도 됩니다. 문의 후 확정합니다.</p>
+        <div class="drawer__btns">
+          <button type="button" class="btn btn--line" data-go-inq="샘플">샘플 신청</button>
+          <button type="button" class="btn btn--amber" data-go-inq="견적">견적 문의</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/bottle.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

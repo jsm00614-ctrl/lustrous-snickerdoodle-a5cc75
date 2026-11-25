@@ -1,0 +1,186 @@
+{
+  "categories": [
+    {
+      "key": "serum",
+      "label": "세럼·에센스",
+      "desc": "펌프·드롭퍼용 15~50mL"
+    },
+    {
+      "key": "toner",
+      "label": "토너·스킨",
+      "desc": "100~150mL 대용량 병"
+    },
+    {
+      "key": "dropper",
+      "label": "드롭퍼 병",
+      "desc": "보스턴 라운드·차광 유리"
+    },
+    {
+      "key": "jar",
+      "label": "크림 자",
+      "desc": "15~50g 광구 용기"
+    },
+    {
+      "key": "perfume",
+      "label": "향수병",
+      "desc": "FEA 크림프·스크류 넥"
+    },
+    {
+      "key": "rollon",
+      "label": "롤온",
+      "desc": "오일·아이 세럼용"
+    },
+    {
+      "key": "vial",
+      "label": "바이알·앰플",
+      "desc": "샘플·1회분 소용량"
+    },
+    {
+      "key": "diffuser",
+      "label": "디퓨저",
+      "desc": "홈 프래그런스 용기"
+    }
+  ],
+  "colors": [
+    {
+      "key": "flint",
+      "label": "투명 (플린트)",
+      "hex": "#d9e6e8",
+      "opacity": 0.55
+    },
+    {
+      "key": "frost",
+      "label": "프로스트 (반투명)",
+      "hex": "#e8eded",
+      "opacity": 0.92
+    },
+    {
+      "key": "amber",
+      "label": "앰버 (갈색 차광)",
+      "hex": "#8a4b17",
+      "opacity": 0.85
+    },
+    {
+      "key": "cobalt",
+      "label": "코발트 블루",
+      "hex": "#1f417c",
+      "opacity": 0.85
+    },
+    {
+      "key": "green",
+      "label": "그린",
+      "hex": "#355e3b",
+      "opacity": 0.85
+    },
+    {
+      "key": "opal",
+      "label": "오팔 (유백)",
+      "hex": "#f3f1ea",
+      "opacity": 1
+    },
+    {
+      "key": "black",
+      "label": "블랙 코팅",
+      "hex": "#1c1e20",
+      "opacity": 0.95
+    }
+  ],
+  "closures": [
+    {
+      "key": "pump",
+      "label": "로션 펌프"
+    },
+    {
+      "key": "dropper",
+      "label": "드롭퍼"
+    },
+    {
+      "key": "cap",
+      "label": "스크류 캡"
+    },
+    {
+      "key": "lid",
+      "label": "자 캡 (Jar Lid)"
+    },
+    {
+      "key": "spray",
+      "label": "스프레이 (크림프·스크류)"
+    },
+    {
+      "key": "rollon",
+      "label": "롤볼 + 캡"
+    },
+    {
+      "key": "reed",
+      "label": "디퓨저 마개·리드스틱"
+    }
+  ],
+  "decorations": [
+    {
+      "key": "silk",
+      "label": "실크스크린 인쇄",
+      "desc": "로고·문구를 유리 표면에 직접 인쇄. 최대 4도.",
+      "moq": "3,000개~"
+    },
+    {
+      "key": "hotstamp",
+      "label": "핫스탬핑",
+      "desc": "금·은·홀로그램 박을 열로 전사.",
+      "moq": "3,000개~"
+    },
+    {
+      "key": "coating",
+      "label": "컬러 코팅",
+      "desc": "유광·무광·소프트터치 스프레이 코팅.",
+      "moq": "5,000개~"
+    },
+    {
+      "key": "gradient",
+      "label": "그라데이션",
+      "desc": "위아래로 색이 번지는 스프레이 도장.",
+      "moq": "5,000개~"
+    },
+    {
+      "key": "frost",
+      "label": "프로스트·에칭",
+      "desc": "산 처리로 표면을 반투명하게.",
+      "moq": "3,000개~"
+    },
+    {
+      "key": "sandblast",
+      "label": "샌드블라스트",
+      "desc": "모래 분사로 거친 무광 질감과 부분 패턴 표현.",
+      "moq": "3,000개~"
+    },
+    {
+      "key": "decal",
+      "label": "전사·라벨",
+      "desc": "풀컬러 전사지 또는 라벨 부착.",
+      "moq": "1,000개~"
+    },
+    {
+      "key": "metallize",
+      "label": "증착 (메탈라이징)",
+      "desc": "진공 증착으로 금속 광택 표현.",
+      "moq": "5,000개~"
+    },
+    {
+      "key": "laser",
+      "label": "레이저 각인",
+      "desc": "코팅면을 깎아 로고·패턴을 정밀하게 새김.",
+      "moq": "1,000개~"
+    }
+  ],
+  "moldTypes": [
+    {
+      "key": "auto",
+      "label": "자동병",
+      "desc": "자동 성형기로 생산. 대량 생산과 균일한 품질, 낮은 단가에 유리합니다."
+    },
+    {
+      "key": "manual",
+      "label": "수동병",
+      "desc": "반자동·수동 성형. 두꺼운 바닥, 특수 형태, 소량 고급 라인에 적합합니다."
+    }
+  ]
+}

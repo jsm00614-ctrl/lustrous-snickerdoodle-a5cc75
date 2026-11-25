@@ -1,0 +1,40 @@
+{
+  "code": "DL-SQ030",
+  "name": "스퀘어 세럼 30",
+  "category": "serum",
+  "shape": "square",
+  "capacity": 30,
+  "fullCapacity": 32,
+  "height": 92,
+  "diameter": 36,
+  "depth": 36,
+  "neck": "20/410",
+  "weight": 96,
+  "colors": [
+    "flint",
+    "frost",
+    "black"
+  ],
+  "closures": [
+    "pump",
+    "cap"
+  ],
+  "decorations": [
+    "silk",
+    "hotstamp",
+    "coating",
+    "metallize",
+    "laser"
+  ],
+  "moq": 5000,
+  "stock": false,
+  "leadTime": "생산 4~5주",
+  "badge": "NEW",
+  "summary": "두꺼운 바닥 유리로 무게감을 준 스퀘어 세럼 병. 프리미엄 라인용.",
+  "moldType": "manual",
+  "material": "소다석회 유리 (Soda-lime Glass)",
+  "image": "",
+  "gallery": [],
+  "model3d": "",
+  "published": true
+}
