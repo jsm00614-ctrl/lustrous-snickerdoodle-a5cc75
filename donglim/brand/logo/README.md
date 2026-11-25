@@ -21,3 +21,14 @@
 - 상표 등록 전에는 유사 상표를 확인하세요.
 
 서체: Bricolage Grotesque(영문), Gothic A1(한글). 모두 SIL Open Font License(상업적 사용 가능)입니다.
+
+## 로고 활용안
+
+`applications/` 폴더에 명함, 작업복, 유니폼·모자·사원증, 서식류, 포장, 사인, 사용 규칙 8쪽 시안이 있습니다.
+
+- `donglim-logo-applications.pdf`: 8쪽 전체 (인쇄·공유용)
+- `png/`: 쪽별 이미지 (메신저 공유용)
+- `index.html`: 원본 (브라우저로 열기)
+- `philosophy.md`: 디자인 방향 설명
+
+치수·재질·공정은 제작 업체와 상의할 때 쓰는 출발점입니다. 실제 견적과 샘플로 확정하세요.
