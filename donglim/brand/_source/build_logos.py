@@ -12,6 +12,10 @@ from fontTools.pens.boundsPen import BoundsPen
 
 FS, OUT = sys.argv[1], sys.argv[2]
 INK, AMBER, BLACK, WHITE = '#121619', '#A8571B', '#000000', '#FFFFFF'
+# 아쿠아 버전: 홈페이지 '클리어 글래스' 톤과 같은 색
+NAVY, AQUA = '#0B1A22', '#1D7A8C'
+COLORED = ('color', 'aqua')
+GLINT = {'color': '#F3E2D2', 'aqua': '#DDF0F3'}
 
 F = {
     'jost500': f'{FS}/jost/files/jost-latin-500-normal.woff',
@@ -90,6 +94,7 @@ class Art:
 
 def palette(variant):
     if variant == 'color': return INK, AMBER
+    if variant == 'aqua': return NAVY, AQUA
     if variant == 'black': return BLACK, BLACK
     return WHITE, WHITE  # white (어두운 바탕용)
 
@@ -123,11 +128,11 @@ def mold_symbol(art, x, y, size, variant):
              f'L{P(50 + gap, bot)} L{P(50 + gap, 100)} L{P(93, 100)} Q{P(100, 100)} {P(100, 93)} L{P(100, 7)} Q{P(100, 0)} {P(93, 0)} Z')
     bb = (x, y, x + size, y + size)
     art.path(left, bb, ink); art.path(right, bb, ink)
-    if variant == 'color':  # 유리 반사광
+    if variant in COLORED:  # 유리 반사광
         art.path(f'M{P(31, 49)} L{P(35.5, 49)} L{P(35.5, 74)} L{P(31, 74)} Z', bb, acc)
 
 def concept_mold(variant, layout):
-    ink, acc = palette(variant); a = Art(); sub = acc if variant == 'color' else ink
+    ink, acc = palette(variant); a = Art(); sub = acc if variant in COLORED else ink
     if layout == 'symbol':
         mold_symbol(a, 0, 0, 100, variant); return a
     if layout == 'horizontal':
@@ -149,11 +154,11 @@ def dbottle_symbol(art, x, y, size, variant):
     b = bottle_d(x + 41 * s, y + 17 * s, 36 * s, 66 * s, neck_w=13 * s, neck_h=11 * s, corner=6 * s)
     bb = (x, y, x + 92 * s, y + 100 * s)
     art.path(D + ' ' + b, bb, ink, rule='evenodd')
-    if variant == 'color':
+    if variant in COLORED:
         art.path(f'M{P(29, 47)} L{P(33, 47)} L{P(33, 73)} L{P(29, 73)} Z', bb, acc)
 
 def concept_dbottle(variant, layout):
-    ink, acc = palette(variant); a = Art(); sub = acc if variant == 'color' else ink
+    ink, acc = palette(variant); a = Art(); sub = acc if variant in COLORED else ink
     if layout == 'symbol':
         dbottle_symbol(a, 0, 0, 100, variant); return a
     if layout == 'horizontal':
@@ -177,7 +182,7 @@ def hangul_donglim(art, x, y, s, variant, only_dong=False):
             R(43.5, 47, t, 14), R(0, 61, 102, t)]                  # ㅗ
     art.path(' '.join(dong), (x, y, x + 102 * s, y + 128 * s), ink)
     cx, cy = x + 51 * s, y + 103 * s
-    ac = acc if variant == 'color' else ink
+    ac = acc if variant in COLORED else ink
     art.path(ring(cx, cy, 25 * s, 11 * s), (cx - 25 * s, cy - 25 * s, cx + 25 * s, cy + 25 * s), ac)
     art.path(ring(cx, cy, 4.5 * s, 0), (cx - 5 * s, cy - 5 * s, cx + 5 * s, cy + 5 * s), ac)
     if only_dong:
@@ -191,7 +196,7 @@ def hangul_donglim(art, x, y, s, variant, only_dong=False):
     return x + (o + 95) * s
 
 def concept_ring(variant, layout):
-    ink, acc = palette(variant); a = Art(); sub = acc if variant == 'color' else ink
+    ink, acc = palette(variant); a = Art(); sub = acc if variant in COLORED else ink
     if layout == 'symbol':
         # 넥 링이 들어간 '동' 한 글자 (파비콘·도장·자수용)
         hangul_donglim(a, 0, 0, 1.0, variant, only_dong=True)
@@ -208,7 +213,7 @@ def concept_ring(variant, layout):
 
 # ───────────── D. 앰버 보틀 (세리프) ─────────────
 def concept_amber(variant, layout):
-    ink, acc = palette(variant); a = Art(); sub = acc if variant == 'color' else ink
+    ink, acc = palette(variant); a = Art(); sub = acc if variant in COLORED else ink
     size = 72; base = 80; capH = cap_h('corm600', size)
     def bottle_o(cx, base, hh):
         w = hh * 0.58
@@ -217,7 +222,7 @@ def concept_amber(variant, layout):
         hh = 100; w = hh * 0.58
         a.path(bottle_o(50, 100, hh), (50 - w / 2, 0, 50 + w / 2, 100), sub)
         hl = WHITE if variant != 'white' else INK
-        if variant == 'color': a.path(rect(39, 46, 4.5, 40), (39, 46, 43.5, 86), '#F3E2D2')
+        if variant in COLORED: a.path(rect(39, 46, 4.5, 40), (39, 46, 43.5, 86), GLINT[variant])
         return a
     track = 0.1
     d1, b1 = text('corm600', 'D', size, 0, base, track=track); a.path(d1, b1, ink)
@@ -231,7 +236,7 @@ def concept_amber(variant, layout):
         return a
     a2 = Art(); cx = b2[2] / 2; hh = 116; w = hh * 0.58
     a2.path(bottle_o(cx, 116, hh), (cx - w / 2, 0, cx + w / 2, 116), sub)
-    if variant == 'color': a2.path(rect(cx - w * 0.3, 52, 4.5, 50), (0, 52, 1, 102), '#F3E2D2')
+    if variant in COLORED: a2.path(rect(cx - w * 0.3, 52, 4.5, 50), (0, 52, 1, 102), GLINT[variant])
     d1, b1 = text_c('corm600', 'DONGLIM', 48, cx, 180, track=0.16); a2.path(d1, b1, ink)
     d3, b3 = text_c('serifkr700', '동림', 18, cx, 212, track=0.6); a2.path(d3, b3, ink)
     return a2
@@ -257,7 +262,7 @@ def arc_text(art, key, s, size, cx, cy, radius, track, fill, bottom=False):
         ang += (w + track * size) / radius
 
 def concept_emblem(variant, layout):
-    ink, acc = palette(variant); a = Art(); C = 100; sub = acc if variant == 'color' else ink
+    ink, acc = palette(variant); a = Art(); C = 100; sub = acc if variant in COLORED else ink
     a.path(ring(C, C, 100, 95.5), (0, 0, 200, 200), ink)
     a.path(ring(C, C, 67, 64.5), (33, 33, 167, 167), ink)
     arc_text(a, 'jost600', 'DONGLIM', 24, C, C, 73, 0.5, ink)
@@ -282,7 +287,7 @@ for cid, (name, fn, layouts) in CONCEPTS.items():
     os.makedirs(f'{OUT}/{cid}', exist_ok=True)
     manifest[cid] = []
     for layout in layouts:
-        for variant in ('color', 'black', 'white'):
+        for variant in ('color', 'aqua', 'black', 'white'):
             art = fn(variant, layout)
             fname = f'{cid.lower()}-{layout}-{variant}.svg'
             open(f'{OUT}/{cid}/{fname}', 'w', encoding='utf-8').write(

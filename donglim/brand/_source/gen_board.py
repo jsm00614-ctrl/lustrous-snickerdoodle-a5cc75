@@ -46,10 +46,13 @@ for i, (cid, letter, ko, en, desc, pros, cons) in enumerate(C, 1):
         stacked_c = sym_c = sym_w = sym_b = main_c
         sym_w, sym_b = main_w, main_b
         horiz_c = main_c
+        aq_main = aq_stack = f'{lower}-badge-aqua.svg'
     else:
         main_c = f'{lower}-horizontal-color.svg'; main_w = f'{lower}-horizontal-white.svg'; main_b = f'{lower}-horizontal-black.svg'
         stacked_c = f'{lower}-stacked-color.svg'; sym_c = f'{lower}-symbol-color.svg'; sym_w = f'{lower}-symbol-white.svg'; sym_b = f'{lower}-symbol-black.svg'
         horiz_c = main_c
+        aq_main, aq_stack = f'{lower}-horizontal-aqua.svg', f'{lower}-stacked-aqua.svg'
+    aq_stack_tile = '' if cid == 'E-emblem' else f'<figure class="tile tile--mist">{img(cid, aq_stack, "", f"{ko} 아쿠아 세로형")}<figcaption>세로형 · 아쿠아</figcaption></figure>'
     shirt_logo = sym_w if cid != 'C-neck-ring' else f'{lower}-stacked-white.svg'
     if cid == 'E-emblem': shirt_logo = main_w
     files = ''.join(f'<li><a href="logos/{cid}/{f}" download>{f}</a></li>' for f in man[cid])
@@ -58,7 +61,8 @@ for i, (cid, letter, ko, en, desc, pros, cons) in enumerate(C, 1):
     <header class="c-hd">
       <span class="c-letter">{letter}</span>
       <div><h2>{ko} <small>{en}</small></h2><p>{desc}</p></div>
-      <label class="pick"><input type="checkbox"> 이 안 선택</label>
+      <div class="pick"><label><input type="checkbox"> 이 안 선택</label>
+        <span class="pick-color">색 <label><input type="radio" name="c-{cid}"> 앰버</label><label><input type="radio" name="c-{cid}"> 아쿠아</label></span></div>
     </header>
     <div class="c-grid">
       <figure class="tile tile--hero">{img(cid, main_c, 'hero-logo', f'{ko} 기본형')}<figcaption>기본형 (컬러)</figcaption></figure>
@@ -75,6 +79,15 @@ for i, (cid, letter, ko, en, desc, pros, cons) in enumerate(C, 1):
         <figcaption>작은 크기 테스트 (파비콘·앱 아이콘)</figcaption>
       </figure>
     </div>
+    <div class="aqua">
+      <p class="aqua-hd"><b>아쿠아 버전</b> 새 홈페이지(클리어 글래스) 색과 맞춘 버전입니다. 모양은 같고 색만 다릅니다.</p>
+      <div class="aqua-grid">
+        <figure class="tile tile--mist">{img(cid, aq_main, '', f'{ko} 아쿠아 기본형')}<figcaption>{'기본형' if cid != 'E-emblem' else '배지'} · 아쿠아</figcaption></figure>
+        {aq_stack_tile}
+        <figure class="tile tile--aqua">{img(cid, sym_w, '', f'{ko} 심볼 아쿠아 바탕')}<figcaption>심볼 · 아쿠아 바탕</figcaption></figure>
+        <figure class="tile tile--navy">{img(cid, main_w, '', f'{ko} 네이비 바탕')}<figcaption>네이비 바탕 (홈페이지 회사소개·하단)</figcaption></figure>
+      </div>
+    </div>
     <div class="apply">
       <figure class="ap ap--shirt">{shirt(cid, shirt_logo)}<figcaption>유니폼 가슴 자수</figcaption></figure>
       <figure class="ap ap--card">
@@ -83,8 +96,8 @@ for i, (cid, letter, ko, en, desc, pros, cons) in enumerate(C, 1):
         <figcaption>명함 앞 · 뒤</figcaption>
       </figure>
       <figure class="ap ap--web">
-        <div class="web"><div class="web-bar">{img(cid, horiz_c)}<nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
-        <figcaption>홈페이지 헤더</figcaption>
+        <div class="web"><div class="web-bar">{img(cid, aq_main)}<nav><span>회사 강점</span><span>프리몰드 제품</span><span>후가공</span><span>문의</span></nav></div><div class="web-body"></div></div>
+        <figcaption>홈페이지 헤더 (아쿠아 버전)</figcaption>
       </figure>
       <figure class="ap ap--box"><div class="box">{img(cid, main_b if cid != 'E-emblem' else main_b)}<span>FRAGILE · GLASS</span></div><figcaption>박스 스탬프 (1도)</figcaption></figure>
     </div>
@@ -134,9 +147,24 @@ img {{ display:block; max-width:100%; }}
 .tile--hero img {{ max-height:300px; padding:40px 56px; }}
 .tile--dark {{ background:var(--ink); border-color:var(--ink); }}
 .tile--amber {{ background:var(--amber); border-color:var(--amber); }}
+.tile--aqua {{ background:#1d7a8c; border-color:#1d7a8c; }}
+.tile--navy {{ background:linear-gradient(160deg,#12303a,#0b1a22); border-color:#0b1a22; }}
+.tile--mist {{ background:radial-gradient(120% 90% at 70% 0%,#e2f2f5,transparent 60%),#f4f8f9; border-color:#d3e1e5; }}
+.aqua {{ margin-top:14px; padding:14px; border:1px solid #d3e1e5; background:#f8fbfc; }}
+.aqua-hd {{ margin:0 0 10px; font-size:13px; color:var(--ink2); }}
+.aqua-hd b {{ color:#1d7a8c; margin-right:6px; }}
+.aqua-grid {{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }}
+.aqua-grid .tile {{ grid-column:span 1; min-height:150px; }}
+.aqua-grid .tile img {{ max-height:120px; padding:16px; }}
+.pick-color {{ width:max-content; white-space:nowrap; }}
+.pick {{ display:grid; gap:6px; justify-items:end; border:0; padding:0; font-weight:400; }}
+.pick > label {{ display:flex; gap:8px; align-items:center; border:1px solid var(--ink); padding:8px 14px; font-weight:600; cursor:pointer; }}
+.pick-color input {{ width:15px; height:15px; }}
+.pick-color {{ display:flex; gap:10px; align-items:center; font-size:13px; color:var(--muted); }}
+.pick-color label {{ display:flex; gap:4px; align-items:center; color:var(--ink); }}
 .tile--sq {{ grid-column:span 2; }}
 .tile figcaption {{ font-size:12px; color:var(--muted); padding:8px 12px; border-top:1px solid var(--line); background:var(--sheet); }}
-.tile--dark figcaption, .tile--amber figcaption {{ border-color:transparent; }}
+.tile--dark figcaption, .tile--amber figcaption, .tile--aqua figcaption, .tile--navy figcaption {{ border-color:transparent; }}
 .sizes {{ display:flex; align-items:flex-end; justify-content:center; gap:22px; padding:20px; }}
 .sizes span {{ display:grid; justify-items:center; gap:6px; font:11px 'IBM Plex Mono',monospace; color:var(--muted); }}
 .sizes i {{ display:block; background:center/contain no-repeat; }}
@@ -158,7 +186,7 @@ img {{ display:block; max-width:100%; }}
 .web-bar {{ display:flex; align-items:center; gap:12px; padding:10px 12px; border-bottom:1px solid var(--line); background:var(--paper); min-width:0; }}
 .web-bar img {{ height:26px; width:auto; max-width:50%; object-fit:contain; object-position:left; }}
 .web-bar nav {{ margin-left:auto; display:flex; gap:8px; font-size:9.5px; color:var(--ink2); white-space:nowrap; overflow:hidden; }}
-.web-body {{ flex:1; min-height:120px; background:linear-gradient(#e4e1da 1px,transparent 1px) 0 0/100% 16px,linear-gradient(90deg,#e4e1da 1px,transparent 1px) 0 0/16px 100%; }}
+.web-body {{ flex:1; min-height:120px; background:radial-gradient(120% 90% at 70% 0%,#e2f2f5,transparent 60%),linear-gradient(180deg,#f7fafb,#e9f1f3); }}
 .box {{ width:170px; height:170px; background:#c9a77c; flex-direction:column; gap:8px; padding:16px; }}
 .box img {{ max-height:72px; max-width:100%; width:auto; opacity:.85; mix-blend-mode:multiply; }}
 .box span {{ font:500 8.5px 'IBM Plex Mono',monospace; letter-spacing:.2em; color:#3b2a18; }}
@@ -187,6 +215,7 @@ thead th {{ background:var(--ink); color:#fff; font-weight:600; }}
   .c-grid {{ grid-template-columns:repeat(2,minmax(0,1fr)); }}
   .tile, .tile--hero, .tile--sq {{ grid-column:span 1; grid-row:auto; }}
   .tile--hero {{ grid-column:1 / -1; }}
+  .aqua-grid {{ grid-template-columns:repeat(2,minmax(0,1fr)); }}
   .apply, .c-ft, .g-grid {{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); }}
   .ap--card, .ap--web {{ grid-column:1 / -1; }}
   .box {{ width:100%; height:auto; aspect-ratio:1; }}
@@ -206,7 +235,7 @@ thead th {{ background:var(--ink); color:#fff; font-weight:600; }}
   .ap > :first-child {{ min-height:150px; }}
   .web-body {{ height:70px; }}
   .c-ft {{ margin-top:10px; }}
-  .tile--dark, .tile--amber, .c-letter, .card-back, thead th, .box {{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }}
+  .tile--dark, .tile--amber, .tile--aqua, .tile--navy, .tile--mist, .aqua, .web-body, .c-letter, .card-back, thead th, .box {{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }}
 }}
 </style>
 </head>
@@ -215,7 +244,7 @@ thead th {{ background:var(--ink); color:#fff; font-weight:600; }}
   <section class="cover">
     <p class="eyebrow">DONGLIM · LOGO PROPOSAL</p>
     <h1>동림 로고 시안</h1>
-    <p>화장품 유리용기 · 금형 개발 · 후가공 전 공정. 동림의 강점을 담은 다섯 가지 방향입니다. 마음에 드는 안의 <b>‘이 안 선택’</b>에 표시하고, 아래 칸에 의견을 적어주세요. 선택한 안을 바탕으로 세부 다듬기와 최종 파일 정리를 진행합니다.</p>
+    <p>화장품 유리용기 · 금형 개발 · 후가공 전 공정. 동림의 강점을 담은 다섯 가지 방향입니다. 각 안은 <b>앰버</b>(따뜻한 갈색 유리)와 새 홈페이지 색에 맞춘 <b>아쿠아</b>(맑은 유리) 두 가지 색으로 볼 수 있습니다. 마음에 드는 안의 <b>‘이 안 선택’</b>에 표시하고, 아래 칸에 의견을 적어주세요. 선택한 안을 바탕으로 세부 다듬기와 최종 파일 정리를 진행합니다.</p>
     <nav class="toc">{''.join(f'<a href="#{c[0]}"><img src="logos/{c[0]}/{c[0].lower()}-{"badge" if c[0] == "E-emblem" else "symbol"}-color.svg" alt=""><b>{c[1]}. {c[2]}</b></a>' for c in C)}</nav>
   </section>
   {''.join(parts)}
@@ -223,9 +252,12 @@ thead th {{ background:var(--ink); color:#fff; font-weight:600; }}
     <h2>공통 사항</h2>
     <div class="g-grid">
       <div><h3>브랜드 색상</h3>
+        <p style="font-size:12px;color:#6b7378;margin:0 0 6px">앰버 버전</p>
         <div class="sw"><div><i style="background:#121619"></i><small>INK<br>#121619</small></div><div><i style="background:#A8571B"></i><small>AMBER<br>#A8571B</small></div><div><i style="background:#F3F2EE"></i><small>PAPER<br>#F3F2EE</small></div></div>
-        <p style="font-size:13px;color:#384046">홈페이지 색과 같습니다. 인쇄용 별색(PANTONE)은 선택한 안으로 실물 교정 후 정합니다.</p></div>
-      <div><h3>파일 종류</h3><p style="font-size:13px;color:#384046">모든 시안은 <b>SVG 벡터</b>입니다. 글자는 윤곽선(path)으로 변환되어 폰트 없이도 똑같이 보이며, 일러스트레이터·인쇄소·자수 업체에서 그대로 열 수 있습니다. 각 안마다 <b>컬러 / 흑백 / 흰색(어두운 바탕용)</b> × <b>가로형 / 세로형 / 심볼</b>이 있습니다.</p></div>
+        <p style="font-size:12px;color:#6b7378;margin:12px 0 6px">아쿠아 버전 (새 홈페이지 색)</p>
+        <div class="sw"><div><i style="background:#0B1A22"></i><small>NAVY<br>#0B1A22</small></div><div><i style="background:#1D7A8C"></i><small>AQUA<br>#1D7A8C</small></div><div><i style="background:#F2F6F7"></i><small>MIST<br>#F2F6F7</small></div></div>
+        <p style="font-size:13px;color:#384046">아쿠아 버전은 현재 홈페이지 색과 같습니다. 인쇄용 별색(PANTONE)은 선택한 안으로 실물 교정 후 정합니다.</p></div>
+      <div><h3>파일 종류</h3><p style="font-size:13px;color:#384046">모든 시안은 <b>SVG 벡터</b>입니다. 글자는 윤곽선(path)으로 변환되어 폰트 없이도 똑같이 보이며, 일러스트레이터·인쇄소·자수 업체에서 그대로 열 수 있습니다. 각 안마다 <b>앰버 / 아쿠아 / 흑백 / 흰색(어두운 바탕용)</b> × <b>가로형 / 세로형 / 심볼</b>이 있습니다.</p></div>
       <div><h3>사용 가이드</h3><ul style="font-size:13px;color:#384046;padding-left:18px;margin:0">
         <li>로고 주변 여백: 심볼 높이의 1/4 이상</li><li>유니폼 자수 최소 폭: 가로형 60mm, 심볼 18mm</li><li>도장·박스·레이저 각인은 흑백 1도 파일 사용</li><li>로고 비율을 늘리거나 줄이지 마세요</li></ul></div>
     </div>
