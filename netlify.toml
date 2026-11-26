@@ -1,7 +1,0 @@
-[build]
-  # 관리자(CMS)에서 등록한 제품 파일과 엑셀(CSV)을 합쳐 donglim/content/products.json 을 만듭니다.
-  command = "node donglim/scripts/build-products.mjs"
-  publish = "."
-
-[build.environment]
-  NODE_VERSION = "20"
