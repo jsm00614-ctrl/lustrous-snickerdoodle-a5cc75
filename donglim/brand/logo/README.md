@@ -24,11 +24,18 @@
 
 ## 로고 활용안
 
-`applications/` 폴더에 명함, 작업복, 유니폼·모자·사원증, 서식류, 포장, 사인, 사용 규칙 8쪽 시안이 있습니다.
+`applications/` 폴더에 9쪽 시안이 있습니다.
+- 01 표지, 02 둘러보기
+- 03 명함, 04 작업복, 05 유니폼·모자·안전모·사원증
+- 06 서식류, 07 포장, 08 사인, 09 사용 규칙
 
-- `donglim-logo-applications.pdf`: 8쪽 전체 (인쇄·공유용)
-- `png/`: 쪽별 이미지 (메신저 공유용)
-- `index.html`: 원본 (브라우저로 열기)
-- `philosophy.md`: 디자인 방향 설명
+| 파일 | 용도 |
+|---|---|
+| `donglim-logo-applications.pdf` | 9쪽 전체 (인쇄·공유용) |
+| `images/` | 쪽별 이미지 JPG (메신저 공유용) |
+| `index.html` | 원본 (브라우저로 열기) |
+| `DESIGN.md` | 디자인 기준 |
+
+`DESIGN.md`는 `nby-awesome-design-md` 방식으로 가져온 Nike 스타일 디자인 언어(VoltAgent/awesome-design-md, MIT)입니다. 쓴 것은 색·글꼴·간격 규칙뿐이며, Nike 상표나 로고는 쓰지 않습니다.
 
 치수·재질·공정은 제작 업체와 상의할 때 쓰는 출발점입니다. 실제 견적과 샘플로 확정하세요.

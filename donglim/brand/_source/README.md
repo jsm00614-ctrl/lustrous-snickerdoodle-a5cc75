@@ -26,10 +26,10 @@ python donglim/brand/_source/gen_board.py donglim/brand
 
 ## 로고 활용안 (확정 로고)
 
-확정 로고(`../logo/svg`)로 명함·작업복 등 활용안 8쪽을 만듭니다.
+확정 로고(`../logo/svg`)로 명함·작업복 등 활용안 9쪽을 만듭니다. 디자인 기준은 `../logo/applications/DESIGN.md`입니다.
 
 ```bash
 python donglim/brand/_source/build_applications.py donglim/brand
 ```
 
-결과는 `donglim/brand/logo/applications/index.html`입니다. 브라우저로 열어 인쇄(PDF 저장)하면 1600×1000 크기로 8쪽이 나옵니다.
+결과는 `donglim/brand/logo/applications/index.html`입니다. 브라우저로 열어 인쇄(PDF 저장)하면 1600×1000 크기로 9쪽이 나옵니다.
