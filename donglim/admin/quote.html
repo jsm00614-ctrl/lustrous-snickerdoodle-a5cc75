@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>동림 견적 관리</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="quote.css">
+</head>
+<body>
+  <!--
+    동림 견적 관리 (관리자 전용)
+    - 원가(원견적)는 공개 저장소에 올리지 않습니다. 이 브라우저 또는 '비공개' GitHub 저장소에만 저장됩니다.
+    - 데이터 구조와 사용법: donglim/README.md 의 '견적 관리' 항목
+  -->
+  <div class="app" id="app">
+    <header class="top">
+      <a class="top__brand" href="./"><img src="../brand/logo/svg/donglim-horizontal.svg" alt="동림 Donglim" height="20"></a>
+      <span class="top__title">견적 관리</span>
+      <nav class="tabs" role="tablist">
+        <button class="tab is-on" data-tab="quote" role="tab">견적 작성</button>
+        <button class="tab" data-tab="costs" role="tab">원가 관리</button>
+        <button class="tab" data-tab="history" role="tab">견적 기록</button>
+        <button class="tab" data-tab="settings" role="tab">설정</button>
+      </nav>
+      <div class="top__store">
+        <span class="store" id="storeBadge"></span>
+        <button class="btn btn--sm btn--ink" id="saveBtn" type="button" hidden>저장</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- 견적 작성 -->
+      <section class="pane is-on" id="pane-quote">
+        <div class="onboard" id="onboard" hidden></div>
+        <div class="qgrid">
+          <aside class="picker">
+            <div class="picker__hd">
+              <h2>제품 선택</h2>
+              <input type="search" id="pickQ" placeholder="품번·제품명·넥 검색" autocomplete="off">
+              <div class="chips" id="pickCats"></div>
+            </div>
+            <ul class="plist" id="pickList"></ul>
+          </aside>
+
+          <div class="sheet">
+            <div class="card">
+              <div class="card__hd"><h2>견적 정보</h2><span class="muted" id="qNoHint"></span></div>
+              <div class="fgrid">
+                <label>견적번호<input id="qNo" autocomplete="off"></label>
+                <label>견적일<input type="date" id="qDate"></label>
+                <label>거래처(회사명)<input id="cCompany" placeholder="예: ○○코스메틱"></label>
+                <label>담당자<input id="cPerson" placeholder="예: 김○○ 과장"></label>
+                <label>연락처<input id="cTel"></label>
+                <label>이메일<input id="cEmail" type="email"></label>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card__hd">
+                <h2>품목</h2>
+                <div class="margin">
+                  <span>기본 마진율</span>
+                  <input type="range" id="mRange" min="0" max="80" step="1">
+                  <input type="number" id="mNum" min="0" max="300" step="0.5"><b>%</b>
+                  <span class="muted" id="mHow"></span>
+                </div>
+              </div>
+              <div class="tblwrap">
+                <table class="lines">
+                  <thead><tr>
+                    <th class="c-no">#</th><th>제품 · 사양</th><th class="c-qty">수량</th>
+                    <th class="c-int">원가 <small>내부</small></th><th class="c-int c-m">마진 <small>내부</small></th>
+                    <th class="c-price">단가</th><th class="c-amt">금액</th><th class="c-x"></th>
+                  </tr></thead>
+                  <tbody id="lines"></tbody>
+                </table>
+              </div>
+              <div class="lines__empty" id="linesEmpty">왼쪽 목록에서 제품의 <b>+ 추가</b>를 누르세요.</div>
+              <div class="lines__ft">
+                <button class="btn btn--ghost btn--sm" id="addCustom" type="button">+ 기타 항목 (금형비 · 운송비 등)</button>
+              </div>
+              <div class="totals" id="totals"></div>
+            </div>
+
+            <div class="card">
+              <div class="card__hd"><h2>조건 · 비고</h2></div>
+              <div class="fgrid">
+                <label>납기<input id="qDelivery"></label>
+                <label>결제 조건<input id="qPayment"></label>
+                <label>유효기간<input id="qValid"></label>
+                <label class="span2">비고<textarea id="qMemo" rows="3"></textarea></label>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="btn btn--ink" id="printBtn" type="button">견적서 미리보기 · PDF</button>
+              <button class="btn" id="csvBtn" type="button">견적서 CSV</button>
+              <button class="btn" id="csvIntBtn" type="button">내부용 CSV (원가 포함)</button>
+              <span class="grow"></span>
+              <button class="btn" id="newBtn" type="button">새 견적</button>
+              <button class="btn btn--aqua" id="saveQuoteBtn" type="button">견적 저장</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 원가 관리 -->
+      <section class="pane" id="pane-costs">
+        <div class="card">
+          <div class="card__hd">
+            <h2>제품 원가 <small class="muted" id="costCount"></small></h2>
+            <div class="row">
+              <input type="search" id="costQ" placeholder="품번·제품명 검색" autocomplete="off">
+              <button class="btn btn--sm" id="costTpl" type="button">CSV 양식 내려받기</button>
+              <label class="btn btn--sm">CSV 불러오기<input type="file" id="costCsv" accept=".csv,text/csv" hidden></label>
+            </div>
+          </div>
+          <p class="note">원견적(개당 원가, 원)을 입력하세요. 수량 구간 단가는 비워두면 기본 원가를 씁니다. 처음에는 <b>CSV 양식</b>을 내려받아 엑셀에서 채운 뒤 불러오면 빠릅니다.</p>
+          <div class="tblwrap"><table class="costs" id="costTable"></table></div>
+        </div>
+        <div class="two">
+          <div class="card">
+            <div class="card__hd"><h2>부자재 원가</h2></div>
+            <p class="note">견적에서 부자재를 고르면 개당 원가에 더해집니다.</p>
+            <table class="costs costs--sm" id="closureTable"></table>
+          </div>
+          <div class="card">
+            <div class="card__hd"><h2>후가공 원가</h2></div>
+            <p class="note">개당 단가는 수량만큼, 판비(셋업비)는 견적 품목마다 한 번 더해집니다.</p>
+            <table class="costs costs--sm" id="decoTable"></table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 견적 기록 -->
+      <section class="pane" id="pane-history">
+        <div class="card">
+          <div class="card__hd"><h2>저장한 견적</h2><input type="search" id="histQ" placeholder="견적번호·거래처 검색" autocomplete="off"></div>
+          <div class="tblwrap"><table class="hist" id="histTable"></table></div>
+        </div>
+      </section>
+
+      <!-- 설정 -->
+      <section class="pane" id="pane-settings">
+        <div class="two">
+          <div class="card">
+            <div class="card__hd"><h2>가격 계산</h2></div>
+            <div class="fgrid fgrid--1">
+              <label>기본 마진율 (%)<input type="number" id="sMargin" min="0" max="300" step="0.5"></label>
+              <fieldset class="radio"><legend>마진 계산 방식</legend>
+                <label><input type="radio" name="sMethod" value="markup"> 원가에 더하기 <span class="muted">단가 = 원가 × (1 + 마진율)</span></label>
+                <label><input type="radio" name="sMethod" value="margin"> 판매가 기준 <span class="muted">단가 = 원가 ÷ (1 − 마진율)</span></label>
+                <p class="muted" id="sMethodEx"></p>
+              </fieldset>
+              <div class="row">
+                <label>단가 끝자리<select id="sRound"><option value="1">1원</option><option value="10">10원</option><option value="100">100원</option></select></label>
+                <label>처리<select id="sRoundMode"><option value="ceil">올림</option><option value="round">반올림</option></select></label>
+                <label class="chk"><input type="checkbox" id="sVat"> 부가세 10% 별도 표시</label>
+              </div>
+              <label>수량 구간 (쉼표로 구분, 이 수량 이상이면 구간 원가 적용)<input id="sTiers" placeholder="3000, 10000, 30000"></label>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__hd"><h2>견적서 기본 문구</h2></div>
+            <div class="fgrid fgrid--1">
+              <div class="row"><label>견적번호 앞글자<input id="sPrefix"></label><label>유효기간 (일)<input type="number" id="sValidDays" min="1"></label></div>
+              <label>기본 납기<input id="sDelivery"></label>
+              <label>기본 결제 조건<input id="sPayment"></label>
+              <label>기본 비고<textarea id="sMemo" rows="3"></textarea></label>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__hd"><h2>공급자 정보 (견적서에 표시)</h2></div>
+            <div class="fgrid">
+              <label>상호<input id="sCoName"></label><label>대표<input id="sCoCeo"></label>
+              <label>사업자등록번호<input id="sCoBiz"></label><label>전화<input id="sCoTel"></label>
+              <label class="span2">주소<input id="sCoAddr"></label><label class="span2">이메일<input id="sCoMail"></label>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__hd"><h2>저장 위치 · 백업</h2></div>
+            <fieldset class="radio"><legend class="sr">저장 위치</legend>
+              <label><input type="radio" name="sStore" value="local"> 이 브라우저 <span class="muted">이 컴퓨터·이 브라우저에만 저장. 다른 기기에서는 백업 파일로 옮기세요.</span></label>
+              <label><input type="radio" name="sStore" value="github"> 비공개 GitHub 저장소 <span class="muted">여러 기기에서 같은 원가·견적을 씁니다. 반드시 <b>비공개(Private)</b> 저장소.</span></label>
+            </fieldset>
+            <div class="row" id="repoRow">
+              <input id="sRepo" placeholder="계정/저장소 (예: jsm00614-ctrl/donglim-quotes)">
+              <button class="btn btn--sm" id="repoCheck" type="button">연결</button>
+            </div>
+            <p class="note" id="repoMsg"></p>
+            <div class="row">
+              <button class="btn btn--sm" id="backupBtn" type="button">백업 파일 내려받기</button>
+              <label class="btn btn--sm">백업 불러오기<input type="file" id="restoreFile" accept=".json,application/json" hidden></label>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 견적서 미리보기 (인쇄 대상) -->
+  <div class="preview" id="preview" hidden>
+    <div class="preview__bar">
+      <b>견적서 미리보기</b><span class="muted">원가·마진은 견적서에 나오지 않습니다.</span><span class="grow"></span>
+      <button class="btn btn--ink" id="doPrint" type="button">인쇄 · PDF 저장</button>
+      <button class="btn" id="closePreview" type="button">닫기</button>
+    </div>
+    <div class="preview__paper"><article class="doc" id="doc"></article></div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../js/bottle.js"></script>
+  <script src="quote.js"></script>
+</body>
+</html>
